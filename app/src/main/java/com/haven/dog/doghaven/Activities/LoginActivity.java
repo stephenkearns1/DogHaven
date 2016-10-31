@@ -1,7 +1,9 @@
-package com.haven.dog.doghaven;
+package com.haven.dog.doghaven.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.haven.dog.doghaven.R;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -10,4 +12,11 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+
 }
