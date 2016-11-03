@@ -34,6 +34,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Button login;
     private String username,userPassword;
     private final String loign_URL = "https://backend-doghaven-app-stephenkearns1.c9users.io/scripts/login.php";
+    private static final String tagFName= "sname";
+    private static final String tagSName = "fname";
+    private User user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +67,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.loginbtn:
                 //mite not have to store username, password for checking only on return store details
                 username = userNameET.getText().toString();
-                 userPassword = userPasswordET.getText().toString();
+                userPassword = userPasswordET.getText().toString();
 
-                User user = new User(username,userPassword);
+                user = new User(username,userPassword);
 
                 //call login method
                 authenticate(user);
@@ -88,6 +92,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                         try {
                             JSONArray jsArray = new JSONArray(response);
+
+                            JSONObject jsUserObj = (JSONObject) jsArray.get(0);
+                            //she have a unique id
+                            User mUser = new User();
+                            mUser.setfName(jsUserObj.getString(tagFName));
+                            mUser.setsName(jsUserObj.getString(tagSName));
+
+
+                            //Log the user in
+                            LogUserIn(mUser);
                             Log.i("Returned data json:L01", jsArray.toString());
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -120,6 +134,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(user != null){
             //store user data in sharedPerferances
             //check user type and display screen for user
+
+            Log.i("user data Login", user.getfName() + user.getsName());
               /*
                   if(user.getType == "user")
                         start usermainscreen
