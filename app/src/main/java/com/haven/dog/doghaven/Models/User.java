@@ -6,21 +6,29 @@ package com.haven.dog.doghaven.Models;
  */
 
 public class User {
-    private String fName, sName, email, addr,date;
+    private String fName, sName, username, email, addr,date,password;
     private int mobNum;
 
     public User()
     {
 
     }
-    public User(String fName, String sName, String email, String addr, String date, int mobNum)
+    public User(String username, String password)
+    {
+        this.username = username;
+        this.password = password;
+    }
+
+    public User(String fName, String sName, String username, String email, String paasword, String addr, String date, int mobNum)
     {
        this.fName = fName;
        this.sName = sName;
+       this.username = username;
        this.email = email;
        this.addr = addr;
        this.date = date;
        this.mobNum = mobNum;
+       this.password = paasword;
 
     }
 

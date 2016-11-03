@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.haven.dog.doghaven">
+    <!--
+         Permissions for the application go here.
+         Permissions can be found at https://developer.android.com/reference/android/Manifest.permission.html#INTERNET
+    -->
+    <uses-permission
+        android:name="android.permission.INTERNET">
 
+    </uses-permission>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
