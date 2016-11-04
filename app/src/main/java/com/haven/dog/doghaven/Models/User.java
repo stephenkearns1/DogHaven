@@ -6,7 +6,7 @@ package com.haven.dog.doghaven.Models;
  */
 
 public class User {
-    private String fName, sName, username, email, addr,date,password;
+    private String fName, sName, username, email, addr, dob, password, usertype;
     private int mobNum;
 
     public User()
@@ -19,14 +19,14 @@ public class User {
         this.password = password;
     }
 
-    public User(String fName, String sName, String username, String email, String paasword, String addr, String date, int mobNum)
+    public User(String fName, String sName, String username, String email, String paasword, String addr, String dob, int mobNum)
     {
        this.fName = fName;
        this.sName = sName;
        this.username = username;
        this.email = email;
        this.addr = addr;
-       this.date = date;
+       this.dob = dob;
        this.mobNum = mobNum;
        this.password = paasword;
 
@@ -48,12 +48,24 @@ public class User {
         this.addr = addr;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDob(String date) {
+        dob = date;
     }
 
     public void setMobNum(int mobNum) {
         this.mobNum = mobNum;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setUsertype(String usertype) {
+        this.usertype = usertype;
     }
 
     public String getfName() {
@@ -68,8 +80,8 @@ public class User {
         return addr;
     }
 
-    public String getDate() {
-        return date;
+    public String getDob() {
+        return dob;
     }
 
     public String getEmail() {
@@ -78,5 +90,17 @@ public class User {
 
     public int getMobNum() {
         return mobNum;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getUsertype() {
+        return usertype;
     }
 }

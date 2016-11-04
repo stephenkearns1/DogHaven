@@ -1,5 +1,8 @@
 package com.haven.dog.doghaven.Activities;
 
+
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,10 +36,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     EditText userNameET, userPasswordET;
     Button login;
     private String username,userPassword;
-    private final String loign_URL = "https://backend-doghaven-app-stephenkearns1.c9users.io/scripts/login.php";
+    private final String loign_URL = "https://backend-doghaven-app-stephenkearns1.c9users.io/index.php";
     private static final String tagFName= "sname";
     private static final String tagSName = "fname";
     private User user;
+    private ProgressDialog progressDialog;
 
 
     @Override
@@ -50,6 +54,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         login = (Button) findViewById(R.id.loginbtn);
 
         login.setOnClickListener(this);
+
     }
 
     @Override
@@ -81,10 +86,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
        Authenticates the user cred
        Makes a http request to the server, which returns data in json format
      */
+
     public void authenticate(User user){
 
+        progressDialog = new ProgressDialog(LoginActivity.this);
+        progressDialog.setMessage("Logging in");
+        progressDialog.setTitle("Authenticating");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.show();
         StringRequest strRequest = new StringRequest(Request.Method.POST,loign_URL,
                 new Response.Listener<String>() {
+
 
 
                     @Override
@@ -99,6 +111,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             mUser.setfName(jsUserObj.getString(tagFName));
                             mUser.setsName(jsUserObj.getString(tagSName));
 
+                            progressDialog.hide();
 
                             //Log the user in
                             LogUserIn(mUser);
@@ -120,6 +133,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             protected Map<String,String> getParams()  throws AuthFailureError{
                 Map<String,String> params = new HashMap<>();
+                //sending login signals to server that it is a login request and should handle accordingly
+                params.put("login", "login");
                 params.put("username", username);
                 params.put("userpassword", userPassword);
                 return params;
@@ -134,6 +149,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(user != null){
             //store user data in sharedPerferances
             //check user type and display screen for user
+            Intent intent = new Intent(this,MainScreenActivity.class);
 
             Log.i("user data Login", user.getfName() + user.getsName());
               /*
