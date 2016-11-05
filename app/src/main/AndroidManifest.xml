@@ -21,11 +21,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".Activities.MainScreenActivity"
             android:label="@string/title_activity_main_screen"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.UserRegisterActivity"></activity>
+        <activity
+            android:name=".Activities.UserRegisterActivity"
+            android:label="UserRegister"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

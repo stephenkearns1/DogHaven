@@ -34,9 +34,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     // Variables
 
     EditText userNameET, userPasswordET;
-    Button login;
+    Button login, registerBtn;
     private String username,userPassword;
-    private final String loign_URL = "https://backend-doghaven-app-stephenkearns1.c9users.io/index.php";
+    private final String doghavenAPI_URL = "https://backend-doghaven-app-stephenkearns1.c9users.io/index.php";
     private static final String tagFName= "sname";
     private static final String tagSName = "fname";
     private User user;
@@ -52,8 +52,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         userNameET = (EditText) findViewById(R.id.usernameET);
         userPasswordET = (EditText) findViewById(R.id.userpasswordET);
         login = (Button) findViewById(R.id.loginbtn);
-
+        registerBtn = (Button) findViewById(R.id.registerBtnLogin);
         login.setOnClickListener(this);
+        registerBtn.setOnClickListener(this);
 
     }
 
@@ -79,6 +80,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 //call login method
                 authenticate(user);
                 break;
+            case R.id.registerBtnLogin:
+                Log.i("onClickReg", "onclick working register");
+                Intent intent = new Intent(this,UserRegisterActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 
@@ -94,7 +100,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         progressDialog.setTitle("Authenticating");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
-        StringRequest strRequest = new StringRequest(Request.Method.POST,loign_URL,
+        StringRequest strRequest = new StringRequest(Request.Method.POST,doghavenAPI_URL,
                 new Response.Listener<String>() {
 
 
@@ -150,7 +156,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             //store user data in sharedPerferances
             //check user type and display screen for user
             Intent intent = new Intent(this,MainScreenActivity.class);
-
+            startActivity(intent);
             Log.i("user data Login", user.getfName() + user.getsName());
               /*
                   if(user.getType == "user")

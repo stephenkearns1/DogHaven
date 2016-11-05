@@ -1,6 +1,7 @@
 package com.haven.dog.doghaven.Activities;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,7 +29,7 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
     EditText fnameET, snameET, usernameET, emailET, addrET, countyET, dobET, passwordET;
     Button registerBtn;
     private  String  fname, sname, username, email, addr, county, dob, password;
-    private final String loign_URL = "https://backend-doghaven-app-stephenkearns1.c9users.io/index.php";
+    private final String doghavenAPI_URL = "https://backend-doghaven-app-stephenkearns1.c9users.io/index.php";
     private static final String tagFName= "sname";
     private static final String tagSName = "fname";
     private User user;
@@ -40,7 +41,7 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
 
         fnameET = (EditText) findViewById(R.id.fnameET);
         snameET = (EditText) findViewById(R.id.snameET);
-        usernameET = (EditText) findViewById((R.id.usernameET);
+        usernameET = (EditText) findViewById(R.id.usernameET);
         emailET = (EditText) findViewById(R.id.emailET);
         addrET = (EditText) findViewById(R.id.addrET);
         countyET = (EditText) findViewById(R.id.countyET);
@@ -50,6 +51,13 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
         registerBtn = (Button) findViewById(R.id.registerBtn);
 
         registerBtn.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+
     }
 
     @Override
@@ -74,11 +82,11 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
 
     public void register(){
         progressDialog = new ProgressDialog(UserRegisterActivity.this);
-        progressDialog.setMessage("Logging in");
-        progressDialog.setTitle("Authenticating");
+        progressDialog.setMessage("Registering account");
+        progressDialog.setTitle("processing..");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
-        StringRequest strRequestReg = new StringRequest(Request.Method.POST,loign_URL,
+        StringRequest strRequestReg = new StringRequest(Request.Method.POST,doghavenAPI_URL,
                 new Response.Listener<String>() {
 
 
@@ -87,17 +95,18 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
                     public void onResponse(String response) {
 
                         progressDialog.hide();
-
-                        if(response.equalsIgnoreCase("succes")){
+                        Log.i("Returned data:R01", response);
+                        if(response.equalsIgnoreCase("success")){
                             //display message account has been created
 
                             //lanuch the login activity
-
+                            Intent intent = new Intent(UserRegisterActivity.this,LoginActivity.class);
+                            startActivity(intent);
                         }else{
                             //display error message
                         }
 
-                        Log.i("Returned data:L01", response);
+                      ;
                     }
 
                 }, new Response.ErrorListener() {
