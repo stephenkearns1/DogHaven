@@ -1,5 +1,6 @@
 package com.haven.dog.doghaven.Helpers;
 
+import android.app.Application;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.LruCache;
@@ -9,47 +10,47 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
-
-
 /**
- * Created by kearn on 02/11/2016.
+ * Created by kearn on 05/11/2016.
  */
 
-public class MyNetworkingSingletonVolley {
+public class AppRequestController extends Application {
 
-    private static MyNetworkingSingletonVolley singletonInstance;
+
+    private static AppRequestController singletonInstance;
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
     private static Context mContext;
 
-
-    private MyNetworkingSingletonVolley(Context c){
+    @Override
+    public void onCreate(){
+        super.onCreate();
+        singletonInstance = this;
+    }
+    private AppRequestController (Context c){
         mContext = c;
         mRequestQueue = getRequestQueue();
 
 
         mImageLoader = new ImageLoader(mRequestQueue,
-                             new ImageLoader.ImageCache(){
+                new ImageLoader.ImageCache(){
                     private final LruCache<String, Bitmap>
-                                cache = new LruCache<String, Bitmap>(40);
-            @Override
-            public Bitmap getBitmap(String url) {
-                return cache.get(url);
-            }
+                            cache = new LruCache<String, Bitmap>(40);
+                    @Override
+                    public Bitmap getBitmap(String url) {
+                        return cache.get(url);
+                    }
 
-            @Override
-            public void putBitmap(String url, Bitmap bitmap) {
-                 cache.put(url, bitmap);
-            }
-        });
+                    @Override
+                    public void putBitmap(String url, Bitmap bitmap) {
+                        cache.put(url, bitmap);
+                    }
+                });
     }
 
 
-    public static synchronized MyNetworkingSingletonVolley getInstance(Context context){
-        if(singletonInstance == null){
-            singletonInstance = new MyNetworkingSingletonVolley(context);
-        }
+    public static synchronized AppRequestController getInstance(){
+
 
         return singletonInstance;
     }
@@ -65,7 +66,7 @@ public class MyNetworkingSingletonVolley {
 
         if(mRequestQueue == null){
 
-            mRequestQueue = Volley.newRequestQueue(mContext.getApplicationContext());
+            mRequestQueue = Volley.newRequestQueue(getApplicationContext());
         }
 
         return mRequestQueue;
@@ -83,4 +84,6 @@ public class MyNetworkingSingletonVolley {
     public ImageLoader getImageLoader(){
         return mImageLoader;
     }
+
+
 }

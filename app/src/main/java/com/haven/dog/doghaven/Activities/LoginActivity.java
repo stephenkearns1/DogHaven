@@ -3,6 +3,8 @@ package com.haven.dog.doghaven.Activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +16,7 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
@@ -48,7 +51,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Assigns views to variables
+        //Assigns views to variables
         userNameET = (EditText) findViewById(R.id.usernameET);
         userPasswordET = (EditText) findViewById(R.id.userpasswordET);
         login = (Button) findViewById(R.id.loginbtn);
@@ -100,15 +103,72 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         progressDialog.setTitle("Authenticating");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
-        StringRequest strRequest = new StringRequest(Request.Method.POST,doghavenAPI_URL,
-                new Response.Listener<String>() {
 
+        /*
+        JsonArrayRequest jsArryRequest = new JsonArrayRequest(Request.Method.POST, doghavenAPI_URL,null,
 
+                new Response.Listener<JSONArray>() {
 
                     @Override
-                    public void onResponse(String response) {
+                    public void onResponse(JSONArray response) {
+
+                     Log.i("Response Login", "Made it to response");
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d("Volley error: login", error);
+            }){
+                @Override
+                protected Map<String,String> getParams()  throws AuthFailureError{
+                    Map<String,String> params = new HashMap<>();
+                    //sending login signals to server that it is a login request and should handle accordingly
+                    params.put("login", "login");
+                    params.put("username", username);
+                    params.put("userpassword", userPassword);
+                    return params;
+                }
+            };
+            */
+
+
+
+
+        /*
+
+
+        JsonArrayRequest jsArryRequest = new JsonArrayRequest(Request.Method.POST, doghavenAPI_URL,null,
+
+                new Response.Listener<JSONArray>() {
+
+                    @Override
+                    public void onResponse(JSONArray response) {
+
+
+                        Log.i("Made it to response", "Yeahhhh");
+                        Log.i("Respomse", response.toString());
 
                         try {
+                           // JSONArray jsArray = new JSONArray(response);
+                            for(int i = 0; i < response.length(); i++) {
+                                JSONObject jsUserObj = (JSONObject) response.get(i);
+                                //she have a unique id
+                                User mUser = new User();
+                                mUser.setfName(jsUserObj.getString(tagFName));
+                                mUser.setsName(jsUserObj.getString(tagSName));
+
+                                progressDialog.hide();
+
+                                //Log the user in
+                                LogUserIn(mUser);
+
+                            }
+                            Log.i("Returned data json:L01", response.toString());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                     /*   try {
                             JSONArray jsArray = new JSONArray(response);
 
                             JSONObject jsUserObj = (JSONObject) jsArray.get(0);
@@ -122,6 +182,65 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             //Log the user in
                             LogUserIn(mUser);
                             Log.i("Returned data json:L01", jsArray.toString());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+
+                    }
+                        }, new Response.ErrorListener() {
+
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Log.i("ERROR", "Chceck console for error and stack trace");
+                                error.printStackTrace();
+                            }
+
+
+
+                    }){
+                        @Override
+                        protected Map<String,String> getParams()  throws AuthFailureError{
+                            Map<String,String> params = new HashMap<>();
+                            //sending login signals to server that it is a login request and should handle accordingly
+                            params.put("login", "login");
+                            params.put("username", username);
+                            params.put("userpassword", userPassword);
+                            return params;
+                        }
+                    };
+
+
+        */
+
+
+
+
+
+        StringRequest jsArryRequest = new StringRequest(Request.Method.POST,doghavenAPI_URL,
+                new Response.Listener<String>() {
+
+
+
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+
+                            JSONArray jsArray = new JSONArray(response);
+
+                            JSONObject jsUserObj = (JSONObject) jsArray.get(0);
+                            //she have a unique id
+                            User mUser = new User();
+                            mUser.setfName(jsUserObj.getString(tagFName));
+                            mUser.setsName(jsUserObj.getString(tagSName));
+
+                            progressDialog.hide();
+
+                            //Log the user in
+                            LogUserIn(mUser);
+                            Log.i("Returned data json:L01", response.toString());
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -147,8 +266,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         };
 
+
+
         // Adding the request to the queue
-        MyNetworkingSingletonVolley.getInstance(this).addReuestToQueue(strRequest);
+        MyNetworkingSingletonVolley.getInstance(this).addReuestToQueue(jsArryRequest);
     }
 
     public void LogUserIn(User user){
