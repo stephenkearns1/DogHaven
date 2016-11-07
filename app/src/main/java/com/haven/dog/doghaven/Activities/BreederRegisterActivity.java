@@ -13,7 +13,11 @@ public class BreederRegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_breeder_register);
 
         //This is where the merge issue will happen
+        String marken= "marken";
+
         String conflict = "Conflict bitchesss";
-        String StesIssue = "Ste edited this line";
+       
+
+
     }
 }
