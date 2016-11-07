@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -74,14 +75,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch(v.getId()){
 
             case R.id.loginbtn:
-                //mite not have to store username, password for checking only on return store details
-                username = userNameET.getText().toString();
-                userPassword = userPasswordET.getText().toString();
 
-                user = new User(username,userPassword);
+                if (userNameET.getText().toString().equals("") || userPasswordET.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(), "Please enter a vaild username and password",Toast.LENGTH_LONG);
+                }else {
 
-                //call login method
-                authenticate(user);
+                    //mite not have to store username, password for checking only on return store details
+                    username = userNameET.getText().toString();
+                    userPassword = userPasswordET.getText().toString();
+
+                    user = new User(username, userPassword);
+
+                    //call login method
+                    authenticate(user);
+                }
                 break;
             case R.id.registerBtnLogin:
                 Log.i("onClickReg", "onclick working register");
@@ -225,28 +232,33 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                     @Override
                     public void onResponse(String response) {
+                        if (response.length() < 0) {
 
-                        try {
 
-                            JSONArray jsArray = new JSONArray(response);
+                            try {
 
-                            JSONObject jsUserObj = (JSONObject) jsArray.get(0);
-                            //she have a unique id
-                            User mUser = new User();
-                            mUser.setfName(jsUserObj.getString(tagFName));
-                            mUser.setsName(jsUserObj.getString(tagSName));
+                                JSONArray jsArray = new JSONArray(response);
 
-                            progressDialog.hide();
+                                JSONObject jsUserObj = (JSONObject) jsArray.get(0);
+                                //she have a unique id
+                                User mUser = new User();
+                                mUser.setfName(jsUserObj.getString(tagFName));
+                                mUser.setsName(jsUserObj.getString(tagSName));
 
-                            //Log the user in
-                            LogUserIn(mUser);
-                            Log.i("Returned data json:L01", response.toString());
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                                progressDialog.hide();
+
+                                //Log the user in
+                                LogUserIn(mUser);
+                                Log.i("Returned data json:L01", response.toString());
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
 
 
                             Log.i("Returned data:L01", response);
+                        }else{
+                            //error message saying incorrect details
+                        }
                     }
 
                 }, new Response.ErrorListener() {

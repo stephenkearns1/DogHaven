@@ -6,7 +6,7 @@
          Permissions for the application go here.
          Permissions can be found at https://developer.android.com/reference/android/Manifest.permission.html#INTERNET
     -->
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -21,7 +21,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Activities.MainScreenActivity"
             android:label="@string/title_activity_main_screen"
@@ -29,7 +28,8 @@
         <activity
             android:name=".Activities.UserRegisterActivity"
             android:label="UserRegister"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activities.BreederRegisterActivity"></activity>
     </application>
 
 </manifest>
