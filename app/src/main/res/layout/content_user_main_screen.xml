@@ -10,9 +10,8 @@
 
 <LinearLayout
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:weightSum="1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:paddingTop="100dp"
     android:background="#9bc1ff">
 
@@ -46,10 +45,11 @@
                 android:gravity="center"
                 android:paddingLeft="15dp"
                 android:padding="15dp"
-                android:text="Breeder Search"
+                android:text="Dog match"
                 android:layout_weight="0.07"
                 android:background="@color/colorwhite"
-                android:/>
+                android:id="@+id/dogmatchBtn"
+                />
 
         </LinearLayout>
 
@@ -69,9 +69,11 @@
             <Button
                 android:layout_width="280dp"
                 android:layout_height="76dp"
+                android:id="@+id/breedInformationBtn"
                 android:gravity="center"
                 android:paddingLeft="15dp"
                 android:padding="15dp"
+                android:text="Breed Information"
                 android:layout_weight="0.07"
                 android:background="@color/colorwhite"/>
 
@@ -93,10 +95,12 @@
             <Button
                 android:layout_width="280dp"
                 android:layout_height="76dp"
+                android:id="@+id/breederSearchBtn"
                 android:gravity="center"
                 android:paddingLeft="15dp"
                 android:padding="15dp"
                 android:layout_weight="0.07"
+                android:text="Breeder Search"
                 android:background="@color/colorwhite"/>
 
         </LinearLayout>
@@ -117,13 +121,16 @@
             <Button
                 android:layout_width="280dp"
                 android:layout_height="76dp"
+                android:id="@+id/dogparkLocatorBtn"
                 android:gravity="center"
                 android:paddingLeft="15dp"
                 android:padding="15dp"
                 android:layout_weight="0.07"
+                android:text="Dogpark Locator"
                 android:background="@color/colorwhite"/>
 
         </LinearLayout>
+
 
 </LinearLayout>
 

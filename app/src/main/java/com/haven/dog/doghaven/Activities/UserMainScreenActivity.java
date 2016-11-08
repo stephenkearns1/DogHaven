@@ -1,5 +1,6 @@
 package com.haven.dog.doghaven.Activities;
 
+
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,12 +13,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import com.haven.dog.doghaven.R;
 
 public class UserMainScreenActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
+    Button dogmatch, breedinfo, breederSearch, dogparkLocator;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +45,17 @@ public class UserMainScreenActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        dogmatch = (Button) findViewById(R.id.dogmatchBtn);
+        breedinfo = (Button) findViewById(R.id.breedInformationBtn);
+        breederSearch = (Button) findViewById(R.id.breederSearchBtn);
+        dogparkLocator = (Button) findViewById(R.id.dogparkLocatorBtn);
+
+        dogmatch.setOnClickListener(this);
+        breedinfo.setOnClickListener(this);
+        breederSearch.setOnClickListener(this);
+        dogparkLocator.setOnClickListener(this);
+
     }
 
     @Override
@@ -99,5 +113,27 @@ public class UserMainScreenActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onClick(View v) {
+       switch(v.getId()){
+           case R.id.dogmatchBtn:
+                //intent to search page
+               break;
+           case R.id.breedInformationBtn:
+
+               break;
+
+           case R.id.breederSearchBtn:
+
+
+               break;
+
+
+           case R.id.dogparkLocatorBtn:
+
+               break;
+       }
     }
 }
