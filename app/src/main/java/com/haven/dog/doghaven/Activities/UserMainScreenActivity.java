@@ -15,13 +15,13 @@ import android.view.MenuItem;
 
 import com.haven.dog.doghaven.R;
 
-public class MainScreenActivity extends AppCompatActivity
+public class UserMainScreenActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_screen);
+        setContentView(R.layout.user_activity_main_screen);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

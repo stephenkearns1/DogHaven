@@ -3,8 +3,6 @@ package com.haven.dog.doghaven.Activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,9 +15,6 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.haven.dog.doghaven.Helpers.MyNetworkingSingletonVolley;
 import com.haven.dog.doghaven.Models.User;
@@ -29,7 +24,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -232,7 +226,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                     @Override
                     public void onResponse(String response) {
-                        if (response.length() < 0) {
+
+                        Log.i("Response1", response);
+                        Log.i("Response length", "" + response.length());
+                        if (response.length() > 0) {
 
 
                             try {
@@ -249,7 +246,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                                 //Log the user in
                                 LogUserIn(mUser);
-                                Log.i("Returned data json:L01", response.toString());
+                                Log.i("Returned data json:L01", response);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -288,7 +285,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(user != null){
             //store user data in sharedPerferances
             //check user type and display screen for user
-            Intent intent = new Intent(this,MainScreenActivity.class);
+            Intent intent = new Intent(this,UserMainScreenActivity.class);
             startActivity(intent);
             Log.i("user data Login", user.getfName() + user.getsName());
               /*
