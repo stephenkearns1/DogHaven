@@ -6,14 +6,14 @@
     android:orientation="vertical"
     android:padding="10dp"
     android:fillViewport="false"
-    android:background="#9bc1ff">
+    android:background="#FF5722">
 
 <LinearLayout
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:paddingTop="100dp"
-    android:background="#9bc1ff">
+    android:background="#FF5722">
 
 
          <ImageView
