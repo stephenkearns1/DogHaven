@@ -123,7 +123,8 @@ public class UserMainScreenActivity extends AppCompatActivity
                 //intent to search page
                break;
            case R.id.breedInformationBtn:
-
+                Intent info= new Intent(this,BreedInfoActivity.class);
+               startActivity(info);
                break;
 
            case R.id.breederSearchBtn:
