@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_orange_dark">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@color/colorPrimary"
+        android:id="@+id/MainBody"
+        android:tag="MainBody"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="45dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="285dp"
+            android:layout_marginRight="110dp"
+            android:background="@android:color/holo_orange_dark">
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_orange_dark"
+            android:layout_marginTop="45dp"
+            android:layout_marginLeft="110dp"
+            android:layout_marginRight="285dp"
+            android:layout_marginBottom="20dp">
+
+        </RelativeLayout>
+
+        <TextView
+            android:text="Add a Dog"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:id="@+id/AddDogTV"
+            android:layout_width="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/AddDogTV"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="405dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:background="@android:color/holo_orange_dark"
+            android:id="@+id/AddImageBody"
+            android:tag="AddImageBody">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorPrimaryDark"
+                android:id="@+id/AddImageContainer"
+                android:tag="AddImageContainer">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp"
+                    android:textAlignment="center"
+                    android:id="@+id/editText"
+                    android:text="Choose Image From Gallery"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="210dp"
+            android:layout_marginBottom="220dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@android:color/holo_orange_dark"
+            android:id="@+id/DogDetailsBody"
+            android:tag="DogDetailsBody">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:layout_margin="5dp"
+                android:background="@color/colorPrimaryDark"
+                android:id="@+id/DogDetailsContainer"
+                android:tag="DogDetailsContainer">
+
+                <TextView
+                    android:text="Name:"
+                    android:id="@+id/textView7"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:layout_height="15dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="7dp"
+                    android:layout_width="35dp" />
+
+                <TextView
+                    android:text="Age:"
+                    android:layout_width="35dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:id="@+id/textView8"
+                    android:layout_alignBaseline="@+id/textView7"
+                    android:layout_alignBottom="@+id/textView7"
+                    android:layout_toEndOf="@+id/textView7"
+                    android:layout_marginStart="77dp"
+                    android:layout_height="15dp" />
+
+                <EditText
+                    android:inputType="textPersonName"
+                    android:text="Enter Name"
+                    android:ems="10"
+                    android:textColor="@android:color/darker_gray"
+                    android:textStyle="italic"
+                    android:textSize="12sp"
+                    android:id="@+id/editText2"
+                    android:layout_height="33dp"
+                    android:layout_width="75dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/textView7" />
+
+                <TextView
+                    android:text="Breed:"
+                    android:id="@+id/textView9"
+                    android:layout_marginStart="53dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:layout_width="40dp"
+                    android:layout_height="15dp"
+                    android:layout_alignBaseline="@+id/textView8"
+                    android:layout_alignBottom="@+id/textView8"
+                    android:layout_toEndOf="@+id/textView8" />
+
+                <EditText
+                    android:layout_width="75dp"
+                    android:layout_height="33dp"
+                    android:inputType="textPersonName"
+                    android:text="Enter Breed"
+                    android:textStyle="italic"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="12sp"
+                    android:ems="10"
+                    android:id="@+id/editText3"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/textView9" />
+
+                <EditText
+                    android:layout_width="55dp"
+                    android:inputType="numberDecimal"
+                    android:ems="10"
+                    android:id="@+id/editText4"
+                    android:text="x.x"
+                    android:textStyle="italic"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="12sp"
+                    android:textAlignment="center"
+                    android:layout_height="33dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignStart="@+id/textView8"
+                    android:layout_marginStart="25dp" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="400dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@android:color/holo_orange_dark"
+            android:tag="DogCharBody"
+            android:id="@+id/DogCharBody">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="5dp"
+                android:background="@color/colorPrimaryDark"
+                android:id="@+id/DogCharContainer"
+                android:tag="DogCharContainer">
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <Button
+            android:text="Add Your Dog!"
+            android:layout_height="wrap_content"
+            android:id="@+id/button4"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/round_button"
+            android:layout_marginTop="5dp"
+            android:layout_width="110dp" />
+
+    </RelativeLayout>
+</RelativeLayout>
