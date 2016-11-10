@@ -35,21 +35,7 @@
         <activity
             android:name=".Activities.DogparkLocatorActivity"
             android:label="@string/title_activity_dogpark_locator"
-            android:theme="@style/AppTheme.NoActionBar" />
-<<<<<<< HEAD
-        <activity
-            android:name=".Activities.BreedInfoActivity"
-            android:label="@string/title_activity_breed_info"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-=======
-        <activity android:name=".Activities.BreederLoginActivity"></activity>
->>>>>>> 892ef6d2acad14775f72ac981f502e5f306f11c0
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
