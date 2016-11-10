@@ -7,6 +7,17 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="title_activity_dogpark_locator">DogparkLocatorActivity</string>
+    <string name="title_activity_breed_info">BreedInfoActivity</string>
+
+    <string-array name="dogList">
+        <item></item>
+        <item>Akita</item>
+        <item>Husky</item>
+        <item>Labrador</item>
+        <item>Rottweiler</item>
+        <item>Springer Spaniel</item>
+    </string-array>>
 
     <!-- 
       

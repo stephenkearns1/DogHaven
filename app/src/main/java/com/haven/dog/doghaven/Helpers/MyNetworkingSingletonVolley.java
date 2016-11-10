@@ -13,7 +13,7 @@ import org.json.JSONArray;
 
 
 /**
- * Created by kearn on 02/11/2016.
+ * Created by Stephen Kearns on 02/11/2016.
  */
 
 public class MyNetworkingSingletonVolley {

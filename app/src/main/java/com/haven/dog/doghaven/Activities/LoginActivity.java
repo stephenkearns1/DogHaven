@@ -3,22 +3,18 @@ package com.haven.dog.doghaven.Activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.haven.dog.doghaven.Helpers.MyNetworkingSingletonVolley;
 import com.haven.dog.doghaven.Models.User;
@@ -28,7 +24,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -74,14 +69,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch(v.getId()){
 
             case R.id.loginbtn:
-                //mite not have to store username, password for checking only on return store details
-                username = userNameET.getText().toString();
-                userPassword = userPasswordET.getText().toString();
 
-                user = new User(username,userPassword);
+                if (userNameET.getText().toString().equals("") || userPasswordET.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(), "Please enter a vaild username and password",Toast.LENGTH_LONG);
+                }else {
 
-                //call login method
-                authenticate(user);
+                    //mite not have to store username, password for checking only on return store details
+                    username = userNameET.getText().toString();
+                    userPassword = userPasswordET.getText().toString();
+
+                    user = new User(username, userPassword);
+
+                    //call login method
+                    authenticate(user);
+                }
                 break;
             case R.id.registerBtnLogin:
                 Log.i("onClickReg", "onclick working register");
@@ -226,27 +227,35 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void onResponse(String response) {
 
-                        try {
+                        Log.i("Response1", response);
+                        Log.i("Response length", "" + response.length());
+                        if (response.length() > 0) {
 
-                            JSONArray jsArray = new JSONArray(response);
 
-                            JSONObject jsUserObj = (JSONObject) jsArray.get(0);
-                            //she have a unique id
-                            User mUser = new User();
-                            mUser.setfName(jsUserObj.getString(tagFName));
-                            mUser.setsName(jsUserObj.getString(tagSName));
+                            try {
 
-                            progressDialog.hide();
+                                JSONArray jsArray = new JSONArray(response);
 
-                            //Log the user in
-                            LogUserIn(mUser);
-                            Log.i("Returned data json:L01", response.toString());
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                                JSONObject jsUserObj = (JSONObject) jsArray.get(0);
+                                //she have a unique id
+                                User mUser = new User();
+                                mUser.setfName(jsUserObj.getString(tagFName));
+                                mUser.setsName(jsUserObj.getString(tagSName));
+
+                                progressDialog.hide();
+
+                                //Log the user in
+                                LogUserIn(mUser);
+                                Log.i("Returned data json:L01", response);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
 
 
                             Log.i("Returned data:L01", response);
+                        }else{
+                            //error message saying incorrect details
+                        }
                     }
 
                 }, new Response.ErrorListener() {
@@ -276,7 +285,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(user != null){
             //store user data in sharedPerferances
             //check user type and display screen for user
-            Intent intent = new Intent(this,MainScreenActivity.class);
+            Intent intent = new Intent(this,UserMainScreenActivity.class);
             startActivity(intent);
             Log.i("user data Login", user.getfName() + user.getsName());
               /*
