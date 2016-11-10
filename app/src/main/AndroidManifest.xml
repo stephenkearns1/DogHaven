@@ -30,10 +30,8 @@
         <activity
             android:name=".Activities.UserRegisterActivity"
             android:label="UserRegister"
-
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activities.AddDogActivity">
-
             android:theme="@style/AppTheme.NoActionBar" />
         </activity>
         <activity android:name=".Activities.BreederRegisterActivity" />
@@ -45,20 +43,21 @@
             android:name=".Activities.BreedInfoActivity"
             android:label="@string/title_activity_breed_info"
             android:theme="@style/AppTheme.NoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-
-             </intent-filter>
-         </activity>
-
-
-
-
-        <activity android:name=".Activities.BreederLoginActivity"></activity>
-
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activities.BreederLoginActivity" />
+        <activity
+            android:name=".Activities.DogMatch"
+            android:label="@string/title_activity_dog_match"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.CompletedDogMatch"
+            android:label="@string/title_activity_completed_dog_match"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

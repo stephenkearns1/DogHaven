@@ -17,7 +17,9 @@
         <item>Labrador</item>
         <item>Rottweiler</item>
         <item>Springer Spaniel</item>
-    </string-array>>
+    </string-array>
+    <string name="title_activity_dog_match">DogMatch</string>
+    <string name="title_activity_completed_dog_match">CompletedDogMatch</string>>
 
     <!-- 
       
