@@ -11,7 +11,7 @@
     <string name="title_activity_breed_info">BreedInfoActivity</string>
 
     <string-array name="dogList">
-        <item></item>
+        <item>""</item>
         <item>Akita</item>
         <item>Husky</item>
         <item>Labrador</item>
