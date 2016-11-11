@@ -30,13 +30,10 @@
         <activity
             android:name=".Activities.UserRegisterActivity"
             android:label="UserRegister"
-
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.AddDogActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
-
-
+        <activity
+            android:name=".Activities.AddDogActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activities.BreederRegisterActivity" />
         <activity
             android:name=".Activities.DogparkLocatorActivity"
@@ -60,6 +57,10 @@
         <activity
             android:name=".Activities.CompletedDogMatch"
             android:label="@string/title_activity_completed_dog_match"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.CompanyProfile"
+            android:label="@string/title_activity_company_profile"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

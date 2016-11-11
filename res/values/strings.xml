@@ -46,6 +46,7 @@
         <item>Social 3</item>
         <item>Social 4</item>
     </string-array>
+    <string name="title_activity_company_profile">CompanyProfile</string>
 
     <!-- 
       
