@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_company_profile"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.haven.dog.doghaven.Activities.CompanyProfile"
+    tools:showIn="@layout/activity_company_profile">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:text="COMPANY NAME"
+            android:layout_width="match_parent"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="100dp"
+
+            android:layout_height="wrap_content"
+            android:id="@+id/textView10" />
+
+        <TextView
+            android:text="Address: "
+            android:layout_width="match_parent"
+            android:layout_marginTop="50dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView11" />
+
+        <TextView
+            android:text="Number:"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView12" />
+
+        <TextView
+            android:text="Email:"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView13" />
+
+        <TextView
+            android:text="Profile:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:id="@+id/textView14" />
+
+        <TextView
+            android:text="Dogs Available"
+            android:layout_width="match_parent"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView19" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="50dp"
+                app:srcCompat="@drawable/husky"
+                android:id="@+id/imageView9"
+                android:layout_weight="1"
+                android:layout_height="80dp" />
+
+            <ImageView
+                android:layout_width="60dp"
+                app:srcCompat="@drawable/akita"
+                android:id="@+id/imageView8"
+                android:layout_weight="1"
+                android:layout_height="80dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
