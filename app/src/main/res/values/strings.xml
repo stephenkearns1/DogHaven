@@ -19,7 +19,8 @@
         <item>Labrador</item>
         <item>Rottweiler</item>
         <item>Springer Spaniel</item>
-    </string-array>>
+    </string-array>
+    <string name="title_activity_breeder_search">BreederSearch</string>>
 
     <string-array name="physical">
         <item></item>
@@ -44,6 +45,7 @@
         <item>Social 3</item>
         <item>Social 4</item>
     </string-array>
+    <string name="title_activity_breeder_main_screen">BreederMainScreen</string>
 
     <!-- 
       

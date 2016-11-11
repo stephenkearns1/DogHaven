@@ -29,15 +29,6 @@ public class UserMainScreenActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -100,15 +91,16 @@ public class UserMainScreenActivity extends AppCompatActivity
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
+                Intent info= new Intent(this,BreedInfoActivity.class);
+                startActivity(info);
+
 
         } else if (id == R.id.nav_slideshow) {
-
+            Intent intent = new Intent(this,BreederSearch.class);
+            startActivity(intent);
         } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+            Intent info= new Intent(this,DogparkLocatorActivity.class);
+            startActivity(info);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -128,7 +120,8 @@ public class UserMainScreenActivity extends AppCompatActivity
                break;
 
            case R.id.breederSearchBtn:
-
+               Intent bs= new Intent(this,BreederSearch.class);
+               startActivity(bs);
 
                break;
 

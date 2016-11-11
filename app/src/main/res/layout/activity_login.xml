@@ -11,10 +11,13 @@
     android:background="@color/colorPrimary">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:id="@+id/login_title_tv" />
+        android:text="Sign in"
+        android:textColor="@color/colorwhite"
+        android:id="@+id/login_title_tv"
+        android:textSize="15dp"
+        android:gravity="center"/>
 
 
     <RelativeLayout
