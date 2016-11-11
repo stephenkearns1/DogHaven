@@ -14,14 +14,17 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".Activities.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".Activities.StartActivtiy">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activities.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
         </activity>
         <activity
             android:name=".Activities.UserMainScreenActivity"
@@ -31,7 +34,14 @@
             android:name=".Activities.UserRegisterActivity"
             android:label="UserRegister"
             android:theme="@style/AppTheme.NoActionBar" />
+<<<<<<< HEAD
         <activity android:name=".Activities.AddDogActivity"></activity>
+=======
+  
+        <activity android:name=".Activities.AddDogActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+>>>>>>> 7ec4ad0f8dad6e8377da96ed34dbdb63f7e5d841
         <activity android:name=".Activities.BreederRegisterActivity" />
         <activity
             android:name=".Activities.DogparkLocatorActivity"
@@ -40,7 +50,17 @@
         <activity
             android:name=".Activities.BreedInfoActivity"
             android:label="@string/title_activity_breed_info"
+<<<<<<< HEAD
             android:theme="@style/AppTheme.NoActionBar"></activity>
+=======
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+>>>>>>> 7ec4ad0f8dad6e8377da96ed34dbdb63f7e5d841
         <activity android:name=".Activities.BreederLoginActivity" />
         <activity
             android:name=".Activities.BreederSearch"
