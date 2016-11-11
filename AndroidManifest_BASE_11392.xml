@@ -30,34 +30,12 @@
         <activity
             android:name=".Activities.UserRegisterActivity"
             android:label="UserRegister"
-<<<<<<< HEAD
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.AddDogActivity">
-=======
-
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity
-            android:name=".Activities.AddDogActivity">
-
->>>>>>> 82fbd566b34716d3317352a20da3b061c7403ebb
-            android:theme="@style/AppTheme.NoActionBar" />
-        </activity>
         <activity android:name=".Activities.BreederRegisterActivity" />
         <activity
             android:name=".Activities.DogparkLocatorActivity"
             android:label="@string/title_activity_dogpark_locator"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Activities.BreedInfoActivity"
-            android:label="@string/title_activity_breed_info"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity android:name=".Activities.BreederLoginActivity" />
-        <activity
-            android:name=".Activities.BreederSearch"
-            android:label="@string/title_activity_breeder_search"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

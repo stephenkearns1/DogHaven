@@ -20,7 +20,8 @@
         <item>Rottweiler</item>
         <item>Springer Spaniel</item>
     </string-array>
-    <string name="title_activity_breeder_search">BreederSearch</string>>
+    <string name="title_activity_dog_match">DogMatch</string>
+    <string name="title_activity_completed_dog_match">CompletedDogMatch</string>>
 
     <string-array name="physical">
         <item></item>
