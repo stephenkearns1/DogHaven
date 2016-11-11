@@ -17,7 +17,8 @@
         <item>Labrador</item>
         <item>Rottweiler</item>
         <item>Springer Spaniel</item>
-    </string-array>>
+    </string-array>
+    <string name="title_activity_breeder_search">BreederSearch</string>>
 
     <!-- 
       
