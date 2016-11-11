@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.haven.dog.doghaven">
+
+    <!--
+         Permissions for the application go here.
+         Permissions can be found at https://developer.android.com/reference/android/Manifest.permission.html#INTERNET
+    -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".Activities.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activities.UserMainScreenActivity"
+            android:label="@string/title_activity_main_screen"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.UserRegisterActivity"
+            android:label="UserRegister"
+
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activities.AddDogActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+
+
+        <activity android:name=".Activities.BreederRegisterActivity" />
+        <activity
+            android:name=".Activities.DogparkLocatorActivity"
+            android:label="@string/title_activity_dogpark_locator"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.BreedInfoActivity"
+            android:label="@string/title_activity_breed_info"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activities.BreederLoginActivity" />
+        <activity
+            android:name=".Activities.DogMatch"
+            android:label="@string/title_activity_dog_match"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.CompletedDogMatch"
+            android:label="@string/title_activity_completed_dog_match"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+    </application>
+
+</manifest>
