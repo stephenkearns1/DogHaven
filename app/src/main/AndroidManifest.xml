@@ -36,10 +36,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
   
         <activity android:name=".Activities.AddDogActivity"
-
-
-            android:theme="@style/AppTheme.NoActionBar"
-            android:name=".Activities.AddDogActivity" />
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity android:name=".Activities.BreederRegisterActivity" />
         <activity
@@ -57,7 +54,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activities.BreederLoginActivity" />
-        </activity>
         <activity
             android:name=".Activities.BreederSearch"
             android:label="@string/title_activity_breeder_search"
