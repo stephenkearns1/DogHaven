@@ -29,7 +29,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/fnameET"
+                android:id="@+id/breederfnameET"
                 android:hint="First name:" />
         </android.support.design.widget.TextInputLayout>
 
@@ -40,7 +40,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/snameET"
+                android:id="@+id/breedersnameET"
                 android:hint="Second name:" />
         </android.support.design.widget.TextInputLayout>
 
@@ -52,7 +52,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/usernameET"
+                android:id="@+id/breederusernameET"
                 android:hint="User Name:" />
         </android.support.design.widget.TextInputLayout>
 
@@ -63,7 +63,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/emailET"
+                android:id="@+id/breederemailET"
                 android:hint="Email address:" />
         </android.support.design.widget.TextInputLayout>
 
@@ -96,7 +96,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/addrET"
+                android:id="@+id/breederAddrET"
                 android:hint="Address:" />
         </android.support.design.widget.TextInputLayout>
 
@@ -108,7 +108,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/countyET"
+                android:id="@+id/breedercountyET"
                 android:hint="County:" />
         </android.support.design.widget.TextInputLayout>
 
@@ -122,7 +122,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/dobET"
+                android:id="@+id/breederdobET"
                 android:hint="DOB DD/MM/YYYY" />
 
 
@@ -137,7 +137,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/userpasswordET"
+                android:id="@+id/breederpasswordET"
                 android:inputType="textPassword"
                 android:hint="Password" />
 
@@ -149,8 +149,8 @@
         <Button
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:id="@+id/registerBtn"
-            android:text="Register"
+            android:id="@+id/RegisterBreederBtn"
+            android:text="breederRegister"
             android:gravity="center"/>
 
 
