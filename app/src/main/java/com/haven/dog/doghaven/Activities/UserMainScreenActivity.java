@@ -90,6 +90,8 @@ public class UserMainScreenActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
+            Intent intent = new Intent(this,DogMatch.class);
+            startActivity(intent)
         } else if (id == R.id.nav_gallery) {
                 Intent info= new Intent(this,BreedInfoActivity.class);
                 startActivity(info);
