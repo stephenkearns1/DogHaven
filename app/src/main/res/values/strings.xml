@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">DogHaven</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main_screen">MainScreenActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_dogpark_locator">DogparkLocatorActivity</string>
+    <string name="title_activity_breed_info">BreedInfoActivity</string>
+    <string name="title_activity_add_dog_page">AddDogActivity</string>
+
+
+    <string-array name="dogList">
+        <item>""</item>
+        <item>Akita</item>
+        <item>Husky</item>
+        <item>Labrador</item>
+        <item>Rottweiler</item>
+        <item>Springer Spaniel</item>
+    </string-array>>
+
+    <string-array name="physical">
+        <item></item>
+        <item>Physical 1</item>
+        <item>Physical 2</item>
+        <item>Physical 3</item>
+        <item>Physical 4</item>
+    </string-array>
+
+    <string-array name="behavioural">
+        <item></item>
+        <item>Behavioural 1</item>
+        <item>Behavioural 2</item>
+        <item>Behavioural 3</item>
+        <item>Behavioural 4</item>
+    </string-array>
+
+    <string-array name="social">
+        <item>Social Attributes</item>
+        <item>Social 1</item>
+        <item>Social 2</item>
+        <item>Social 3</item>
+        <item>Social 4</item>
+    </string-array>
+
+    <!-- 
+      
+       ID'S for UI elements 
+       
+    !-->
+
+
+</resources>
