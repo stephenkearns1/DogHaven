@@ -45,6 +45,7 @@
         <item>Social 3</item>
         <item>Social 4</item>
     </string-array>
+    <string name="title_activity_breeder_main_screen">BreederMainScreen</string>
 
     <!-- 
       
