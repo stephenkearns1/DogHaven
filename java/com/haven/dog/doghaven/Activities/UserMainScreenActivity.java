@@ -128,8 +128,7 @@ public class UserMainScreenActivity extends AppCompatActivity
                break;
 
            case R.id.breederSearchBtn:
-               Intent bs= new Intent(this,BreederSearch.class);
-               startActivity(bs);
+
 
                break;
 

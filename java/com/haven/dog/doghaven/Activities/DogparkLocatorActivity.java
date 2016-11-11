@@ -1,7 +1,5 @@
 package com.haven.dog.doghaven.Activities;
 
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,29 +12,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 
 import com.haven.dog.doghaven.R;
 
-public class UserMainScreenActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+public class DogparkLocatorActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
-    Button dogmatch, breedinfo, breederSearch, dogparkLocator;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.user_activity_main_screen);
+        setContentView(R.layout.activity_dogpark_locator);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -46,17 +35,6 @@ public class UserMainScreenActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        dogmatch = (Button) findViewById(R.id.dogmatchBtn);
-        breedinfo = (Button) findViewById(R.id.breedInformationBtn);
-        breederSearch = (Button) findViewById(R.id.breederSearchBtn);
-        dogparkLocator = (Button) findViewById(R.id.dogparkLocatorBtn);
-
-        dogmatch.setOnClickListener(this);
-        breedinfo.setOnClickListener(this);
-        breederSearch.setOnClickListener(this);
-        dogparkLocator.setOnClickListener(this);
-
     }
 
     @Override
@@ -72,7 +50,7 @@ public class UserMainScreenActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_screen, menu);
+        getMenuInflater().inflate(R.menu.dogpark_locator, menu);
         return true;
     }
 
@@ -114,30 +92,5 @@ public class UserMainScreenActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    @Override
-    public void onClick(View v) {
-       switch(v.getId()){
-           case R.id.dogmatchBtn:
-                //intent to search page
-               break;
-           case R.id.breedInformationBtn:
-                Intent info= new Intent(this,BreedInfoActivity.class);
-               startActivity(info);
-               break;
-
-           case R.id.breederSearchBtn:
-               Intent bs= new Intent(this,BreederSearch.class);
-               startActivity(bs);
-
-               break;
-
-
-           case R.id.dogparkLocatorBtn:
-               Intent intent = new Intent(this,DogparkLocatorActivity.class);
-               startActivity(intent);
-               break;
-       }
     }
 }

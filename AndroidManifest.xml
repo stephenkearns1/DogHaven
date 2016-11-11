@@ -14,17 +14,14 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.StartActivtiy">
+        <activity
+            android:name=".Activities.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".Activities.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-
         </activity>
         <activity
             android:name=".Activities.UserMainScreenActivity"
@@ -33,13 +30,12 @@
         <activity
             android:name=".Activities.UserRegisterActivity"
             android:label="UserRegister"
+
             android:theme="@style/AppTheme.NoActionBar" />
-  
         <activity android:name=".Activities.AddDogActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
 
-            android:theme="@style/AppTheme.NoActionBar"
-            android:name=".Activities.AddDogActivity" />
 
         <activity android:name=".Activities.BreederRegisterActivity" />
         <activity
@@ -57,12 +53,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activities.BreederLoginActivity" />
-        </activity>
         <activity
-            android:name=".Activities.BreederSearch"
-            android:label="@string/title_activity_breeder_search"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:name=".Activities.DogMatch"
+            android:label="@string/title_activity_dog_match"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.CompletedDogMatch"
+            android:label="@string/title_activity_completed_dog_match"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
