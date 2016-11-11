@@ -144,7 +144,7 @@ public class BreederLoginActivity extends AppCompatActivity implements View.OnCl
         if(breeder != null){
             //store user data in sharedPerferances
             //check user type and display screen for user
-            Intent intent = new Intent(this,UserMainScreenActivity.class);
+            Intent intent = new Intent(this,BreederMainScreen.class);
             startActivity(intent);
             Log.i("user data Login", breeder.getfName() + breeder.getsName());
               /*
