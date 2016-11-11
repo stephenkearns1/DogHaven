@@ -92,7 +92,7 @@ public class BreederRegisterActivity extends AppCompatActivity implements View.O
                             //display message account has been created
 
                             //lanuch the login activity
-                            Intent intent = new Intent(BreederRegisterActivity.this,LoginActivity.class);
+                            Intent intent = new Intent(BreederRegisterActivity.this,BreederMainScreen.class);
                             startActivity(intent);
                         }else{
                             //display error message
@@ -110,7 +110,7 @@ public class BreederRegisterActivity extends AppCompatActivity implements View.O
             @Override
             protected Map<String,String> getParams()  throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
-                params.put("userregister", "");
+                params.put("breederregister", "breederregister");
                 params.put("fname", fname);
                 params.put("sname", sname);
                 params.put("username", username);

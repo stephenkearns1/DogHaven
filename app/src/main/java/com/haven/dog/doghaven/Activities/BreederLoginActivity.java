@@ -88,7 +88,7 @@ public class BreederLoginActivity extends AppCompatActivity implements View.OnCl
 
                         Log.i("Response1", response);
                         Log.i("Response length", "" + response.length());
-                        if (response.length() > 0) {
+                        if (response.length() > 2) {
 
 
                             try {
