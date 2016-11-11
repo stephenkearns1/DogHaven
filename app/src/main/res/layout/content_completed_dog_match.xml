@@ -13,19 +13,34 @@
     tools:context="com.haven.dog.doghaven.Activities.CompletedDogMatch"
     tools:showIn="@layout/activity_completed_dog_match">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="14dp">
+        android:layout_marginTop="14dp"
+
+        >
+
 
         <TextView
             android:text="You have a match!"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView3" />
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
 
         <LinearLayout
             android:orientation="vertical"
@@ -35,6 +50,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="84dp"
+                android:layout_marginTop="25dp"
                 app:srcCompat="@drawable/akita"
                 android:id="@+id/imageView3" />
 
@@ -47,6 +63,8 @@
                     android:text="Zeus, Akita"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+
                     android:id="@+id/button"
                     android:background="#1f6fef" />
 
@@ -59,6 +77,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="90dp"
                         app:srcCompat="@drawable/husky"
+                        android:layout_marginTop="25dp"
                         android:id="@+id/imageView4" />
 
                     <Button
@@ -66,6 +85,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/button2"
+                        android:layout_marginTop="25dp"
                         android:background="#1f6fef" />
 
                     <LinearLayout
@@ -76,6 +96,7 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="72dp"
+                            android:layout_marginTop="25dp"
                             app:srcCompat="@drawable/rotty"
                             android:id="@+id/imageView5" />
 
@@ -84,10 +105,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/button3"
+                            android:layout_marginTop="25dp"
                             android:background="#1f6fef" />
+
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
+         </LinearLayout>
+
     </LinearLayout>
+</ScrollView>
 </RelativeLayout>

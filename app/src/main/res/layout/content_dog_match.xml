@@ -24,14 +24,15 @@
         <TextView
             android:text="Your Matches"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="5dp"
             android:id="@+id/textView4"
-            android:layout_weight="0.37" />
+            android:layout_marginTop="25dp" />
 
         <Button
             android:text="Zeus, Akita"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
             android:id="@+id/btnDog1"
             android:background="#1f6fef"
             android:elevation="0dp" />
@@ -40,6 +41,7 @@
             android:text="Buster, Husky"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
             android:id="@+id/btnDog2"
             android:background="#1f6fef" />
 
@@ -47,6 +49,7 @@
             android:text="Derek, Labrador"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
             android:id="@+id/btnDog3"
             android:background="#1f6fef" />
 
@@ -59,7 +62,8 @@
                 android:text="Find your dog!"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView5" />
+                android:id="@+id/textView5"
+                android:layout_weight="0.37" />
         </LinearLayout>
 
         <TableLayout
@@ -183,6 +187,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/btnMatchDog"
+                android:layout_marginTop="5dp"
                 android:background="#1f6fef" />
         </LinearLayout>
 
