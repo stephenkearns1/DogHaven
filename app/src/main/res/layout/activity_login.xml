@@ -15,9 +15,9 @@
         android:layout_height="wrap_content"
         android:text="Sign in"
         android:textColor="@color/colorwhite"
-        android:textSize="20dp"
-        android:gravity="center"
-        android:id="@+id/login_title_tv" />
+        android:id="@+id/login_title_tv"
+        android:textSize="15dp"
+        android:gravity="center"/>
 
 
     <RelativeLayout
