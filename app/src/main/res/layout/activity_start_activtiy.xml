@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_start_activtiy"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    tools:context="com.haven.dog.doghaven.Activities.StartActivtiy">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="Welcome to doghaven"
+        android:textColor="@color/colorwhite"
+        android:textSize="23dp"
+        android:gravity="center"/>
+
+
+    <Button
+        android:text="User login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:id="@+id/gotoUserLoginBtn"
+        android:background="@color/colorAccent"/>
+
+    <Button
+        android:text="Breeder login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/gotoBreederLoginBtn"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorAccent"/>
+</LinearLayout>

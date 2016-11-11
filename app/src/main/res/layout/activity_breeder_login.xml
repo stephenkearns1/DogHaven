@@ -50,7 +50,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:drawableLeft="@drawable/ic_person_black_24dp"
-                            android:id="@+id/usernameET"
+                            android:id="@+id/breederusernameET"
                             android:hint="User Name:" />
                     </android.support.design.widget.TextInputLayout>
 
@@ -63,7 +63,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:drawableLeft="@drawable/ic_https_black_24dp"
-                            android:id="@+id/userpasswordET"
+                            android:id="@+id/breederpasswordET"
                             android:inputType="textPassword"
                             android:hint="Password" />
 
@@ -74,7 +74,7 @@
                     <Button
                         android:text="Login"
                         android:layout_width="150dp"
-                        android:id="@+id/loginbtn"
+                        android:id="@+id/breederloginActivitybtn"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentStart="true"
                         android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
                     <Button
                         android:text="Register"
                         android:layout_width="150dp"
-                        android:id="@+id/registerBtnLogin"
+                        android:id="@+id/breederregisterBtnLogin"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentStart="true"
                         android:layout_height="wrap_content"
