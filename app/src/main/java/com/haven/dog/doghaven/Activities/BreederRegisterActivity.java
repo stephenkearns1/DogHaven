@@ -110,7 +110,7 @@ public class BreederRegisterActivity extends AppCompatActivity implements View.O
             @Override
             protected Map<String,String> getParams()  throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
-                params.put("userregister", "");
+                params.put("breederregister", "");
                 params.put("fname", fname);
                 params.put("sname", sname);
                 params.put("username", username);
