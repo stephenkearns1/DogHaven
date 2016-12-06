@@ -133,7 +133,7 @@ public class BreederRegisterActivity extends AppCompatActivity implements View.O
     }
 
 
-    public boolean CheckIfUserExists(){
+    public void CheckIfUserExists(){
 
         StringRequest CheckIfUserExistRequest = new StringRequest(Request.Method.POST,doghavenAPI_URL,
                 new Response.Listener<String>() {
