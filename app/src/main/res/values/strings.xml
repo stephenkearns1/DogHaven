@@ -15,10 +15,38 @@
     <string-array name="dogList">
         <item>""</item>
         <item>Akita</item>
+        <item>Basset Hound</item>
+        <item>Beagle</item>
+        <item>Bernese Mountain Dog</item>
+        <item>BloodHound</item>
+        <item>Boxer</item>
+        <item>Bulldog</item>
+        <item>Bullmastiff</item>
+        <item>Cane corso </item>
+        <item>Chihuahua</item>
+        <item>Chow Chow</item>
+        <item>Cocker spaniel</item>
+        <item>Collie</item>
+        <item>Dalmatian</item>
+        <item>Dachshund</item>
+        <item>Doberman</item>
+        <item>Dog du Bordeux</item>
+        <item>French Bulldog</item>
+        <item>German Shepard</item>
+        <item>Great Dane</item>
+        <item>GreyHound</item>
         <item>Husky</item>
+        <item>Jack Russell</item>
         <item>Labrador</item>
+        <item>Malamute</item>
+        <item>Pitbull</item>
+        <item>Pug</item>
+        <item>Retriever</item>
         <item>Rottweiler</item>
+        <item>Setter</item>
         <item>Springer Spaniel</item>
+        <item>Yorkshire Terrier</item>
+        <item>Wolfhound</item>
     </string-array>
 
     <string name="title_activity_dog_match">DogMatch</string>
@@ -61,6 +89,8 @@
        ID'S for UI elements 
        
     !-->
+
+    <string name="map_api_key">AIzaSyApTYfrFGeZseLwc46vor6n2p5ID3mHKHw</string>
 
 
 </resources>
