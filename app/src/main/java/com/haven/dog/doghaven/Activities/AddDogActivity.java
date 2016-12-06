@@ -7,7 +7,6 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Button;
-import android.view.View;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.util.Log;
@@ -17,7 +16,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.haven.dog.doghaven.Helpers.MyNetworkingSingletonVolley;
-import com.haven.dog.doghaven.Models.User;
 
 import java.util.Map;
 import java.util.HashMap;

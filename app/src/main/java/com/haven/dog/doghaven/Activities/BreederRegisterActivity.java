@@ -75,7 +75,7 @@ public class BreederRegisterActivity extends AppCompatActivity implements View.O
             Register();
 
         }
-    }
+    }}
 
     public void Register(){
 
