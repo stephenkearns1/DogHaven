@@ -94,9 +94,9 @@ public class BreederLoginActivity extends AppCompatActivity implements View.OnCl
 
                             try {
 
-                                JSONArray jsArray = new JSONArray(response);
 
-                                JSONObject jsUserObj = (JSONObject) jsArray.get(0);
+
+                                JSONObject jsUserObj = new JSONObject(response);
                                 //she have a unique id
                                 Breeder breeder = new Breeder();
 
