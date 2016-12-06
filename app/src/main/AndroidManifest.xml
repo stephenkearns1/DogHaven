@@ -37,7 +37,6 @@
 
         <activity android:name=".Activities.AddDogActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity android:name=".Activities.BreederRegisterActivity" />
         <activity
             android:name=".Activities.DogparkLocatorActivity"

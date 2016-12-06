@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -15,32 +16,31 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.haven.dog.doghaven.Helpers.MyNetworkingSingletonVolley;
+import com.haven.dog.doghaven.Helpers.Validation;
 import com.haven.dog.doghaven.R;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class BreederRegisterActivity extends AppCompatActivity implements View.OnClickListener {
-    EditText fnameET, snameET, usernameET, emailET, companyNameET, companyVatET, addressET, countyET, dobET, passwordET;
+    EditText  emailET, companyNameET, companyVatET, addressET, countyET, passwordET;
     Button registerBtn;
-    private  String  fname, sname, username,companyname, companyvatnum, email, addr, county, dob, password;
+    private  String  companyname, companyvatnum, email, addr, county, password;
     private  ProgressDialog progressDialog;
-    private final String doghavenAPI_URL = "https://backend-doghaven-app-stephenkearns1.c9users.io/index.php";
+    private final String doghavenAPI_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php";
+    private Validation validation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_breeder_register);
 
+        validation = new Validation();
         //This is where the merge issue will happen
-        fnameET = (EditText) findViewById(R.id.breederfnameET);
-        snameET = (EditText) findViewById(R.id.breedersnameET);
-        usernameET = (EditText) findViewById(R.id.breederfnameET);
+        companyNameET = (EditText) findViewById(R.id.breederCompanyNameET);
+        companyVatET = (EditText) findViewById(R.id.breederCompanyVatET);
         emailET = (EditText) findViewById(R.id.breederemailET);
-        companyNameET = (EditText) findViewById(R.id.companyNameET);
-        companyVatET = (EditText) findViewById(R.id.companyVatET);
         addressET = (EditText) findViewById(R.id.breederAddrET);
         countyET = (EditText) findViewById(R.id.breedercountyET);
-        dobET = (EditText) findViewById(R.id.breederdobET);
         passwordET = (EditText) findViewById(R.id.breederpasswordET);
 
 
@@ -52,22 +52,28 @@ public class BreederRegisterActivity extends AppCompatActivity implements View.O
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.RegisterBreederBtn){
-            fname = fnameET.getText().toString();
-            sname = snameET.getText().toString();
-            username = usernameET.getText().toString();
+
             companyname = companyNameET.getText().toString();
             companyvatnum = companyVatET.getText().toString();
             email = emailET.getText().toString();
+            password = passwordET.getText().toString();
             addr = addressET.getText().toString();
             county = countyET.getText().toString();
-            dob = dobET.getText().toString();
-            password = passwordET.getText().toString();
 
 
+            if(companyname.isEmpty() || companyvatnum.isEmpty() || email.isEmpty() || password.isEmpty() || email.isEmpty() || addr.isEmpty() || county.isEmpty()){
 
-            //make call to register methods
-            Register();
+                Toast.makeText(getApplicationContext(),"Please Fill in missing information", Toast.LENGTH_SHORT);
 
+            }else if(validation.IsVaildEmail(email) == false && validation.IsVaildPassword(password) == false ){
+                emailET.setError("Invaild email");
+                passwordET.setError("Invalid password");
+            }else if(validation.IsVaildEmail(email) == false) {
+                Log.i("email error function", "made it ");
+            }else {
+                //make call to register methods
+                Register();
+            }
         }
     }
 
@@ -92,10 +98,10 @@ public class BreederRegisterActivity extends AppCompatActivity implements View.O
                             //display message account has been created
 
                             //lanuch the login activity
-                            Intent intent = new Intent(BreederRegisterActivity.this,BreederMainScreen.class);
+                            Intent intent = new Intent(BreederRegisterActivity.this,BreederLoginActivity.class);
                             startActivity(intent);
                         }else{
-                            //display error message
+                            //display errr message
                         }
 
                         ;
@@ -111,16 +117,13 @@ public class BreederRegisterActivity extends AppCompatActivity implements View.O
             protected Map<String,String> getParams()  throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
                 params.put("breederregister", "breederregister");
-                params.put("fname", fname);
-                params.put("sname", sname);
-                params.put("username", username);
                 params.put("companyname", companyname);
                 params.put("companyvatnum", companyvatnum);
                 params.put("email", email);
+                params.put("password", password);
                 params.put("address", addr);
                 params.put("county", county);
-                params.put("dob", dob);
-                params.put("password", password);
+
                 return params;
             }
         };
@@ -128,5 +131,54 @@ public class BreederRegisterActivity extends AppCompatActivity implements View.O
         // Adding the request to the queue
         MyNetworkingSingletonVolley.getInstance(this).addReuestToQueue(strRequestReg);
     }
+
+
+    public void CheckIfUserExists(){
+
+        StringRequest CheckIfUserExistRequest = new StringRequest(Request.Method.POST,doghavenAPI_URL,
+                new Response.Listener<String>() {
+
+
+                    @Override
+                    public void onResponse(String response) {
+
+                        Log.i("Response Checkusername", response);
+                        Log.i("Response length", "" + response.length());
+
+                        if(response.equals("exists")){
+                            //exists = true;
+                            Log.i("Made it to", "response user name exist");
+                            companyNameET.setError("Already exists");
+                        }else{
+                            Register();
+                        }
+
+                    }
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            @Override
+            protected Map<String,String> getParams()  throws AuthFailureError{
+                Map<String,String> params = new HashMap<>();
+                //sending login signals to server that it is a login request and should handle accordingly
+                params.put("checkifbreederexists", "checkifuserexists");
+                params.put("username", companyname);
+                return params;
+            }
+        };
+
+
+
+        // Adding the request to the queue
+        MyNetworkingSingletonVolley.getInstance(this).addReuestToQueue(CheckIfUserExistRequest);
+
+    }
+
+
+
 }
 

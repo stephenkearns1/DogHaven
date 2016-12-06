@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     EditText userNameET, userPasswordET;
     Button login, registerBtn;
     private String username,userPassword;
-    private final String doghavenAPI_URL = "https://backend-doghaven-app-stephenkearns1.c9users.io/index.php";
+    private final String doghavenAPI_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php";
     private static final String tagFName= "sname";
     private static final String tagSName = "fname";
     private User user;
@@ -72,8 +72,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 if (userNameET.getText().toString().equals("") || userPasswordET.getText().toString().equals("")){
                     Toast.makeText(getApplicationContext(), "Please enter a vaild username and password",Toast.LENGTH_LONG);
-                }else {
-
+                }else{
                     //mite not have to store username, password for checking only on return store details
                     username = userNameET.getText().toString();
                     userPassword = userPasswordET.getText().toString();
@@ -234,9 +233,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                             try {
 
-                                JSONArray jsArray = new JSONArray(response);
+                                //JSONArray jsArray = new JSONArray(response);
+                                JSONObject jsUserObj= new JSONObject(response);
 
-                                JSONObject jsUserObj = (JSONObject) jsArray.get(0);
+                                //JSONObject jsUserObj = (JSONObject) jsArray.get(0);
                                 //she have a unique id
                                 User mUser = new User();
                                 mUser.setfName(jsUserObj.getString(tagFName));
@@ -298,5 +298,4 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             //display error message saying invaild cred
         }
     }
-
 }

@@ -30,8 +30,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/breederfnameET"
-                android:hint="First name:" />
+                android:id="@+id/breederCompanyNameET"
+                android:hint="Company Name" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -41,21 +41,10 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/breedersnameET"
-                android:hint="Second name:" />
+                android:id="@+id/breederCompanyVatET"
+                android:hint="Company VAT Number:" />
         </android.support.design.widget.TextInputLayout>
 
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/breederusernameET"
-                android:hint="User Name:" />
-        </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -70,24 +59,18 @@
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:weightSum="1">
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/companyNameET"
-                android:hint="Company name:" />
-        </android.support.design.widget.TextInputLayout>
+                android:id="@+id/breederpasswordET"
+                android:inputType="textPassword"
+                android:hint="Password" />
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/companyVatET"
-                android:hint="Company VAT number:" />
+
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -115,36 +98,6 @@
 
 
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="1">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/breederdobET"
-                android:hint="DOB DD/MM/YYYY" />
-
-
-        </android.support.design.widget.TextInputLayout>
-
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="1">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/breederpasswordET"
-                android:inputType="textPassword"
-                android:hint="Password" />
-
-
-
-        </android.support.design.widget.TextInputLayout>
 
 
         <Button
