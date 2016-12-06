@@ -111,7 +111,6 @@
                     android:layout_height="15dp" />
 
                 <EditText
-                    android:inputType="textPersonName"
                     android:ems="10"
                     android:textColor="@android:color/darker_gray"
                     android:textStyle="italic"
@@ -137,7 +136,6 @@
 
                 <EditText
                     android:layout_width="55dp"
-                    android:inputType="numberDecimal"
                     android:ems="10"
                     android:id="@+id/AgeInsertET"
                     android:textStyle="italic"
@@ -153,7 +151,6 @@
                 <EditText
                     android:layout_width="75dp"
                     android:layout_height="33dp"
-                    android:inputType="textPersonName"
                     android:textStyle="italic"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="12sp"

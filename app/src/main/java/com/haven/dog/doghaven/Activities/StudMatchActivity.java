@@ -45,6 +45,9 @@ public class StudMatchActivity extends AppCompatActivity {
                     matchlist.setVisibility(View.VISIBLE);
                     matches.setImageResource(R.drawable.matches);
 
+                }else{
+                    matchlist.setVisibility(View.INVISIBLE);
+                    matches.setImageResource(R.drawable.matches);
                 }
 
             }

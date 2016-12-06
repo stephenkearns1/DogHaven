@@ -89,7 +89,7 @@ public class BreederRegisterActivity extends AppCompatActivity implements View.O
                             Intent intent = new Intent(BreederRegisterActivity.this,BreederLoginActivity.class);
                             startActivity(intent);
                         }else{
-                            //display error message
+                            //display errr message
                         }
 
                         ;
