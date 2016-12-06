@@ -20,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.haven.dog.doghaven.Helpers.MyNetworkingSingletonVolley;
+import com.haven.dog.doghaven.Helpers.Validation;
 import com.haven.dog.doghaven.Models.User;
 import com.haven.dog.doghaven.R;
 
@@ -40,12 +41,16 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
     private static final String tagFName= "sname";
     private static final String tagSName = "fname";
     private User user;
+    private Validation validate;
     ProgressDialog progressDialog;
     boolean exists;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_register);
+
+        //creates a new instance of vaildation to validate email and password
+        validate = new Validation();
 
         fnameET = (EditText) findViewById(R.id.fnameET);
         snameET = (EditText) findViewById(R.id.snameET);
@@ -97,7 +102,10 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
 
                     Toast.makeText(getApplicationContext(),"Please Fill in missing information", Toast.LENGTH_SHORT);
 
-                }else if(IsVaildEmail(email) == false){
+                }else if(validate.IsVaildEmail(email) == false && validate.IsVaildPassword(password) == false ){
+                    emailET.setError("Invaild email");
+                    passwordET.setError("Invalid password");
+                }else if(validate.IsVaildEmail(email) == false){
                     Log.i("email error function", "made it ");
                    /* Drawable icon =
                             getResources().getDrawable(R.drawable.ic_report_problem_black_24dp);
@@ -111,7 +119,7 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
                    // emailET.requestFocus();
                     //emailET.setError("Invaild email");
 
-                } else if(IsVaildPassword(password) == false){
+                } else if(validate.IsVaildPassword(password) == false){
                     passwordET.setError("Invalid password");
 
                 }else{
@@ -237,6 +245,8 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
     }
 
 
+    /*
+
     public boolean IsVaildEmail(String email){
 
         String emailFormat = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]$";
@@ -255,7 +265,7 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
 }
 
 
-         */
+
 
        // return matcher.matches();
     }
@@ -269,5 +279,5 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
         Log.i("Password matching", ":" + matches);
         return matcher.matches();
     }
-
+*/
 }
