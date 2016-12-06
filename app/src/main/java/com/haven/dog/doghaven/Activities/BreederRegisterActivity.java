@@ -133,6 +133,51 @@ public class BreederRegisterActivity extends AppCompatActivity implements View.O
     }
 
 
+    public boolean CheckIfUserExists(){
+
+        StringRequest CheckIfUserExistRequest = new StringRequest(Request.Method.POST,doghavenAPI_URL,
+                new Response.Listener<String>() {
+
+
+                    @Override
+                    public void onResponse(String response) {
+
+                        Log.i("Response Checkusername", response);
+                        Log.i("Response length", "" + response.length());
+
+                        if(response.equals("exists")){
+                            //exists = true;
+                            Log.i("Made it to", "response user name exist");
+                            companyNameET.setError("Already exists");
+                        }else{
+                            Register();
+                        }
+
+                    }
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            @Override
+            protected Map<String,String> getParams()  throws AuthFailureError{
+                Map<String,String> params = new HashMap<>();
+                //sending login signals to server that it is a login request and should handle accordingly
+                params.put("checkifbreederexists", "checkifuserexists");
+                params.put("username", companyname);
+                return params;
+            }
+        };
+
+
+
+        // Adding the request to the queue
+        MyNetworkingSingletonVolley.getInstance(this).addReuestToQueue(CheckIfUserExistRequest);
+
+    }
+
 
 
 }
