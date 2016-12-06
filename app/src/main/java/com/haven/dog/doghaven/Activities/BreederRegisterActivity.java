@@ -68,12 +68,12 @@ public class BreederRegisterActivity extends AppCompatActivity implements View.O
             }else if(validation.IsVaildEmail(email) == false && validation.IsVaildPassword(password) == false ){
                 emailET.setError("Invaild email");
                 passwordET.setError("Invalid password");
-            }else if(validation.IsVaildEmail(email) == false){
+            }else if(validation.IsVaildEmail(email) == false) {
                 Log.i("email error function", "made it ");
-
-            //make call to register methods
-            Register();
-
+            }else {
+                //make call to register methods
+                Register();
+            }
         }
     }
 
