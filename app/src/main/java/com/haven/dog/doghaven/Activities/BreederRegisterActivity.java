@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -15,6 +16,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.haven.dog.doghaven.Helpers.MyNetworkingSingletonVolley;
+import com.haven.dog.doghaven.Helpers.Validation;
 import com.haven.dog.doghaven.R;
 
 import java.util.HashMap;
@@ -26,11 +28,13 @@ public class BreederRegisterActivity extends AppCompatActivity implements View.O
     private  String  companyname, companyvatnum, email, addr, county, password;
     private  ProgressDialog progressDialog;
     private final String doghavenAPI_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php";
+    private Validation validation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_breeder_register);
 
+        validation = new Validation();
         //This is where the merge issue will happen
         companyNameET = (EditText) findViewById(R.id.breederCompanyNameET);
         companyVatET = (EditText) findViewById(R.id.breederCompanyVatET);
@@ -57,7 +61,15 @@ public class BreederRegisterActivity extends AppCompatActivity implements View.O
             county = countyET.getText().toString();
 
 
+            if(companyname.isEmpty() || companyvatnum.isEmpty() || email.isEmpty() || password.isEmpty() || email.isEmpty() || addr.isEmpty() || county.isEmpty()){
 
+                Toast.makeText(getApplicationContext(),"Please Fill in missing information", Toast.LENGTH_SHORT);
+
+            }else if(validation.IsVaildEmail(email) == false && validation.IsVaildPassword(password) == false ){
+                emailET.setError("Invaild email");
+                passwordET.setError("Invalid password");
+            }else if(validation.IsVaildEmail(email) == false){
+                Log.i("email error function", "made it ");
 
             //make call to register methods
             Register();
