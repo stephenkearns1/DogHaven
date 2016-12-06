@@ -68,11 +68,11 @@ public class BreederRegisterActivity extends AppCompatActivity implements View.O
             }else if(validation.IsVaildEmail(email) == false && validation.IsVaildPassword(password) == false ){
                 emailET.setError("Invaild email");
                 passwordET.setError("Invalid password");
-            }else if(validation.IsVaildEmail(email) == false) {
+            }else if(validation.IsVaildPassword(password) == false) {
                 Log.i("email error function", "made it ");
             }else {
                 //make call to register methods
-                Register();
+                CheckIfCompanyExists();
             }
         }
     }
@@ -133,9 +133,9 @@ public class BreederRegisterActivity extends AppCompatActivity implements View.O
     }
 
 
-    public void CheckIfUserExists(){
+    public void CheckIfCompanyExists(){
 
-        StringRequest CheckIfUserExistRequest = new StringRequest(Request.Method.POST,doghavenAPI_URL,
+        StringRequest CheckIfCompanyExists = new StringRequest(Request.Method.POST,doghavenAPI_URL,
                 new Response.Listener<String>() {
 
 
@@ -166,7 +166,7 @@ public class BreederRegisterActivity extends AppCompatActivity implements View.O
                 Map<String,String> params = new HashMap<>();
                 //sending login signals to server that it is a login request and should handle accordingly
                 params.put("checkifbreederexists", "checkifuserexists");
-                params.put("username", companyname);
+                params.put("companyname", companyname);
                 return params;
             }
         };
@@ -174,7 +174,7 @@ public class BreederRegisterActivity extends AppCompatActivity implements View.O
 
 
         // Adding the request to the queue
-        MyNetworkingSingletonVolley.getInstance(this).addReuestToQueue(CheckIfUserExistRequest);
+        MyNetworkingSingletonVolley.getInstance(this).addReuestToQueue(CheckIfCompanyExists);
 
     }
 

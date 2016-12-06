@@ -228,7 +228,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                         Log.i("Response1", response);
                         Log.i("Response length", "" + response.length());
-                        if (response.length() > 0) {
+                        if (!(response.equals("failed"))){
 
 
                             try {
