@@ -70,7 +70,7 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
         pDialog.setTitle("Adding New Dog");
         pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         pDialog.show();
-        StringRequest strRequestReg = new StringRequest(Request.Method.POST,doghavenAPI_URL,
+        StringRequest AddDogRequest = new StringRequest(Request.Method.POST,doghavenAPI_URL,
                 new Response.Listener<String>() {
 
 
@@ -79,7 +79,7 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
                     public void onResponse(String response) {
 
                         pDialog.hide();
-                        Log.i("Returned data:R01", response);
+                        Log.i("Returned data:R02", response);
                         if(response.equalsIgnoreCase("success")){
 
                             Intent intent = new Intent(AddDogActivity.this,AddDogActivity.class);
@@ -110,7 +110,7 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
 
         };
 
-        MyNetworkingSingletonVolley.getInstance(this).addReuestToQueue(strRequestReg);
+        MyNetworkingSingletonVolley.getInstance(this).addReuestToQueue(AddDogRequest);
 
     }
 
