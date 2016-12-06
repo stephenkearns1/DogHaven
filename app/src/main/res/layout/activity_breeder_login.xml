@@ -50,7 +50,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:drawableLeft="@drawable/ic_person_black_24dp"
-                            android:id="@+id/breederusernameET"
+                            android:id="@+id/breederCompanynameET"
                             android:hint="User Name:" />
                     </android.support.design.widget.TextInputLayout>
 
