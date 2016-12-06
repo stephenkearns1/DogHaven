@@ -21,6 +21,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_breed_info" />
+    <include layout="@layout/content_breedinfo" />
 
 </android.support.design.widget.CoordinatorLayout>
