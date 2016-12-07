@@ -110,18 +110,6 @@
                     android:layout_marginStart="77dp"
                     android:layout_height="15dp" />
 
-                <EditText
-                    android:ems="10"
-                    android:textColor="@android:color/darker_gray"
-                    android:textStyle="italic"
-                    android:textSize="12sp"
-                    android:id="@+id/NameInsertET"
-                    android:layout_height="33dp"
-                    android:layout_width="75dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_toEndOf="@+id/NameHeadingTV"
-                    android:hint="Enter Name" />
-
                 <TextView
                     android:text="Breed:"
                     android:id="@+id/BreedHeadingTV"
@@ -159,6 +147,42 @@
                     android:layout_alignParentTop="true"
                     android:layout_toEndOf="@+id/BreedHeadingTV"
                     android:hint="Enter Breed" />
+
+                <TextView
+                    android:text="Company:"
+                    android:layout_height="15dp"
+                    android:id="@+id/CompanyHeadingTV"
+                    android:textColor="@color/colorwhite"
+                    android:textSize="12sp"
+                    android:layout_width="55dp"
+                    android:layout_marginTop="9dp"
+                    android:layout_below="@+id/NameInsertET"
+                    android:layout_alignParentStart="true" />
+
+                <EditText
+                    android:layout_height="33dp"
+                    android:ems="10"
+                    android:id="@+id/CompanyInsertET"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/darker_gray"
+                    android:hint="Enter Company Name"
+                    android:layout_below="@+id/NameInsertET"
+                    android:layout_toEndOf="@+id/CompanyHeadingTV"
+                    android:textStyle="normal|italic"
+                    android:layout_width="130dp" />
+
+                <EditText
+                    android:ems="10"
+                    android:textColor="@android:color/darker_gray"
+                    android:textStyle="italic"
+                    android:textSize="12sp"
+                    android:id="@+id/NameInsertET"
+                    android:layout_height="33dp"
+                    android:layout_width="75dp"
+                    android:hint="Enter Name"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/NameHeadingTV" />
+
             </RelativeLayout>
         </RelativeLayout>
 

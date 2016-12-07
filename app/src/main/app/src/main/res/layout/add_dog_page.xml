@@ -125,9 +125,9 @@
                     android:textColor="@android:color/white"
                     android:textSize="12sp"
                     android:id="@+id/textView8"
-                    android:layout_alignBaseline="@+id/textView7"
-                    android:layout_alignBottom="@+id/textView7"
-                    android:layout_toEndOf="@+id/textView7"
+                    android:layout_alignBaseline="@+id/CompanyHeadingTV"
+                    android:layout_alignBottom="@+id/CompanyHeadingTV"
+                    android:layout_toEndOf="@+id/CompanyHeadingTV"
                     android:layout_marginStart="77dp"
                     android:layout_height="15dp" />
 
@@ -141,7 +141,7 @@
                     android:layout_height="33dp"
                     android:layout_width="75dp"
                     android:layout_alignParentTop="true"
-                    android:layout_toEndOf="@+id/textView7"
+                    android:layout_toEndOf="@+id/CompanyHeadingTV"
                     android:hint="Enter Name" />
 
                 <TextView
