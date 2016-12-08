@@ -102,7 +102,7 @@ public class UserSessionManagment {
 
     //set user who is logged in
     public boolean getBreederLoggedIn(){
-        if(userSessionManager.getBoolean("UserLoggedIn", false)== true){
+        if(userSessionManager.getBoolean("BreederLoggedIn", false)== true){
             return true;
         }else{
             return false;

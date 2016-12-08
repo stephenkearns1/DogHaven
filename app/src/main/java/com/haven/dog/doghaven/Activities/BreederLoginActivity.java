@@ -2,6 +2,7 @@ package com.haven.dog.doghaven.Activities;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -119,7 +120,17 @@ public class BreederLoginActivity extends AppCompatActivity implements View.OnCl
                         if (response.equals("failed")) {
                             //The user did not exist, hide the progress dialog and display a message to the user
                             progressDialog.hide();
-                            errorDialog.show();
+                            final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(BreederLoginActivity.this);
+                            builder.setMessage("Company does not exist")
+                                    .setPositiveButton("RETRY", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+
+                                        }
+                                    });
+
+                            builder.show();
                         }else {
 
                             try {
