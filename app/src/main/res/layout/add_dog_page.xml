@@ -122,6 +122,17 @@
                     android:layout_alignBottom="@+id/AgeHeadingTV"
                     android:layout_toEndOf="@+id/AgeHeadingTV" />
 
+                <TextView
+                    android:text="Company:"
+                    android:layout_height="15dp"
+                    android:id="@+id/CompanyHeadingTV"
+                    android:textColor="@color/colorwhite"
+                    android:textSize="12sp"
+                    android:layout_width="55dp"
+                    android:layout_marginTop="9dp"
+                    android:layout_below="@+id/NameInsertET"
+                    android:layout_alignParentStart="true" />
+
                 <EditText
                     android:layout_width="55dp"
                     android:ems="10"
@@ -148,17 +159,6 @@
                     android:layout_toEndOf="@+id/BreedHeadingTV"
                     android:hint="Enter Breed" />
 
-                <TextView
-                    android:text="Company:"
-                    android:layout_height="15dp"
-                    android:id="@+id/CompanyHeadingTV"
-                    android:textColor="@color/colorwhite"
-                    android:textSize="12sp"
-                    android:layout_width="55dp"
-                    android:layout_marginTop="9dp"
-                    android:layout_below="@+id/NameInsertET"
-                    android:layout_alignParentStart="true" />
-
                 <EditText
                     android:layout_height="33dp"
                     android:ems="10"
@@ -168,7 +168,7 @@
                     android:hint="Enter Company Name"
                     android:layout_below="@+id/NameInsertET"
                     android:layout_toEndOf="@+id/CompanyHeadingTV"
-                    android:textStyle="normal|italic"
+                    android:textStyle="italic"
                     android:layout_width="130dp" />
 
                 <EditText
@@ -182,6 +182,101 @@
                     android:hint="Enter Name"
                     android:layout_alignParentTop="true"
                     android:layout_toEndOf="@+id/NameHeadingTV" />
+
+                <EditText
+                    android:layout_width="130dp"
+                    android:layout_height="33dp"
+                    android:ems="10"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:id="@+id/IllnessCurrentInsertET"
+                    android:layout_alignBaseline="@+id/IllnessHeadingTV"
+                    android:layout_alignBottom="@+id/IllnessHeadingTV"
+                    android:layout_alignStart="@+id/CompanyInsertET"
+                    android:hint="Current If Applicable" />
+
+                <EditText
+                    android:layout_width="130dp"
+                    android:layout_height="33dp"
+                    android:ems="10"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:id="@+id/IllnessPastInsertET"
+                    android:hint="Past Illnesses"
+                    android:layout_alignBaseline="@+id/IllnessCurrentInsertET"
+                    android:layout_alignBottom="@+id/IllnessCurrentInsertET"
+                    android:layout_alignStart="@+id/ColorHeadingTV" />
+
+                <EditText
+                    android:layout_width="130dp"
+                    android:layout_height="33dp"
+                    android:ems="10"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:id="@+id/VaccinationInsertET"
+                    android:hint="All Vaccinations: Y/N"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toEndOf="@+id/VaccinationHeadingTV" />
+
+                <EditText
+                    android:layout_width="130dp"
+                    android:ems="10"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:hint="State Missing "
+                    android:id="@+id/VaccinationsMissingInsertET"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toEndOf="@+id/VaccinationInsertET"
+                    android:layout_height="35dp" />
+
+                <TextView
+                    android:text="Color:"
+                    android:layout_width="55dp"
+                    android:layout_height="15dp"
+                    android:id="@+id/ColorHeadingTV"
+                    android:textColor="@color/colorwhite"
+                    android:textSize="12sp"
+                    android:layout_alignBaseline="@+id/CompanyHeadingTV"
+                    android:layout_alignBottom="@+id/CompanyHeadingTV"
+                    android:layout_alignStart="@+id/BreedHeadingTV" />
+
+                <EditText
+                    android:layout_width="75dp"
+                    android:layout_height="33dp"
+                    android:textStyle="italic"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="12sp"
+                    android:ems="10"
+                    android:id="@+id/ColorInsertET"
+                    android:hint="Enter Color"
+                    android:layout_below="@+id/BreedInsertET"
+                    android:layout_alignStart="@+id/BreedInsertET"
+                    android:paddingLeft="10dp"
+                    android:layout_marginLeft="5dp" />
+
+                <TextView
+                    android:text="Illnesses:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/IllnessHeadingTV"
+                    android:layout_marginBottom="17dp"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:textColor="@color/colorwhite"
+                    android:layout_above="@+id/VaccinationInsertET"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:text="Vaccinations:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/VaccinationHeadingTV"
+                    android:textSize="12sp"
+                    android:textStyle="italic"
+                    android:textColor="@color/colorwhite"
+                    android:layout_alignBaseline="@+id/VaccinationInsertET"
+                    android:layout_alignBottom="@+id/VaccinationInsertET"
+                    android:layout_alignParentStart="true" />
 
             </RelativeLayout>
         </RelativeLayout>
@@ -240,13 +335,145 @@
                     android:layout_centerHorizontal="true" />
 
                 <Spinner
-                    android:layout_width="wrap_content"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/dropDown"
+                    android:id="@+id/ddphys1"
                     android:entries="@array/physical"
                     android:visibility="visible"
                     android:layout_below="@+id/PhysicalCatTV"
                     android:layout_alignParentStart="true" />
+
+                <Spinner
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/behavioural"
+                    android:visibility="visible"
+                    android:id="@+id/ddbeha1"
+                    android:layout_below="@+id/BehaviourCatTV"
+                    android:layout_centerHorizontal="true" />
+
+                <Spinner
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/behavioural"
+                    android:visibility="visible"
+                    android:id="@+id/ddbeha2"
+                    android:layout_alignBaseline="@+id/ddphys2"
+                    android:layout_alignBottom="@+id/ddphys2"
+                    android:layout_centerHorizontal="true" />
+
+                <Spinner
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/behavioural"
+                    android:visibility="visible"
+                    android:id="@+id/ddbeha3"
+                    android:layout_alignBaseline="@+id/ddphys3"
+                    android:layout_alignBottom="@+id/ddphys3"
+                    android:layout_alignStart="@+id/ddbeha2" />
+
+                <Spinner
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/behavioural"
+                    android:visibility="visible"
+                    android:id="@+id/ddbeha4"
+                    android:layout_alignBaseline="@+id/ddphys4"
+                    android:layout_alignBottom="@+id/ddphys4"
+                    android:layout_alignStart="@+id/ddbeha3" />
+
+                <Spinner
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/social"
+                    android:visibility="visible"
+                    android:id="@+id/ddsoc1"
+                    android:layout_below="@+id/SocialCatTV"
+                    android:layout_alignParentEnd="true" />
+
+                <Spinner
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/social"
+                    android:visibility="visible"
+                    android:id="@+id/ddsoc2"
+                    android:layout_alignBaseline="@+id/ddbeha2"
+                    android:layout_alignBottom="@+id/ddbeha2"
+                    android:layout_alignParentEnd="true" />
+
+                <Spinner
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/social"
+                    android:visibility="visible"
+                    android:id="@+id/ddsoc3"
+                    android:layout_alignBaseline="@+id/ddbeha3"
+                    android:layout_alignBottom="@+id/ddbeha3"
+                    android:layout_alignParentEnd="true" />
+
+                <Spinner
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/social"
+                    android:visibility="visible"
+                    android:id="@+id/ddsoc4"
+                    android:layout_alignBaseline="@+id/ddbeha4"
+                    android:layout_alignBottom="@+id/ddbeha4"
+                    android:layout_alignParentEnd="true" />
+
+                <Spinner
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/physical"
+                    android:visibility="visible"
+                    android:id="@+id/ddphys2"
+                    android:layout_below="@+id/ddphys1"
+                    android:layout_alignParentStart="true" />
+
+                <Spinner
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/physical"
+                    android:visibility="visible"
+                    android:id="@+id/ddphys3"
+                    android:layout_below="@+id/ddphys2"
+                    android:layout_alignParentStart="true" />
+
+                <Spinner
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/physical"
+                    android:visibility="visible"
+                    android:id="@+id/ddphys4"
+                    android:layout_below="@+id/ddphys3"
+                    android:layout_alignParentStart="true" />
+
+                <Spinner
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/behavioural"
+                    android:visibility="visible"
+                    android:id="@+id/ddbeha5"
+                    android:layout_below="@+id/ddbeha4"
+                    android:layout_alignStart="@+id/ddbeha4" />
+
+                <Spinner
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/physical"
+                    android:visibility="visible"
+                    android:id="@+id/ddphys5"
+                    android:layout_below="@+id/ddphys4"
+                    android:layout_alignParentStart="true" />
+
+                <Spinner
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/social"
+                    android:visibility="visible"
+                    android:id="@+id/ddsoc5"
+                    android:layout_below="@+id/ddsoc4"
+                    android:layout_alignParentEnd="true" />
             </RelativeLayout>
         </RelativeLayout>
 
