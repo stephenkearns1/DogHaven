@@ -19,6 +19,18 @@ public class Breeder {
     }
 
     public Breeder( String companyname,
+                     String email, String paasword, String addr)
+    {
+        this.companyname = companyname;
+        this.companyvatnum = companyvatnum;
+        this.email = email;
+        this.addr = addr;
+        this.password = paasword;
+
+    }
+
+
+    public Breeder( String companyname,
                    String companyvatnum, String email, String paasword, String addr)
     {
         this.companyname = companyname;

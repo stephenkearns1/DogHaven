@@ -17,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.haven.dog.doghaven.Helpers.MyNetworkingSingletonVolley;
+import com.haven.dog.doghaven.Helpers.UserSessionManagment;
 import com.haven.dog.doghaven.Models.User;
 import com.haven.dog.doghaven.R;
 
@@ -39,6 +40,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private static final String tagSName = "fname";
     private User user;
     private ProgressDialog progressDialog;
+    private UserSessionManagment userSessionManag;
 
 
     @Override
@@ -53,6 +55,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         registerBtn = (Button) findViewById(R.id.registerBtnLogin);
         login.setOnClickListener(this);
         registerBtn.setOnClickListener(this);
+
+        //instantiates objects for reference
+        userSessionManag = new UserSessionManagment(this);
+
+
 
     }
 
@@ -285,6 +292,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(user != null){
             //store user data in sharedPerferances
             //check user type and display screen for user
+            userSessionManag.SessionUserMangement(user);
+            userSessionManag.setUserLoggedIn(true);
             Intent intent = new Intent(this,UserMainScreenActivity.class);
             startActivity(intent);
             Log.i("user data Login", user.getfName() + user.getsName());

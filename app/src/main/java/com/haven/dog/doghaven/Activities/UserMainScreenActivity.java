@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,12 +17,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import com.haven.dog.doghaven.Helpers.UserSessionManagment;
 import com.haven.dog.doghaven.R;
 
 public class UserMainScreenActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     Button dogmatch, breedinfo, breederSearch, dogparkLocator;
+    private UserSessionManagment userSessionManag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,8 +51,26 @@ public class UserMainScreenActivity extends AppCompatActivity
         breederSearch.setOnClickListener(this);
         dogparkLocator.setOnClickListener(this);
 
+        //instantiates objects for reference
+        userSessionManag = new UserSessionManagment(this);
+
+
     }
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //checks to see if the user is authenticated if not it requests the user to login.
+        if (authenticate() == true) {
+            //display logged in or start main activity
+            //displayUserDetails();
+        } else {
+            //starts loginIn activity
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -133,5 +154,12 @@ public class UserMainScreenActivity extends AppCompatActivity
                startActivity(intent);
                break;
        }
+    }
+
+
+
+    private boolean authenticate() {
+        Log.i("getLoggedIn value", "" + userSessionManag.getLoggedIn());
+        return userSessionManag.getLoggedIn();
     }
 }

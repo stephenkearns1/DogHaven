@@ -23,7 +23,7 @@ public class UserSessionManagment {
         }
 
         //stores users details locally
-        public void SessionUserMange(User user){
+        public void SessionUserMangement(User user){
             this.user = user;
             SharedPreferences.Editor spEditor = userSessionManager.edit();
 
@@ -41,6 +41,7 @@ public class UserSessionManagment {
 
           spEditor.putString("companyname", breeder.getCompanyname());
           spEditor.putString("companyemail", breeder.getEmail());
+          spEditor.putString("addr", breeder.getEmail());
           spEditor.putString("companypassword",breeder.getPassword());
 
           spEditor.commit();
@@ -79,6 +80,44 @@ public class UserSessionManagment {
             spEditor.clear();
             spEditor.commit();
         }
+
+
+
+
+    //checks if users is logged in i,e true of if not i,e false
+    public Breeder BreederLoggedIn(){
+        String companyname = userSessionManager.getString("companyname", "");
+        String companyemail = userSessionManager.getString("companyemail", "");
+        String companyaddr = userSessionManager.getString("addr", "");
+        String companypassword = userSessionManager.getString("companypassword", "");
+
+        breeder = new Breeder(companyname, companyemail, companyaddr, companypassword);
+
+        return breeder;
+    }
+
+    //set user who is logged in
+    public boolean getBreederLoggedIn(){
+        if(userSessionManager.getBoolean("UserLoggedIn", false)== true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public void setBreederLoggedIn(boolean isLogged){
+        SharedPreferences.Editor spEditor = userSessionManager.edit();
+        spEditor.putBoolean("BreederLoggedIn",isLogged);
+        spEditor.commit();
+    }
+
+
+    //clear cached user data when loggin out
+    public void clearBreederData(){
+        SharedPreferences.Editor spEditor = userSessionManager.edit();
+        spEditor.clear();
+        spEditor.commit();
+    }
 
 
     }
