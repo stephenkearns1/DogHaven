@@ -5,7 +5,7 @@ package com.haven.dog.doghaven.Models;
  */
 
 public class Breeder {
-    private String companyname, companyvatnum, email, addr, password;
+    private String companyname, companyvatnum, email, addr, county, password;
     private int mobNum;
 
     public Breeder()
@@ -18,25 +18,13 @@ public class Breeder {
         this.password = password;
     }
 
-    public Breeder( String companyname,
-                     String email, String paasword, String addr)
+    public Breeder( String companyname, String companyvatnum, String email,  String addr,String county, String paasword)
     {
         this.companyname = companyname;
         this.companyvatnum = companyvatnum;
         this.email = email;
         this.addr = addr;
-        this.password = paasword;
-
-    }
-
-
-    public Breeder( String companyname,
-                   String companyvatnum, String email, String paasword, String addr)
-    {
-        this.companyname = companyname;
-        this.companyvatnum = companyvatnum;
-        this.email = email;
-        this.addr = addr;
+        this.county = county;
         this.password = paasword;
 
     }
@@ -44,6 +32,10 @@ public class Breeder {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setCounty(String county) {
+        this.county = county;
     }
 
     public void setAddr(String addr) {
@@ -69,6 +61,9 @@ public class Breeder {
     }
 
 
+    public String getCounty() {
+        return county;
+    }
 
     public String getAddr() {
         return addr;

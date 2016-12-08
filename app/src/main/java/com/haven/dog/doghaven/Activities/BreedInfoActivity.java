@@ -1,8 +1,10 @@
 package com.haven.dog.doghaven.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ScrollView;
@@ -10,6 +12,7 @@ import android.widget.Spinner;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
+import com.haven.dog.doghaven.Helpers.UserSessionManagment;
 import com.haven.dog.doghaven.R;
 
 public class BreedInfoActivity extends AppCompatActivity {
@@ -18,6 +21,7 @@ public class BreedInfoActivity extends AppCompatActivity {
     Spinner dropdown;
     ScrollView info;
     TextView breedInfo;
+    private UserSessionManagment userSessionManag;
 
 
     @Override
@@ -33,10 +37,33 @@ public class BreedInfoActivity extends AppCompatActivity {
         info= (ScrollView) findViewById(R.id.scroll);
         addListenerOnDropDown();
 
+        //instantiates objects for reference
+        userSessionManag = new UserSessionManagment(this);
 
 
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //checks to see if the user is authenticated if not it requests the user to login.
+        if (authenticate() == true) {
+            //display logged in or start main activity
+            //displayUserDetails();
+        } else {
+            //starts loginIn activity
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    
+    private boolean authenticate() {
+        Log.i("getLoggedIn value", "" + userSessionManag.getLoggedIn());
+        return userSessionManag.getLoggedIn();
+    }
+
 
     private void addListenerOnDropDown() {
         dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -220,5 +247,8 @@ public class BreedInfoActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
 
 }

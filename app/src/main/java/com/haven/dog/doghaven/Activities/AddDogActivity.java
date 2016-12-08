@@ -19,6 +19,8 @@ import com.haven.dog.doghaven.Helpers.MyNetworkingSingletonVolley;
 
 import java.util.Map;
 import java.util.HashMap;
+
+import com.haven.dog.doghaven.Helpers.UserSessionManagment;
 import com.haven.dog.doghaven.R;
 
 /**
@@ -32,6 +34,7 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
     private String dname, dbreed, dage;
     private  ProgressDialog pDialog;
     private final String doghavenAPI_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php";
+    private UserSessionManagment userSessionManag;
 
 
     @Override
@@ -49,7 +52,23 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
 
         AddDogBtn.setOnClickListener(this);
 
+        //instantiates objects for reference
+        userSessionManag = new UserSessionManagment(this);
 
+
+    }
+
+    protected void onStart() {
+        super.onStart();
+        //checks to see if the user is authenticated if not it requests the user to login.
+        if (authenticate() == true) {
+            //display logged in or start main activity
+            //displayUserDetails();
+        } else {
+            //starts loginIn activity
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void onClick(View v) {
@@ -175,5 +194,11 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
     }
+
+    private boolean authenticate() {
+        Log.i("getLoggedIn value", "" + userSessionManag.getBreederLoggedIn());
+        return userSessionManag.getBreederLoggedIn();
+    }
+
 
 }

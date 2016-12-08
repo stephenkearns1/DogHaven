@@ -19,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.haven.dog.doghaven.Helpers.MyNetworkingSingletonVolley;
+import com.haven.dog.doghaven.Helpers.UserSessionManagment;
 import com.haven.dog.doghaven.Models.Breeder;
 import com.haven.dog.doghaven.R;
 
@@ -37,10 +38,16 @@ public class BreederLoginActivity extends AppCompatActivity implements View.OnCl
     private Breeder breeder;
     private ProgressDialog progressDialog, errorDialog;
     private final String doghavenAPI_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php";
-    private static final String tagFName= "sname";
-    private static final String tagSName = "fname";
+    private static final String tagCompanyname= "companyname";
+    private static final String tagCompanyVat= "companyvat";
+    private static final String tagCompanyEmail= "email";
+    private static final String tagCompanyAddr= "address";
+    private static final String tagCompanyCounty= "county";
+    private static final String tagCompanyPassword= "password";
+
     private PopupWindow popupWindow;
     private LinearLayout linearLayout;
+    private UserSessionManagment userSessionManag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +64,8 @@ public class BreederLoginActivity extends AppCompatActivity implements View.OnCl
         popupWindow = new PopupWindow(this);
         linearLayout = new LinearLayout(this);
 
+        //instantiates objects for reference
+        userSessionManag = new UserSessionManagment(this);
 
 
     }
@@ -73,8 +82,8 @@ public class BreederLoginActivity extends AppCompatActivity implements View.OnCl
             }else {
 
                 //mite not have to store username, password for checking only on return store details
-                 companyname = companynameET.getText().toString();
-                 password = passwordET.getText().toString();
+                companyname = companynameET.getText().toString();
+                password = passwordET.getText().toString();
 
                 breeder = new Breeder(companyname, password);
 
@@ -118,8 +127,19 @@ public class BreederLoginActivity extends AppCompatActivity implements View.OnCl
 
 
                                 JSONObject jsUserObj = new JSONObject(response);
-                                //she have a unique id
-                                Breeder breeder = new Breeder();
+
+
+                                Breeder breeder = new Breeder(
+                                        jsUserObj.getString(tagCompanyname),
+                                        jsUserObj.getString(tagCompanyVat),
+                                        jsUserObj.getString(tagCompanyEmail),
+                                        jsUserObj.getString(tagCompanyAddr),
+                                        jsUserObj.getString(tagCompanyCounty),
+                                        jsUserObj.getString(tagCompanyPassword)
+                                );
+
+
+
 
 
                                 progressDialog.hide();
@@ -161,16 +181,12 @@ public class BreederLoginActivity extends AppCompatActivity implements View.OnCl
 
     public void LogBreederIn(Breeder breeder){
         if(breeder != null){
-            //store user data in sharedPerferances
-            //check user type and display screen for user
+            //Creates a session for the user through the use of shared preferences
+            userSessionManag.BreederSessionManagment(breeder);
+            userSessionManag.setBreederLoggedIn(true);
             Intent intent = new Intent(this,BreederMainScreen.class);
             startActivity(intent);
-              /*
-                  if(user.getType == "user")
-                        start usermainscreen
-                  else
-                        start breederscreen
-               */
+
         }else{
             //display error message saying invaild cred
         }
