@@ -113,15 +113,15 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
 
                                 //JSONObject jsUserObj = (JSONObject) jsArray.get(0);
                                 //she have a unique id
-                                User mUser = new User(jsUserObj.getString(tagFName), jsUserObj.getString(tagSName), jsUserObj.getString(tagUsername),
-                                        jsUserObj.getString(tagEmail), jsUserObj.getString(tagPassword));
+                               // User mUser = new User(jsUserObj.getString(tagFName), jsUserObj.getString(tagSName), jsUserObj.getString(tagUsername),
+                                 //       jsUserObj.getString(tagEmail), jsUserObj.getString(tagPassword));
 
 
 
                                 progressDialog.hide();
 
                                 //Log the user in
-                                LogUserIn(mUser);
+                                //LogUserIn(mUser);
                                 Log.i("Returned data json:L01", response);
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -132,7 +132,7 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
                         }else{
                             //error message saying incorrect details
                             progressDialog.hide();
-                            final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                            final AlertDialog.Builder builder = new AlertDialog.Builder(UserProfile.this);
                             builder.setMessage("User does not exist")
                                     .setPositiveButton("RETRY", new DialogInterface.OnClickListener() {
                                         @Override
@@ -156,9 +156,9 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
             protected Map<String,String> getParams()  throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
                 //sending login signals to server that it is a login request and should handle accordingly
-                params.put("login", "login");
-                params.put("username", username);
-                params.put("userpassword", userPassword);
+               // params.put("login", "login");
+               // params.put("username", username);
+                //params.put("userpassword", userPassword);
                 return params;
             }
         };
