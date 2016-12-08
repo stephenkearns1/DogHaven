@@ -28,7 +28,7 @@ public class UserSessionManagment {
             SharedPreferences.Editor spEditor = userSessionManager.edit();
 
             spEditor.putString("fname", user.getfName());
-            spEditor.putString("sname", user.getfName());
+            spEditor.putString("sname", user.getsName());
             spEditor.putString("userName", user.getUsername());
             spEditor.putString("email", user.getEmail());
             spEditor.putString("password", user.getPassword());
@@ -40,8 +40,10 @@ public class UserSessionManagment {
           SharedPreferences.Editor spEditor = userSessionManager.edit();
 
           spEditor.putString("companyname", breeder.getCompanyname());
+          spEditor.putString("companyvat", breeder.getCompanyvatnum());
           spEditor.putString("companyemail", breeder.getEmail());
-          spEditor.putString("addr", breeder.getEmail());
+          spEditor.putString("companyaddr", breeder.getAddr());
+          spEditor.putString("companycounty", breeder.getCounty());
           spEditor.putString("companypassword",breeder.getPassword());
 
           spEditor.commit();
@@ -87,18 +89,20 @@ public class UserSessionManagment {
     //checks if users is logged in i,e true of if not i,e false
     public Breeder BreederLoggedIn(){
         String companyname = userSessionManager.getString("companyname", "");
+        String companyvat = userSessionManager.getString("companyvat", "");
         String companyemail = userSessionManager.getString("companyemail", "");
-        String companyaddr = userSessionManager.getString("addr", "");
+        String companyaddr = userSessionManager.getString("companyaddr", "");
+        String companycounty = userSessionManager.getString("companycounty", "");
         String companypassword = userSessionManager.getString("companypassword", "");
 
-        breeder = new Breeder(companyname, companyemail, companyaddr, companypassword);
+        breeder = new Breeder(companyname,companyvat, companyemail, companyaddr, companycounty, companypassword);
 
         return breeder;
     }
 
     //set user who is logged in
     public boolean getBreederLoggedIn(){
-        if(userSessionManager.getBoolean("UserLoggedIn", false)== true){
+        if(userSessionManager.getBoolean("BreederLoggedIn", false)== true){
             return true;
         }else{
             return false;

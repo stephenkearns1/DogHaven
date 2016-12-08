@@ -16,8 +16,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.haven.dog.doghaven.Helpers.UserSessionManagment;
+import com.haven.dog.doghaven.Models.User;
 import com.haven.dog.doghaven.R;
 
 public class UserMainScreenActivity extends AppCompatActivity
@@ -25,6 +27,7 @@ public class UserMainScreenActivity extends AppCompatActivity
 
     Button dogmatch, breedinfo, breederSearch, dogparkLocator;
     private UserSessionManagment userSessionManag;
+    private TextView usernameTV, useremailTV;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +43,11 @@ public class UserMainScreenActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        //Inflates the nav_header layout as the header and then access the elements in the nav_header to populate with user details in the drawer
+        View navHeader = navigationView.getHeaderView(0);
+        usernameTV = (TextView) navHeader.findViewById(R.id.usernameHeader_TV);
+        useremailTV = (TextView) navHeader.findViewById(R.id.useremailHeader_TV);
+
 
         dogmatch = (Button) findViewById(R.id.dogmatchBtn);
         breedinfo = (Button) findViewById(R.id.breedInformationBtn);
@@ -55,6 +63,9 @@ public class UserMainScreenActivity extends AppCompatActivity
         userSessionManag = new UserSessionManagment(this);
 
 
+
+
+
     }
 
 
@@ -64,7 +75,7 @@ public class UserMainScreenActivity extends AppCompatActivity
         //checks to see if the user is authenticated if not it requests the user to login.
         if (authenticate() == true) {
             //display logged in or start main activity
-            //displayUserDetails();
+            displayUserDetails();
         } else {
             //starts loginIn activity
             Intent intent = new Intent(this, LoginActivity.class);
@@ -154,6 +165,25 @@ public class UserMainScreenActivity extends AppCompatActivity
                startActivity(intent);
                break;
        }
+    }
+
+    private void displayUserDetails() {
+        User user = userSessionManag.UserLoggedIn();
+
+        //set text views
+        // View header = navigationView.
+
+        //displayUsernameTV.setText(user.getUserName());
+        //displayUseremailTV.setText(user.getEmail())
+        //;
+        usernameTV.setText(user.getUsername());
+        useremailTV.setText(user.getEmail());
+
+
+
+        Log.i("user Loggedin", user.getUsername() + user.getEmail());
+
+
     }
 
 

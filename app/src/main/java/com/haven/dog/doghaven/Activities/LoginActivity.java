@@ -2,7 +2,9 @@ package com.haven.dog.doghaven.Activities;
 
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,9 +40,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private final String doghavenAPI_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php";
     private static final String tagFName= "sname";
     private static final String tagSName = "fname";
+    private static final String tagUsername = "username";
+    private static final String tagEmail = "email";
+    private static final String tagPassword = "password";
+
     private User user;
     private ProgressDialog progressDialog;
     private UserSessionManagment userSessionManag;
+
 
 
     @Override
@@ -60,7 +67,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         userSessionManag = new UserSessionManagment(this);
 
 
-
     }
 
     @Override
@@ -78,7 +84,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.loginbtn:
 
                 if (userNameET.getText().toString().equals("") || userPasswordET.getText().toString().equals("")){
-                    Toast.makeText(getApplicationContext(), "Please enter a vaild username and password",Toast.LENGTH_LONG);
+                    Toast.makeText(getApplicationContext(), "Please enter a valid username and password",Toast.LENGTH_LONG);
                 }else{
                     //mite not have to store username, password for checking only on return store details
                     username = userNameET.getText().toString();
@@ -245,9 +251,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                                 //JSONObject jsUserObj = (JSONObject) jsArray.get(0);
                                 //she have a unique id
-                                User mUser = new User();
-                                mUser.setfName(jsUserObj.getString(tagFName));
-                                mUser.setsName(jsUserObj.getString(tagSName));
+                                User mUser = new User(jsUserObj.getString(tagFName), jsUserObj.getString(tagSName), jsUserObj.getString(tagUsername),
+                                                        jsUserObj.getString(tagEmail), jsUserObj.getString(tagPassword));
+
+
 
                                 progressDialog.hide();
 
@@ -262,6 +269,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             Log.i("Returned data:L01", response);
                         }else{
                             //error message saying incorrect details
+                            progressDialog.hide();
+                            final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                            builder.setMessage("User does not exist")
+                                    .setPositiveButton("RETRY", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+
+                                }
+                            });
+
+                            builder.show();
                         }
                     }
 
