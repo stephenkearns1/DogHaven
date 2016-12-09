@@ -39,11 +39,11 @@ import java.util.Map;
 
 public class UserProfile extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
-    private EditText profile_username_et,profile_password_et, profile_password_confirm_et;
+    private EditText profile_username_et, profile_email_et, profile_password_et, profile_password_confirm_et;
     private Button profileupdate;
     private UserSessionManagment userSessionManag;
     private ProgressDialog progressDialog;
-    private String originalUsername, updatedUsername, newPassword, confirmPassword;
+    private String originalUsername, updatedUsername, newEmail, newPassword, confirmPassword;
     private final String doghavenAPI_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php";
     private Validation vailadate;
     @Override
@@ -72,6 +72,7 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
         navigationView.setNavigationItemSelectedListener(this);
 
         profile_username_et = (EditText) findViewById(R.id.profile_username);
+        profile_email_et = (EditText) findViewById(R.id.user_profile_email_ET);
         profile_password_et = (EditText) findViewById(R.id.profile_password);
         profile_password_confirm_et = (EditText) findViewById(R.id.profile_password_confirm);
         profileupdate = (Button) findViewById(R.id.profile_update);
@@ -89,6 +90,7 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
         User user = userSessionManag.UserLoggedIn();
         originalUsername = user.getUsername();
         profile_username_et.setText(user.getUsername());
+        profile_email_et.setText(user.getEmail());
 
 
 
@@ -273,11 +275,13 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
     public void onClick(View v) {
 
         updatedUsername = profile_username_et.getText().toString();
+        newEmail = profile_email_et.getText().toString();
         newPassword = profile_password_et.getText().toString();
         confirmPassword = profile_password_confirm_et.getText().toString();
-
-
-        if(!(newPassword.equals(confirmPassword))){
+        if(!(vailadate.IsVaildEmail(newEmail))){
+            profile_email_et.setError("Invalid email");
+        }
+       else if(!(newPassword.equals(confirmPassword))){
             final AlertDialog.Builder builder = new AlertDialog.Builder(UserProfile.this);
             builder.setMessage("Passwords do not match")
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
