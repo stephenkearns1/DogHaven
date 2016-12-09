@@ -60,6 +60,12 @@ public class UserSessionManagment {
             return user;
         }
 
+        public void EditUserDetails(String username, String newPassword){
+            SharedPreferences.Editor spEditor = userSessionManager.edit();
+            spEditor.putString("userName", username);
+            spEditor.putString("password", newPassword);
+        }
+
         //set user who is logged in
         public boolean getLoggedIn(){
             if(userSessionManager.getBoolean("LoggedIn", false)== true){

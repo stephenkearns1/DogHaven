@@ -32,7 +32,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Password"/>
+            android:text="New Password"/>
         <EditText
             android:id="@+id/profile_password"
             android:layout_width="match_parent"
@@ -41,7 +41,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Confirm Password"/>
+            android:text="New Confirm Password"/>
+
         <EditText
             android:id="@+id/profile_password_confirm"
             android:layout_width="match_parent"

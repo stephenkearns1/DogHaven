@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -26,6 +27,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.haven.dog.doghaven.Helpers.MyNetworkingSingletonVolley;
 import com.haven.dog.doghaven.Helpers.UserSessionManagment;
+import com.haven.dog.doghaven.Helpers.Validation;
 import com.haven.dog.doghaven.Models.User;
 import com.haven.dog.doghaven.R;
 
@@ -35,13 +37,15 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UserProfile extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class UserProfile extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
-    private EditText profile_username_et,profile_password_et;
+    private EditText profile_username_et,profile_password_et, profile_password_confirm_et;
     private Button profileupdate;
     private UserSessionManagment userSessionManag;
     private ProgressDialog progressDialog;
+    private String originalUsername, updatedUsername, newPassword, confirmPassword;
     private final String doghavenAPI_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php";
+    private Validation vailadate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,10 +73,13 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
 
         profile_username_et = (EditText) findViewById(R.id.profile_username);
         profile_password_et = (EditText) findViewById(R.id.profile_password);
+        profile_password_confirm_et = (EditText) findViewById(R.id.profile_password_confirm);
         profileupdate = (Button) findViewById(R.id.profile_update);
+        profileupdate.setOnClickListener(this);
 
         //instantiates objects for reference
         userSessionManag = new UserSessionManagment(this);
+        vailadate = new Validation();
     }
 
     @Override
@@ -80,7 +87,7 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
         super.onStart();
 
         User user = userSessionManag.UserLoggedIn();
-
+        originalUsername = user.getUsername();
         profile_username_et.setText(user.getUsername());
 
 
@@ -89,8 +96,9 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
 
     public void UpdateUserDetails(){
         progressDialog = new ProgressDialog(UserProfile.this);
-        progressDialog.setMessage("Logging in");
-        progressDialog.setTitle("Authenticating");
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Updating details please wait");
+        progressDialog.setTitle("Updating");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
         StringRequest updateUserDetailsRequest = new StringRequest(Request.Method.POST,doghavenAPI_URL,
@@ -105,42 +113,28 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
                         Log.i("Response length", "" + response.length());
                         if (!(response.equals("failed"))){
 
-
-                            try {
-
-                                //JSONArray jsArray = new JSONArray(response);
-                                JSONObject jsUserObj= new JSONObject(response);
-
-                                //JSONObject jsUserObj = (JSONObject) jsArray.get(0);
-                                //she have a unique id
-                               // User mUser = new User(jsUserObj.getString(tagFName), jsUserObj.getString(tagSName), jsUserObj.getString(tagUsername),
-                                 //       jsUserObj.getString(tagEmail), jsUserObj.getString(tagPassword));
-
-
-
                                 progressDialog.hide();
 
                                 //Log the user in
                                 //LogUserIn(mUser);
-                                Log.i("Returned data json:L01", response);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
 
+                                Log.i("Returned data json:L01", response);
+
+                                userSessionManag.EditUserDetails(updatedUsername, confirmPassword);
 
                             Log.i("Returned data:L01", response);
                         }else{
                             //error message saying incorrect details
                             progressDialog.hide();
                             final AlertDialog.Builder builder = new AlertDialog.Builder(UserProfile.this);
-                            builder.setMessage("User does not exist")
-                                    .setPositiveButton("RETRY", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
+                            builder.setMessage("Unable to update details")
+                                .setPositiveButton("RETRY", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
 
 
-                                        }
-                                    });
+                                    }
+                                });
 
                             builder.show();
                         }
@@ -155,10 +149,12 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
             @Override
             protected Map<String,String> getParams()  throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
-                //sending login signals to server that it is a login request and should handle accordingly
-               // params.put("login", "login");
-               // params.put("username", username);
-                //params.put("userpassword", userPassword);
+                //sending login tag to server that it is a update request and should handle accordingly
+                params.put("updateUser", "updateUser");
+                params.put("username", originalUsername);
+                params.put("newusername", updatedUsername);
+                params.put("newpassword", confirmPassword);
+
                 return params;
             }
         };
@@ -170,6 +166,51 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
 
 
 }
+
+    public void CheckIfUserExists(){
+
+        StringRequest CheckIfUserExistRequest = new StringRequest(Request.Method.POST,doghavenAPI_URL,
+                new Response.Listener<String>() {
+
+
+                    @Override
+                    public void onResponse(String response) {
+
+                        Log.i("Response Checkusername", response);
+                        Log.i("Response length", "" + response.length());
+
+                        if(response.equals("exists")){
+                            //exists = true;
+                            Log.i("Made it to", "response user name exist");
+                            profile_username_et.setError("Already exists");
+                        }else{
+                            UpdateUserDetails();
+                        }
+
+                    }
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            @Override
+            protected Map<String,String> getParams()  throws AuthFailureError{
+                Map<String,String> params = new HashMap<>();
+                //sending login signals to server that it is a login request and should handle accordingly
+                params.put("checkifuserexists", "checkifuserexists");
+                params.put("username", updatedUsername);
+                return params;
+            }
+        };
+
+
+
+        // Adding the request to the queue
+        MyNetworkingSingletonVolley.getInstance(this).addReuestToQueue(CheckIfUserExistRequest);
+
+    }
 
     @Override
     public void onBackPressed() {
@@ -226,5 +267,45 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        updatedUsername = profile_username_et.getText().toString();
+        newPassword = profile_password_et.getText().toString();
+        confirmPassword = profile_password_confirm_et.getText().toString();
+
+
+        if(!(newPassword.equals(confirmPassword))){
+            final AlertDialog.Builder builder = new AlertDialog.Builder(UserProfile.this);
+            builder.setMessage("Passwords do not match")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+
+                        }
+                    });
+
+            builder.show();
+        }
+        else if(vailadate.IsVaildPassword(confirmPassword) == false){
+            final AlertDialog.Builder builder = new AlertDialog.Builder(UserProfile.this);
+            builder.setMessage("Invaild password")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+
+                        }
+                    });
+
+            builder.show();
+        }else{
+            CheckIfUserExists();
+        }
+
+
     }
 }
