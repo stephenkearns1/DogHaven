@@ -18,7 +18,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -28,28 +27,26 @@ import com.android.volley.toolbox.StringRequest;
 import com.haven.dog.doghaven.Helpers.MyNetworkingSingletonVolley;
 import com.haven.dog.doghaven.Helpers.UserSessionManagment;
 import com.haven.dog.doghaven.Helpers.Validation;
+import com.haven.dog.doghaven.Models.Breeder;
 import com.haven.dog.doghaven.Models.User;
 import com.haven.dog.doghaven.R;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class UserProfile extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
-
-    private EditText profile_username_et, profile_email_et, profile_password_et, profile_password_confirm_et;
-    private Button profileupdate;
+public class BreederProfile extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+    private EditText companynameET, companyEmailET, companyAddrET, companyPasswordET, newCompanyPasswordET;
+    private String originalCompanyname, newCompanyname, newEmail, newPassword, confirmPassword, newAddr;
     private UserSessionManagment userSessionManag;
     private ProgressDialog progressDialog;
-    private String originalUsername, updatedUsername, newEmail, newPassword, confirmPassword;
     private final String doghavenAPI_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php";
     private Validation vailadate;
+    private Button updateBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_profile);
+        setContentView(R.layout.activity_breeder_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -71,13 +68,14 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        profile_username_et = (EditText) findViewById(R.id.profile_username);
-        profile_email_et = (EditText) findViewById(R.id.user_profile_email_ET);
-        profile_password_et = (EditText) findViewById(R.id.profile_password);
-        profile_password_confirm_et = (EditText) findViewById(R.id.profile_password_confirm);
-        profileupdate = (Button) findViewById(R.id.profile_update);
-        profileupdate.setOnClickListener(this);
+        companynameET = (EditText) findViewById(R.id.profile_breeder_companynameET);
+        companyEmailET = (EditText) findViewById(R.id.breeder_profile_email_ET);
+        companyAddrET = (EditText) findViewById(R.id.breeder_profile_address_ET);
+        companyPasswordET = (EditText) findViewById(R.id.breeder_profile_passwordET);
+        newCompanyPasswordET = (EditText) findViewById(R.id.breeder_profile_password_confirmET);
+        updateBtn = (Button) findViewById(R.id.breeder_profile_updateBtn);
 
+        updateBtn.setOnClickListener(this);
         //instantiates objects for reference
         userSessionManag = new UserSessionManagment(this);
         vailadate = new Validation();
@@ -87,23 +85,24 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
     protected void onStart() {
         super.onStart();
 
-        User user = userSessionManag.UserLoggedIn();
-        originalUsername = user.getUsername();
-        profile_username_et.setText(user.getUsername());
-        profile_email_et.setText(user.getEmail());
+        Breeder company  = userSessionManag.BreederLoggedIn();
+        originalCompanyname = company.getCompanyname();
+        companynameET.setText(company.getCompanyname());
+        companyEmailET.setText(company.getEmail());
+        companyAddrET.setText(company.getAddr());
 
 
 
     }
 
-    public void UpdateUserDetails(){
-        progressDialog = new ProgressDialog(UserProfile.this);
+    public void UpdateCompanyDetails(){
+        progressDialog = new ProgressDialog(BreederProfile.this);
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Updating details please wait");
         progressDialog.setTitle("Updating");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
-        StringRequest updateUserDetailsRequest = new StringRequest(Request.Method.POST,doghavenAPI_URL,
+        StringRequest updateCompanyDetailsRequest = new StringRequest(Request.Method.POST,doghavenAPI_URL,
                 new Response.Listener<String>() {
 
 
@@ -115,28 +114,26 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
                         Log.i("Response length", "" + response.length());
                         if (!(response.equals("failed"))){
 
-                                progressDialog.hide();
+                            progressDialog.hide();
 
-                                //Log the user in
-                                //LogUserIn(mUser);
 
-                                Log.i("Returned data json:L01", response);
+                            Log.i("Returned data json:L01", response);
 
-                                userSessionManag.EditUserDetails(updatedUsername, confirmPassword);
+                            userSessionManag.EditBreederDetails(newCompanyname, newEmail, newAddr, newPassword);
 
                             Log.i("Returned data:L01", response);
                         }else{
                             //error message saying incorrect details
                             progressDialog.hide();
-                            final AlertDialog.Builder builder = new AlertDialog.Builder(UserProfile.this);
+                            final AlertDialog.Builder builder = new AlertDialog.Builder(BreederProfile.this);
                             builder.setMessage("Unable to update details")
-                                .setPositiveButton("RETRY", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
+                                    .setPositiveButton("RETRY", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
 
 
-                                    }
-                                });
+                                        }
+                                    });
 
                             builder.show();
                         }
@@ -152,9 +149,11 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
             protected Map<String,String> getParams()  throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
                 //sending login tag to server that it is a update request and should handle accordingly
-                params.put("updateUser", "updateUser");
-                params.put("username", originalUsername);
-                params.put("newusername", updatedUsername);
+                params.put("updateBreeder", "updateBreeder");
+                params.put("companyname", originalCompanyname);
+                params.put("newcompanyname", newCompanyname);
+                params.put("newemail", newEmail);
+                params.put("newaddr", newAddr);
                 params.put("newpassword", confirmPassword);
 
                 return params;
@@ -164,14 +163,14 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
 
 
         // Adding the request to the queue
-        MyNetworkingSingletonVolley.getInstance(this).addReuestToQueue(updateUserDetailsRequest);
+        MyNetworkingSingletonVolley.getInstance(this).addReuestToQueue(updateCompanyDetailsRequest);
 
 
-}
+    }
 
-    public void CheckIfUserExists(){
+    public void CheckIfBreederExists(){
 
-        StringRequest CheckIfUserExistRequest = new StringRequest(Request.Method.POST,doghavenAPI_URL,
+        StringRequest CheckIfBreederExistRequest = new StringRequest(Request.Method.POST,doghavenAPI_URL,
                 new Response.Listener<String>() {
 
 
@@ -184,9 +183,9 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
                         if(response.equals("exists")){
                             //exists = true;
                             Log.i("Made it to", "response user name exist");
-                            profile_username_et.setError("Already exists");
+                            companynameET.setError("Already exists");
                         }else{
-                            UpdateUserDetails();
+                            UpdateCompanyDetails();
                         }
 
                     }
@@ -201,8 +200,8 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
             protected Map<String,String> getParams()  throws AuthFailureError{
                 Map<String,String> params = new HashMap<>();
                 //sending login signals to server that it is a login request and should handle accordingly
-                params.put("checkifuserexists", "checkifuserexists");
-                params.put("username", updatedUsername);
+                params.put("checkifbreederexists", "checkifuserexists");
+                params.put("companyname", newCompanyname);
                 return params;
             }
         };
@@ -210,9 +209,10 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
 
 
         // Adding the request to the queue
-        MyNetworkingSingletonVolley.getInstance(this).addReuestToQueue(CheckIfUserExistRequest);
+        MyNetworkingSingletonVolley.getInstance(this).addReuestToQueue(CheckIfBreederExistRequest);
 
     }
+
 
     @Override
     public void onBackPressed() {
@@ -227,7 +227,7 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.user_profile, menu);
+        getMenuInflater().inflate(R.menu.breeder_profile, menu);
         return true;
     }
 
@@ -273,16 +273,16 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
 
     @Override
     public void onClick(View v) {
-
-        updatedUsername = profile_username_et.getText().toString();
-        newEmail = profile_email_et.getText().toString();
-        newPassword = profile_password_et.getText().toString();
-        confirmPassword = profile_password_confirm_et.getText().toString();
+        newCompanyname = companynameET.getText().toString();
+        newEmail = companyEmailET.getText().toString();
+        newAddr = companyAddrET.getText().toString();
+        newPassword = companyPasswordET.getText().toString();
+        confirmPassword = newCompanyPasswordET.getText().toString();
         if(!(vailadate.IsVaildEmail(newEmail))){
-            profile_email_et.setError("Invalid email");
+            companyEmailET.setError("Invalid email");
         }
-       else if(!(newPassword.equals(confirmPassword))){
-            final AlertDialog.Builder builder = new AlertDialog.Builder(UserProfile.this);
+        else if(!(newPassword.equals(confirmPassword))){
+            final AlertDialog.Builder builder = new AlertDialog.Builder(BreederProfile.this);
             builder.setMessage("Passwords do not match")
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
@@ -295,7 +295,7 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
             builder.show();
         }
         else if(vailadate.IsVaildPassword(confirmPassword) == false){
-            final AlertDialog.Builder builder = new AlertDialog.Builder(UserProfile.this);
+            final AlertDialog.Builder builder = new AlertDialog.Builder(BreederProfile.this);
             builder.setMessage("Invaild password")
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
@@ -306,12 +306,11 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
                     });
 
             builder.show();
-        }else if(!(updatedUsername.equals(originalUsername))){
-            CheckIfUserExists();
+        }else if(!(originalCompanyname.equals(newCompanyname))){
+            CheckIfBreederExists();
         }else{
-            UpdateUserDetails();
+            UpdateCompanyDetails();
         }
-
 
     }
 }

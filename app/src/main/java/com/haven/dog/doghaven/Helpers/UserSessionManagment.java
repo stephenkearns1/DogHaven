@@ -106,6 +106,14 @@ public class UserSessionManagment {
         return breeder;
     }
 
+    public void EditBreederDetails(String companyname, String email, String addr, String password){
+        SharedPreferences.Editor spEditor = userSessionManager.edit();
+        spEditor.putString("companyname", companyname);
+        spEditor.putString("companyemail", email);
+        spEditor.putString("companyaddr", addr);
+        spEditor.putString("companypassword", password);
+    }
+
     //set user who is logged in
     public boolean getBreederLoggedIn(){
         if(userSessionManager.getBoolean("BreederLoggedIn", false)== true){
