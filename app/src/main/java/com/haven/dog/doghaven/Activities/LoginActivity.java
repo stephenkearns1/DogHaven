@@ -2,7 +2,9 @@ package com.haven.dog.doghaven.Activities;
 
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,6 +49,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private UserSessionManagment userSessionManag;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +65,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         //instantiates objects for reference
         userSessionManag = new UserSessionManagment(this);
-
 
 
     }
@@ -267,6 +269,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             Log.i("Returned data:L01", response);
                         }else{
                             //error message saying incorrect details
+                            progressDialog.hide();
+                            final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                            builder.setMessage("User does not exist")
+                                    .setPositiveButton("RETRY", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+
+                                }
+                            });
+
+                            builder.show();
                         }
                     }
 

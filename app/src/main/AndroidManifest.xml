@@ -29,8 +29,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+		android:name=".Activities.LoginActivity"
+		android:theme="@style/AppTheme.NoActionBar">
+	</activity>
+	
+        
         <activity
             android:name=".Activities.UserMainScreenActivity"
             android:label="@string/title_activity_main_screen"
@@ -56,8 +59,10 @@
         <activity
             android:name=".Activities.BreedInfoActivity"
             android:label="@string/title_activity_breed_info"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".Activities.BreederLoginActivity" />
+	    android:theme="@style/AppTheme.NoActionBar">
+    	</activity>
+	
+	<activity android:name=".Activities.BreederLoginActivity" />
         <activity
             android:name=".Activities.BreederSearch"
             android:label="@string/title_activity_breeder_search"
@@ -93,7 +98,28 @@
 
         <activity
             android:name=".Activities.DogParkLocator"
-            android:label="@string/title_activity_dog_park_locator"></activity>
+	    android:label="@string/title_activity_dog_park_locator">
+    	</activity>
+           
+        <activity
+            android:name=".Activities.StudMatchActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.DogMatch"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.CompletedDogMatch"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".Activities.UserProfile"
+            android:label="@string/title_activity_user_profile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.BreederProfile"
+            android:label="@string/title_activity_breeder_profile"
+            android:theme="@style/AppTheme.NoActionBar">
+    </activity>
     </application>
 
 </manifest>

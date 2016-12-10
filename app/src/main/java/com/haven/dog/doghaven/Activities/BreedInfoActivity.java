@@ -33,7 +33,7 @@ public class BreedInfoActivity extends AppCompatActivity {
         holder=(ImageView) findViewById(R.id.picHolder);
         breedInfo = (TextView)findViewById(R.id.breedName);
         stats=(ImageView) findViewById((R.id.infoImage));
-        dropdown=(Spinner) findViewById(R.id.dropDown);
+        dropdown=(Spinner) findViewById(R.id.ddphys1);
         info= (ScrollView) findViewById(R.id.scroll);
         addListenerOnDropDown();
 

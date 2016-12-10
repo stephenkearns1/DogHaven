@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_breeder_profile"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.haven.dog.doghaven.Activities.BreederProfile"
+    tools:showIn="@layout/app_bar_breeder_profile">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Company name"/>
+            <EditText
+                android:id="@+id/profile_breeder_companynameET"
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"/>
+            <EditText
+                android:id="@+id/breeder_profile_email_ET"
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address"/>
+            <EditText
+                android:id="@+id/breeder_profile_address_ET"
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Password"/>
+            <EditText
+                android:id="@+id/breeder_profile_passwordET"
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Confirm Password"/>
+
+            <EditText
+                android:id="@+id/breeder_profile_password_confirmET"
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+
+
+            <Button
+                android:layout_width="300dp"
+                android:layout_height="70dp"
+                android:id="@+id/breeder_profile_updateBtn"
+                android:layout_gravity="center"
+                android:text="Update"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+</RelativeLayout>

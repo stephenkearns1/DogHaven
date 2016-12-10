@@ -57,26 +57,103 @@
 
     <string-array name="physical">
         <item></item>
-        <item>Physical 1</item>
-        <item>Physical 2</item>
-        <item>Physical 3</item>
-        <item>Physical 4</item>
+        <item>Large</item>
+        <item>Medium</item>
+        <item>Small</item>
+        <item>Tiny</item>
+        <item>Furry</item>
+        <item>Heavy</item>
+        <item>Light</item>
+        <item>Shedding</item>
+        <item>Non-Shedding</item>
+        <item>Double Coat</item>
+        <item>Single Coat</item>
+        <item>Strong</item>
+        <item>Fragile</item>
+        <item>Drooling</item>
+        <item>Non-drooling</item>
+        <item>Healthy</item>
+        <item>Disease-prone</item>
+        <item>Large Appetite</item>
+        <item>Small Appetite</item>
+        <item>Heavy Grooming</item>
+        <item>Light Grooming</item>
+        <item>Agile</item>
+        <item>High Stamina</item>
+        <item>Low Stamina</item>
+        <item>Tolerates Cold</item>
+        <item>Tolerates Warmth</item>
+        <item>Neutered Yes</item>
+        <item>Neutered No</item>
     </string-array>
 
     <string-array name="behavioural">
         <item></item>
-        <item>Behavioural 1</item>
-        <item>Behavioural 2</item>
-        <item>Behavioural 3</item>
-        <item>Behavioural 4</item>
+        <item>Apartment Adaptable</item>
+        <item>Non-Apartment</item>
+        <item>High-energy</item>
+        <item>Low-energy</item>
+        <item>Calm</item>
+        <item>Aggressive</item>
+        <item>Trainable</item>
+        <item>Stubborn</item>
+        <item>High Intelligence</item>
+        <item>Playful</item>
+        <item>Sedate</item>
+        <item>Easygoing</item>
+        <item>Decision-maker</item>
+        <item>Interactive</item>
+        <item>Vigorous</item>
+        <item>Intense</item>
+        <item>Low Intensity</item>
+        <item>High exercise</item>
+        <item>Low exercise</item>
+        <item>Destructive</item>
+        <item>Passive</item>
+        <item>High Prey Drive</item>
+        <item>Low Prey Drive</item>
+        <item>Barking</item>
+        <item>Low Barking</item>
+        <item>Concentration</item>
     </string-array>
 
     <string-array name="social">
-        <item>Social Attributes</item>
-        <item>Social 1</item>
-        <item>Social 2</item>
-        <item>Social 3</item>
-        <item>Social 4</item>
+        <item></item>
+        <item>Quiet</item>
+        <item>Polite</item>
+        <item>Independent</item>
+        <item>Aloof</item>
+        <item>Bonds easily</item>
+        <item>Difficult to bond</item>
+        <item>Family affectionate</item>
+        <item>Distant</item>
+        <item>Comfortable with People</item>
+        <item>Child-friendly Yes</item>
+        <item>Child-friendly No</item>
+        <item>Affectionate</item>
+        <item>Low stress</item>
+        <item>High stress</item>
+        <item>Adaptable to Dogs</item>
+        <item>Fights others</item>
+        <item>Plays with others</item>
+        <item>Sociable</item>
+        <item>Inquisitive</item>
+        <item>Stranger friendly</item>
+        <item>Protective</item>
+        <item>Shy</item>
+        <item>Sensitive</item>
+        <item>Emotional</item>
+        <item>Scared</item>
+        <item>Resilient</item>
+        <item>Dominant</item>
+        <item>Submissive</item>
+        <item>High Barking</item>
+        <item>Low Barking</item>
+        <item>Tolerates being Alone</item>
+        <item>Hard to be Alone</item>
+        <item>Anxious</item>
+
+
     </string-array>
 
     <string name="title_activity_company_profile">CompanyProfile</string>
@@ -91,7 +168,12 @@
     !-->
 
     <string name="map_api_key">AIzaSyApTYfrFGeZseLwc46vor6n2p5ID3mHKHw</string>
+<<<<<<< HEAD
     <string name="title_activity_dog_park_locator">Map</string>
+=======
+    <string name="title_activity_user_profile">UserProfile</string>
+    <string name="title_activity_breeder_profile">BreederProfile</string>
+>>>>>>> 9bf31e9edba59072a855992cd3bf480dbe013171
 
 
 </resources>

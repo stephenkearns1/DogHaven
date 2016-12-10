@@ -131,6 +131,32 @@
 
         </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="30dp"
+        android:padding="15dp">
+
+        <ImageButton
+            android:layout_width="80dp"
+            android:layout_height="76dp"
+            android:src="@drawable/ic_search_black_24dp"
+            android:background="@color/colorPrimary"/>
+
+        <Button
+            android:layout_width="280dp"
+            android:layout_height="76dp"
+            android:id="@+id/userprofile_Btn"
+            android:gravity="center"
+            android:paddingLeft="15dp"
+            android:padding="15dp"
+            android:layout_weight="0.07"
+            android:text="Profile"
+            android:background="@color/colorwhite"/>
+
+    </LinearLayout>
+
 
 </LinearLayout>
 

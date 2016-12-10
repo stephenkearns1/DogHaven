@@ -25,7 +25,7 @@ import com.haven.dog.doghaven.R;
 public class UserMainScreenActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
-    Button dogmatch, breedinfo, breederSearch, dogparkLocator;
+    private Button dogmatch, breedinfo, breederSearch, dogparkLocator, profileBtn;
     private UserSessionManagment userSessionManag;
     private TextView usernameTV, useremailTV;
     @Override
@@ -53,11 +53,13 @@ public class UserMainScreenActivity extends AppCompatActivity
         breedinfo = (Button) findViewById(R.id.breedInformationBtn);
         breederSearch = (Button) findViewById(R.id.breederSearchBtn);
         dogparkLocator = (Button) findViewById(R.id.dogparkLocatorBtn);
+        profileBtn = (Button) findViewById(R.id.userprofile_Btn);
 
         dogmatch.setOnClickListener(this);
         breedinfo.setOnClickListener(this);
         breederSearch.setOnClickListener(this);
         dogparkLocator.setOnClickListener(this);
+        profileBtn.setOnClickListener(this);
 
         //instantiates objects for reference
         userSessionManag = new UserSessionManagment(this);
@@ -163,6 +165,11 @@ public class UserMainScreenActivity extends AppCompatActivity
            case R.id.dogparkLocatorBtn:
                Intent intent = new Intent(this,DogparkLocatorActivity.class);
                startActivity(intent);
+               break;
+
+           case R.id.userprofile_Btn:
+               Intent profile = new Intent(this,UserProfile.class);
+               startActivity(profile);
                break;
        }
     }

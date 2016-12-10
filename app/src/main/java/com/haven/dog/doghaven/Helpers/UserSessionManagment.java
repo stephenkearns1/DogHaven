@@ -60,6 +60,12 @@ public class UserSessionManagment {
             return user;
         }
 
+        public void EditUserDetails(String username, String newPassword){
+            SharedPreferences.Editor spEditor = userSessionManager.edit();
+            spEditor.putString("userName", username);
+            spEditor.putString("password", newPassword);
+        }
+
         //set user who is logged in
         public boolean getLoggedIn(){
             if(userSessionManager.getBoolean("LoggedIn", false)== true){
@@ -100,9 +106,17 @@ public class UserSessionManagment {
         return breeder;
     }
 
+    public void EditBreederDetails(String companyname, String email, String addr, String password){
+        SharedPreferences.Editor spEditor = userSessionManager.edit();
+        spEditor.putString("companyname", companyname);
+        spEditor.putString("companyemail", email);
+        spEditor.putString("companyaddr", addr);
+        spEditor.putString("companypassword", password);
+    }
+
     //set user who is logged in
     public boolean getBreederLoggedIn(){
-        if(userSessionManager.getBoolean("UserLoggedIn", false)== true){
+        if(userSessionManager.getBoolean("BreederLoggedIn", false)== true){
             return true;
         }else{
             return false;

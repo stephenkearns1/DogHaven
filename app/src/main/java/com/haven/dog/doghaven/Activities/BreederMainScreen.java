@@ -20,7 +20,7 @@ public class BreederMainScreen extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_breeder_main_screen);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        profile=(Button) findViewById(R.id.profileBtn);
+        profile=(Button) findViewById(R.id.CompanyProfileBtn);
         stud= (Button) findViewById(R.id.studMatch);
         add=(Button) findViewById(R.id.addDog);
         profile.setOnClickListener(this);
@@ -34,8 +34,8 @@ public class BreederMainScreen extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         switch(v.getId()){
-            case R.id.profileBtn:
-               Intent pb = new Intent(this,CompanyProfile.class);
+            case R.id.CompanyProfileBtn:
+               Intent pb = new Intent(this,BreederProfile.class);
                 startActivity(pb);
                 break;
             case R.id.studMatch:
