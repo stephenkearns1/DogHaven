@@ -91,6 +91,7 @@
     !-->
 
     <string name="map_api_key">AIzaSyApTYfrFGeZseLwc46vor6n2p5ID3mHKHw</string>
+    <string name="title_activity_dog_park_locator">Map</string>
 
 
 </resources>
