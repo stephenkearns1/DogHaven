@@ -30,7 +30,7 @@
             android:layout_width="50dp"/>
 
         <Spinner
-            android:id="@+id/ddphys1"
+            android:id="@+id/ddsize"
             android:background="@drawable/search"
             android:entries="@array/dogList"
             android:layout_marginTop="160dp"
