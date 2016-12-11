@@ -55,7 +55,8 @@
         <activity
             android:name=".Activities.DogparkLocatorActivity"
             android:label="@string/title_activity_dogpark_locator"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity
             android:name=".Activities.BreedInfoActivity"
             android:label="@string/title_activity_breed_info"
@@ -94,13 +95,8 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
+            android:value="@string/AIzaSyAyjLucpuvkFHc5UbIC1KkxbZxWzIqqp8o" />
 
-        <activity
-            android:name=".Activities.DogParkLocator"
-	    android:label="@string/title_activity_dog_park_locator">
-    	</activity>
-           
         <activity
             android:name=".Activities.StudMatchActivity"
             android:theme="@style/AppTheme.NoActionBar" />
