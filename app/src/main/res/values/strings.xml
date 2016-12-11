@@ -213,9 +213,16 @@
        
     !-->
 
-    <string name="map_api_key">AIzaSyApTYfrFGeZseLwc46vor6n2p5ID3mHKHw</string>
+    <string name="AIzaSyAyjLucpuvkFHc5UbIC1KkxbZxWzIqqp8o" templateMergeStrategy="preserve" translatable="false">
+         AIzaSyAyjLucpuvkFHc5UbIC1KkxbZxWzIqqp8o
+    </string>
+
+    <string name="title_activity_dog_park_locator">Map</string>
+
     <string name="title_activity_user_profile">UserProfile</string>
     <string name="title_activity_breeder_profile">BreederProfile</string>
+    <string name="title_activity_company_dog">CompanyDogActivity</string>
+
 
 
 </resources>
