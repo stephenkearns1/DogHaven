@@ -95,33 +95,36 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
         addListenerOnDropDown();
         if(v.getId() == R.id.AddDogBtn){
 
-                dog_name = nameinsertET.getText().toString();
-                dog_age = ageinsertET.getText().toString();
-                dog_breed = breedinsertET.getText().toString();
-                dog_company = companyinsertET.getText().toString();
-                dog_color = colorinsertET.getText().toString();
-                dillcurr = illcurrentinsertET.getText().toString();
-                dillpast = illpastinsertET.getText().toString();
-                dvac = vacinsertET.getText().toString();
-                dvacmiss = vacmissinginsertET.getText().toString();
-                size = ddsize.getSelectedItem().toString();
-                fur = ddfur.getSelectedItem().toString();
-                body = ddbody.getSelectedItem().toString();
-                tolerance = ddtolerance.getSelectedItem().toString();
-                neutered = ddneutered.getSelectedItem().toString();
-                energy = ddenergy.getSelectedItem().toString();
-                exercise = ddexercise.getSelectedItem().toString();
-                intelligence = ddintelligence.getSelectedItem().toString();
-                playful = ddplayful.getSelectedItem().toString();
-                instinct = ddinstinct.getSelectedItem().toString();
-                people = ddpeople.getSelectedItem().toString();
-                family = ddfamily.getSelectedItem().toString();
-                dogs = dddogs.getSelectedItem().toString();
-                emotion = ddemotion.getSelectedItem().toString();
-                sociability = ddsociability.getSelectedItem().toString();
+                    dog_name = nameinsertET.getText().toString();
+                    dog_age = ageinsertET.getText().toString();
+                    dog_breed = breedinsertET.getText().toString();
+                    dog_company = companyinsertET.getText().toString();
+                    dog_color = colorinsertET.getText().toString();
+                    dillcurr = illcurrentinsertET.getText().toString();
+                    dillpast = illpastinsertET.getText().toString();
+                    dvac = vacinsertET.getText().toString();
+                    dvacmiss = vacmissinginsertET.getText().toString();
+                    size = ddsize.getSelectedItem().toString();
+                    fur = ddfur.getSelectedItem().toString();
+                    body = ddbody.getSelectedItem().toString();
+                    tolerance = ddtolerance.getSelectedItem().toString();
+                    neutered = ddneutered.getSelectedItem().toString();
+                    energy = ddenergy.getSelectedItem().toString();
+                    exercise = ddexercise.getSelectedItem().toString();
+                    intelligence = ddintelligence.getSelectedItem().toString();
+                    playful = ddplayful.getSelectedItem().toString();
+                    instinct = ddinstinct.getSelectedItem().toString();
+                    people = ddpeople.getSelectedItem().toString();
+                    family = ddfamily.getSelectedItem().toString();
+                    dogs = dddogs.getSelectedItem().toString();
+                    emotion = ddemotion.getSelectedItem().toString();
+                    sociability = ddsociability.getSelectedItem().toString();
 
+                    Log.i("Color is: ", dog_color);
+                    Log.i("Size is:", size);
+                    Log.i("fur is :", fur);
 
-                addDog();
+                    addDog();
         }
     }
 
