@@ -1,11 +1,13 @@
 package com.haven.dog.doghaven.Activities;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +17,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
@@ -42,6 +46,18 @@ public class CompanyDogActivity extends AppCompatActivity
     private ArrayList<Dog> dogList;
     private  UserSessionManagment userSessionManag;
     private final String doghavenAPI_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php";
+    private String name, breed, companyName, age, color;
+    // attributes
+    private int dogId;
+    private  String size, fur, body, tolerance, neutered;
+    private String energy, exercise, intelligence, playful,instinct;
+    private String people, family, dogs, emotion, sociability;
+    private String dillcur, dillpast, dvac, dvacmiss;
+    private String TAG_dogname = "dog_name", TAG_age = "dog_age", TAG_breed = "dog_breed", TAG_company = "dog_company", TAG_color= "dog_color";
+    private String TAG_size = "size", TAG_fur = "fur", TAG_body = "body", TAG_tolerance = "tolerance", TAG_neutered ="neutered";
+    private String TAG_energy = "energy", TAG_exercise ="exercise", TAG_intelligence= "intelligence", TAG_playful ="playful", TAG_instinct = "instinct";
+    private String TAG_people="people", TAG_family="family", TAG_dogs="dogs", TAG_emotion="emotion", TAG_sociality="sociability";
+    private String TAG_dillcur ="dillcurr", TAG_dillpast = "dillpast", TAG_dvac = "dvac", TAG_dvacmiss = "dvacmiss";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +99,14 @@ public class CompanyDogActivity extends AppCompatActivity
 
         dogList = new ArrayList<>();
 
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        RetriveDogListForCompany();
 
 
     }
@@ -160,12 +184,44 @@ public class CompanyDogActivity extends AppCompatActivity
                         mAdapter.ClearAll();
                             try {
 
+
                                 for (int i = 0; i < response.length(); i++) {
                                     JSONObject dogObj = (JSONObject) response.get(i);
+                                    dogId= Integer.parseInt(dogObj.getString("dog_id"));
+                                    name =  dogObj.getString(TAG_dogname);
+                                    age = dogObj.getString(TAG_age);
+                                    breed = dogObj.getString(TAG_breed);
+                                    companyName = dogObj.getString(TAG_company);
+                                    color = dogObj.getString(TAG_color);
+                                    size = dogObj.getString(TAG_size);
+                                    fur = dogObj.getString(TAG_fur);
+                                    body = dogObj.getString(TAG_body);
+                                    tolerance = dogObj.getString(TAG_tolerance);
+                                    neutered = dogObj.getString(TAG_neutered);
+                                    energy = dogObj.getString(TAG_energy);
+                                    exercise = dogObj.getString(TAG_exercise);
+                                    intelligence = dogObj.getString(TAG_intelligence);
+                                    playful = dogObj.getString(TAG_playful);
+                                    instinct = dogObj.getString(TAG_instinct);
+                                    people = dogObj.getString(TAG_people);
+                                    family = dogObj.getString(TAG_family);
+                                    dogs = dogObj.getString(TAG_dogs);
+                                    emotion = dogObj.getString(TAG_emotion);
+                                    sociability = dogObj.getString(TAG_sociality);
+                                    dillcur = dogObj.getString(TAG_dillcur);
+                                    dillpast = dogObj.getString(TAG_dillpast);
+                                    dvac = dogObj.getString(TAG_dvac);
+                                    dvacmiss = dogObj.getString(TAG_dvacmiss);
 
+                                    Dog dog = new Dog(dogId, name, age, breed, companyName, color, size, fur, body
+                                                        ,tolerance, neutered, energy,exercise, intelligence, playful, instinct, people
+                                                        ,family,dogs,emotion, sociability, dillcur, dillpast, dvac, dvacmiss
+                                                     );
 
+                                    dogList.add(dog);
                                 /*
                                 int id = Integer.parseInt(shopObj.getString(tagId));
+
                                 String eventCat = shopObj.getString(tagCatagory);
                                 String eventTitle = shopObj.getString(tagtitle);
                                 String eventLocation = shopObj.getString(tagLocation);
@@ -182,6 +238,9 @@ public class CompanyDogActivity extends AppCompatActivity
                                 listOfEvents.add(event);
                                */
                                 }
+
+                                //updates the adapter to display requested data
+                                mAdapter.AddAllDogs(dogList);
 
 
                             } catch (JSONException e) {

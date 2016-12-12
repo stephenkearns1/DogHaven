@@ -97,15 +97,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/AIzaSyAyjLucpuvkFHc5UbIC1KkxbZxWzIqqp8o" />
 
-        <activity
-            android:name=".Activities.StudMatchActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Activities.DogMatch"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Activities.CompletedDogMatch"
-            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name=".Activities.UserProfile"
@@ -119,6 +110,12 @@
             android:name=".Activities.CompanyDogActivity"
             android:label="@string/title_activity_company_dog"
             android:theme="@style/AppTheme.NoActionBar">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 	    
 	</activity>
     </application>
