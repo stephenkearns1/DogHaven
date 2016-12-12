@@ -36,7 +36,9 @@ import java.io.IOException;
 import java.util.List;
 
 public class DogparkLocatorActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,OnMapReadyCallback,View.OnClickListener,GoogleMap.InfoWindowAdapter,GoogleMap.OnInfoWindowClickListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+                   OnMapReadyCallback,View.OnClickListener,GoogleMap.InfoWindowAdapter,
+                    GoogleMap.OnInfoWindowClickListener {
 
     private UserSessionManagment userSessionManag;
     private TextView usernameTV, useremailTV;

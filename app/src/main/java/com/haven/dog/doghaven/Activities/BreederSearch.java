@@ -81,26 +81,26 @@ public class BreederSearch extends AppCompatActivity  implements NavigationView.
         dw= new LatLng(52.506275, -6.579335);
         gqp= new LatLng(51.909715, -8.171779);
 
-        shanPark = (new MarkerOptions().position(sp) .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Husky").snippet("087264511"));
-        cabPark = (new MarkerOptions().position(cp).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Akita").snippet("0863589478"));
-        stAnnes = (new MarkerOptions().position(sa).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Bulldog").snippet("0872646114"));
-        marlay = (new MarkerOptions().position(mp).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Labrador").snippet("0838693059"));
-        corkp = (new MarkerOptions().position(cor).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Malamute").snippet("08938749294"));
-        fitzp = (new MarkerOptions().position(fp).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Dog du Bordeux").snippet("0874536326"));
-        killney = (new MarkerOptions().position(kh).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Rottweiler").snippet("087273040"));
-        dondeafp = (new MarkerOptions().position(forp).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Springer").snippet("80964785"));
-        glenP = (new MarkerOptions().position(gp).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("French Bulldog").snippet("089677493"));
-        killy = (new MarkerOptions().position(kfp).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Doberman").snippet("086977573"));
-        orm = (new MarkerOptions().position(op).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Pitbull").snippet("089775584"));
-        bel = (new MarkerOptions().position(bf).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Beagle").snippet("0867464638"));
-        lagan = (new MarkerOptions().position(lv).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Boxer").snippet("083757584"));
-        comber = (new MarkerOptions().position(cg).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Wolfhound").snippet("0875667337"));
-        glenpark = (new MarkerOptions().position(glen).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Pug").snippet("0864747839"));
-        lough = (new MarkerOptions().position(lnf).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Jack Russell").snippet("0897747483"));
-        conn = (new MarkerOptions().position(cnp).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Greyhound").snippet("0869646475"));
-        coole = (new MarkerOptions().position(cool).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("German Shepard").snippet("68945904"));
-        derryw = (new MarkerOptions().position(dw).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Collie").snippet("08766614"));
-        glenqp = (new MarkerOptions().position(gqp).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Terrier").snippet("0863587478"));
+        shanPark = (new MarkerOptions().position(sp) .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)).title("Husky").snippet("087264511"));
+        cabPark = (new MarkerOptions().position(cp).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)).title("Akita").snippet("0863589478"));
+        stAnnes = (new MarkerOptions().position(sa).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)).title("Bulldog").snippet("0872646114"));
+        marlay = (new MarkerOptions().position(mp).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)).title("Labrador").snippet("0838693059"));
+        corkp = (new MarkerOptions().position(cor).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)).title("Malamute").snippet("08938749294"));
+        fitzp = (new MarkerOptions().position(fp).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)).title("Dog du Bordeux").snippet("0874536326"));
+        killney = (new MarkerOptions().position(kh).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)).title("Rottweiler").snippet("087273040"));
+        dondeafp = (new MarkerOptions().position(forp).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)).title("Springer").snippet("80964785"));
+        glenP = (new MarkerOptions().position(gp).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)).title("French Bulldog").snippet("089677493"));
+        killy = (new MarkerOptions().position(kfp).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)).title("Doberman").snippet("086977573"));
+        orm = (new MarkerOptions().position(op).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)).title("Pitbull").snippet("089775584"));
+        bel = (new MarkerOptions().position(bf).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)).title("Beagle").snippet("0867464638"));
+        lagan = (new MarkerOptions().position(lv).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)).title("Boxer").snippet("083757584"));
+        comber = (new MarkerOptions().position(cg).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)).title("Wolfhound").snippet("0875667337"));
+        glenpark = (new MarkerOptions().position(glen).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)).title("Pug").snippet("0864747839"));
+        lough = (new MarkerOptions().position(lnf).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)).title("Jack Russell").snippet("0897747483"));
+        conn = (new MarkerOptions().position(cnp).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)).title("Greyhound").snippet("0869646475"));
+        coole = (new MarkerOptions().position(cool).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)).title("German Shepard").snippet("68945904"));
+        derryw = (new MarkerOptions().position(dw).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)).title("Collie").snippet("08766614"));
+        glenqp = (new MarkerOptions().position(gqp).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)).title("Terrier").snippet("0863587478"));
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
