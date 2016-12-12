@@ -43,8 +43,11 @@ public class DogparkLocatorActivity extends AppCompatActivity
     GoogleMap mMap;
     Button getLoc;
     EditText address;
-    MarkerOptions shanPark,cabPark,stAnnes,marlay,corkp,fitzp,killney;
-    LatLng ireland,sp,cp,sa,mp,cor,fp,kh;
+    MarkerOptions shanPark,cabPark,stAnnes,marlay,corkp,fitzp,killney,dondeafp,
+            glenP,killy,orm,bel,lagan,comber,glenpark,lough,conn,coole,derryw,
+            glenqp;
+    LatLng ireland,sp,cp,sa,mp,cor,fp,kh,forp,gp,kfp,op,bf,lv,cg,glen,lnf,cnp,cool,dw,
+            gqp;
     Marker userMarker;
 
 
@@ -57,7 +60,7 @@ public class DogparkLocatorActivity extends AppCompatActivity
         getLoc= (Button) findViewById(R.id.button2);
         getLoc.setOnClickListener((View.OnClickListener) this);
         address= (EditText) findViewById(R.id.searchTF);
-        ireland = new LatLng(53.339945, -6.237016);
+        ireland = new LatLng(53.476735, -7.727532);
         sp= new LatLng(53.226694, -6.115031);
         cp= new LatLng(53.261942, -6.157082);
         sa= new LatLng(53.372913, -6.173364);
@@ -65,13 +68,41 @@ public class DogparkLocatorActivity extends AppCompatActivity
         cor= new LatLng(53.309904, -6.414791);
         fp= new LatLng(51.895969, -8.496162);
         kh= new LatLng(53.268692, -6.109663);
-        shanPark = (new MarkerOptions().position(sp).title("Marker In Dublin").snippet("Cork Little, Co. Dublin"));
-        cabPark = (new MarkerOptions().position(cp).title("Cabinteely Park").snippet("Cabinteely, Dublin"));
-        stAnnes = (new MarkerOptions().position(sa).title("St.Annes Dog Park").snippet("Clontarf East, Dublin"));
-        marlay = (new MarkerOptions().position(mp).title("Marlay Park").snippet("6 Grange Rd, Rathfarnham, Dublin 16"));
-        corkp = (new MarkerOptions().position(cor).title("Corkagh Park").snippet("St John's Cres, Ushers, Dublin 8"));
-        fitzp = (new MarkerOptions().position(fp).title("Fitzgerald's Park").snippet("Mardyke, Cork"));
-        killney = (new MarkerOptions().position(kh).title("Killiney Hill").snippet("Scalpwilliam, Dublin"));
+        forp= new LatLng(53.338343, -6.743944);
+        gp= new LatLng(51.801990, -9.660644);
+        kfp= new LatLng(54.006684, -7.468258);
+        op= new LatLng(54.585026, -5.914765);
+        bf= new LatLng(54.557552, -5.928181);
+        lv= new LatLng(54.554434, -5.949042);
+        cg= new LatLng(54.590054, -5.820545);
+        glen= new LatLng(55.008198, -7.986551);
+        lnf= new LatLng(54.440743, -7.886711);
+        cnp= new LatLng(53.538260, -9.887505);
+        cool= new LatLng(53.079970, -8.855419);
+        dw= new LatLng(51.971996, -9.593193);
+        gqp= new LatLng(51.801963, -9.660600);
+
+        shanPark = (new MarkerOptions().position(sp) .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Shanganagh Park").snippet("Cork Little, Co. Dublin"));
+        cabPark = (new MarkerOptions().position(cp).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Cabinteely Park").snippet("Cabinteely, Dublin"));
+        stAnnes = (new MarkerOptions().position(sa).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("St.Annes Dog Park").snippet("Clontarf East, Dublin"));
+        marlay = (new MarkerOptions().position(mp).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Marlay Park").snippet("6 Grange Rd, Rathfarnham, Dublin 16"));
+        corkp = (new MarkerOptions().position(cor).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Corkagh Park").snippet("St John's Cres, Ushers, Dublin 8"));
+        fitzp = (new MarkerOptions().position(fp).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Fitzgerald's Park").snippet("Mardyke, Cork"));
+        killney = (new MarkerOptions().position(kh).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Killiney Hill").snippet("Scalpwilliam, Dublin"));
+        dondeafp = (new MarkerOptions().position(forp).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Donadea Forest Park").snippet("Donadea, Celbridge, Co. Kildare"));
+        glenP = (new MarkerOptions().position(gp).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Donadea Forest Park").snippet("Gleninchaquin, Kenmare, Co. Kerry"));
+        killy = (new MarkerOptions().position(kfp).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Killykeen Forest Park").snippet("Derinish Beg, Co. Cavan"));
+        orm = (new MarkerOptions().position(op).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Ormeau Park").snippet("Ormeau Rd,Belfast,UK"));
+        bel = (new MarkerOptions().position(bf).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Belvoir Park Forest").snippet("Belfast BT8 7QT, UK"));
+        lagan = (new MarkerOptions().position(lv).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Lagan Valley Regional Park").snippet("3 Lock Keepers Ln, Belfast, UK"));
+        comber = (new MarkerOptions().position(cg).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Comber Greenway").snippet("Belfast Rd, Comber, UK"));
+        glenpark = (new MarkerOptions().position(glen).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Glenveagh National Park").snippet("Claggan Mountain South, Churchill, Letterkenny"));
+        lough = (new MarkerOptions().position(lnf).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Lough Navar Forest").snippet("Glennasheevar Rd, Derrygonnelly, Enniskillen, UK"));
+        conn = (new MarkerOptions().position(cnp).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Connemara National Park").snippet("Mweelin, Letterfrack, Co. Galway"));
+        coole = (new MarkerOptions().position(cool).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Coole Park").snippet("Coole Nature Reserve, Gort, Co. Galway"));
+        derryw = (new MarkerOptions().position(dw).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Derrycunihy Wood").snippet("Derrycunihy, Co. Kerry"));
+        glenqp = (new MarkerOptions().position(gqp).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)).title("Gleninchiquin National Park").snippet("Gleninchaquin, Kenmare, Co. Kerry"));
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.worldMap);
@@ -212,7 +243,19 @@ public class DogparkLocatorActivity extends AppCompatActivity
         mMap.addMarker(corkp);
         mMap.addMarker(fitzp);
         mMap.addMarker(killney);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ireland, 10));
+        mMap.addMarker(dondeafp);
+        mMap.addMarker(killy);
+        mMap.addMarker(orm);
+        mMap.addMarker(bel);
+        mMap.addMarker(lagan);
+        mMap.addMarker(comber);
+        mMap.addMarker(glenpark);
+        mMap.addMarker(lough);
+        mMap.addMarker(conn);
+        mMap.addMarker(coole);
+        mMap.addMarker(derryw);
+        mMap.addMarker(glenqp);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ireland, 6));
         mMap.setInfoWindowAdapter(this);
         mMap.setOnInfoWindowClickListener( this);
 
@@ -244,7 +287,7 @@ public class DogparkLocatorActivity extends AppCompatActivity
                         userMarker= mMap.addMarker(new MarkerOptions().position(latLng)
                                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.dogpark))
                                 .title("Marker in Sydney"));
-                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12));
                     }
 
                 }catch(IOException e){
