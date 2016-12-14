@@ -38,6 +38,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Button login, registerBtn;
     private String username,userPassword;
     private final String doghavenAPI_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php";
+    private static final String tagUserID = "user_id";
     private static final String tagFName= "sname";
     private static final String tagSName = "fname";
     private static final String tagUsername = "username";
@@ -251,7 +252,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                                 //JSONObject jsUserObj = (JSONObject) jsArray.get(0);
                                 //she have a unique id
-                                User mUser = new User(jsUserObj.getString(tagFName), jsUserObj.getString(tagSName), jsUserObj.getString(tagUsername),
+
+                                User mUser = new User(Integer.parseInt(jsUserObj.getString(tagUserID)),jsUserObj.getString(tagFName), jsUserObj.getString(tagSName), jsUserObj.getString(tagUsername),
                                                         jsUserObj.getString(tagEmail), jsUserObj.getString(tagPassword));
 
 
