@@ -27,7 +27,7 @@
         android:padding="15dp"
         android:layout_marginTop="52dp"
         android:id="@+id/linearLayout"
-        android:layout_below="@+id/imageView2"
+        android:layout_below="@+id/PictureIV"
         android:layout_alignParentStart="true">
 
         <Button
@@ -59,7 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/textView2"
-        android:layout_below="@+id/imageView2"
+        android:layout_below="@+id/PictureIV"
         android:layout_alignParentStart="true"
         android:background="@color/colorPrimary"
         android:text="Irish wolfhound kennel"

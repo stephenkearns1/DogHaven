@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -57,10 +58,29 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/white"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
+                    android:id="@+id/ImageFloatText"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true" />
+
+                <ImageView
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    app:srcCompat="@color/altColorUserMainScreen"
+                    android:id="@+id/PictureIV"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/ImageFloatText" />
+
+                <Button
+                    android:text="Gallery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/GalleryBtn"
+                    android:background="@drawable/round_button"
+                    android:onClick="onGalleryClicker"
                     android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"
-                    android:id="@+id/ImageFloatText" />
+                    android:layout_alignParentStart="true" />
+
             </RelativeLayout>
 
         </RelativeLayout>
@@ -337,8 +357,8 @@
                 <Spinner
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/ddphys1"
-                    android:entries="@array/physical"
+                    android:id="@+id/ddsize"
+                    android:entries="@array/size"
                     android:visibility="visible"
                     android:layout_below="@+id/PhysicalCatTV"
                     android:layout_alignParentStart="true" />
@@ -346,133 +366,133 @@
                 <Spinner
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:entries="@array/behavioural"
+                    android:entries="@array/energy"
                     android:visibility="visible"
-                    android:id="@+id/ddbeha1"
+                    android:id="@+id/ddenergy"
                     android:layout_below="@+id/BehaviourCatTV"
                     android:layout_centerHorizontal="true" />
 
                 <Spinner
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:entries="@array/behavioural"
+                    android:entries="@array/exercise"
                     android:visibility="visible"
-                    android:id="@+id/ddbeha2"
-                    android:layout_alignBaseline="@+id/ddphys2"
-                    android:layout_alignBottom="@+id/ddphys2"
+                    android:id="@+id/ddexercise"
+                    android:layout_alignBaseline="@+id/ddfur"
+                    android:layout_alignBottom="@+id/ddfur"
                     android:layout_centerHorizontal="true" />
 
                 <Spinner
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:entries="@array/behavioural"
+                    android:entries="@array/intelligence"
                     android:visibility="visible"
-                    android:id="@+id/ddbeha3"
-                    android:layout_alignBaseline="@+id/ddphys3"
-                    android:layout_alignBottom="@+id/ddphys3"
-                    android:layout_alignStart="@+id/ddbeha2" />
+                    android:id="@+id/ddintelligence"
+                    android:layout_alignBaseline="@+id/ddbody"
+                    android:layout_alignBottom="@+id/ddbody"
+                    android:layout_alignStart="@+id/ddexercise" />
 
                 <Spinner
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:entries="@array/behavioural"
+                    android:entries="@array/playful"
                     android:visibility="visible"
-                    android:id="@+id/ddbeha4"
-                    android:layout_alignBaseline="@+id/ddphys4"
-                    android:layout_alignBottom="@+id/ddphys4"
-                    android:layout_alignStart="@+id/ddbeha3" />
+                    android:id="@+id/ddplayful"
+                    android:layout_alignBaseline="@+id/ddtolerance"
+                    android:layout_alignBottom="@+id/ddtolerance"
+                    android:layout_alignStart="@+id/ddintelligence" />
 
                 <Spinner
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:entries="@array/social"
+                    android:entries="@array/people"
                     android:visibility="visible"
-                    android:id="@+id/ddsoc1"
+                    android:id="@+id/ddpeople"
                     android:layout_below="@+id/SocialCatTV"
                     android:layout_alignParentEnd="true" />
 
                 <Spinner
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:entries="@array/social"
+                    android:entries="@array/family"
                     android:visibility="visible"
-                    android:id="@+id/ddsoc2"
-                    android:layout_alignBaseline="@+id/ddbeha2"
-                    android:layout_alignBottom="@+id/ddbeha2"
+                    android:id="@+id/ddfamily"
+                    android:layout_alignBaseline="@+id/ddexercise"
+                    android:layout_alignBottom="@+id/ddexercise"
                     android:layout_alignParentEnd="true" />
 
                 <Spinner
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:entries="@array/social"
+                    android:entries="@array/dogs"
                     android:visibility="visible"
-                    android:id="@+id/ddsoc3"
-                    android:layout_alignBaseline="@+id/ddbeha3"
-                    android:layout_alignBottom="@+id/ddbeha3"
+                    android:id="@+id/dddogs"
+                    android:layout_alignBaseline="@+id/ddintelligence"
+                    android:layout_alignBottom="@+id/ddintelligence"
                     android:layout_alignParentEnd="true" />
 
                 <Spinner
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:entries="@array/social"
+                    android:entries="@array/emotion"
                     android:visibility="visible"
-                    android:id="@+id/ddsoc4"
-                    android:layout_alignBaseline="@+id/ddbeha4"
-                    android:layout_alignBottom="@+id/ddbeha4"
+                    android:id="@+id/ddemotion"
+                    android:layout_alignBaseline="@+id/ddplayful"
+                    android:layout_alignBottom="@+id/ddplayful"
                     android:layout_alignParentEnd="true" />
 
                 <Spinner
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:entries="@array/physical"
+                    android:entries="@array/fur"
                     android:visibility="visible"
-                    android:id="@+id/ddphys2"
-                    android:layout_below="@+id/ddphys1"
+                    android:id="@+id/ddfur"
+                    android:layout_below="@+id/ddsize"
                     android:layout_alignParentStart="true" />
 
                 <Spinner
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:entries="@array/physical"
+                    android:entries="@array/body"
                     android:visibility="visible"
-                    android:id="@+id/ddphys3"
-                    android:layout_below="@+id/ddphys2"
+                    android:id="@+id/ddbody"
+                    android:layout_below="@+id/ddfur"
                     android:layout_alignParentStart="true" />
 
                 <Spinner
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:entries="@array/physical"
+                    android:entries="@array/tolerance"
                     android:visibility="visible"
-                    android:id="@+id/ddphys4"
-                    android:layout_below="@+id/ddphys3"
+                    android:id="@+id/ddtolerance"
+                    android:layout_below="@+id/ddbody"
                     android:layout_alignParentStart="true" />
 
                 <Spinner
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:entries="@array/behavioural"
+                    android:entries="@array/instinct"
                     android:visibility="visible"
-                    android:id="@+id/ddbeha5"
-                    android:layout_below="@+id/ddbeha4"
-                    android:layout_alignStart="@+id/ddbeha4" />
+                    android:id="@+id/ddinstinct"
+                    android:layout_below="@+id/ddplayful"
+                    android:layout_alignStart="@+id/ddplayful" />
 
                 <Spinner
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:entries="@array/physical"
+                    android:entries="@array/neutered"
                     android:visibility="visible"
-                    android:id="@+id/ddphys5"
-                    android:layout_below="@+id/ddphys4"
+                    android:id="@+id/ddneutered"
+                    android:layout_below="@+id/ddtolerance"
                     android:layout_alignParentStart="true" />
 
                 <Spinner
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
-                    android:entries="@array/social"
+                    android:entries="@array/sociability"
                     android:visibility="visible"
-                    android:id="@+id/ddsoc5"
-                    android:layout_below="@+id/ddsoc4"
+                    android:id="@+id/ddsociability"
+                    android:layout_below="@+id/ddemotion"
                     android:layout_alignParentEnd="true" />
             </RelativeLayout>
         </RelativeLayout>

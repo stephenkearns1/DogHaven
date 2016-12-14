@@ -55,105 +55,151 @@
     <string name="title_activity_breeder_search">BreederSearch</string>>
 
 
-    <string-array name="physical">
-        <item></item>
+    <string-array name="size">
+        <item>SIZE</item>
         <item>Large</item>
         <item>Medium</item>
         <item>Small</item>
         <item>Tiny</item>
-        <item>Furry</item>
         <item>Heavy</item>
         <item>Light</item>
+    </string-array>
+
+    <string-array name="fur">
+        <item>FUR</item>
+        <item>Furry</item>
         <item>Shedding</item>
         <item>Non-Shedding</item>
         <item>Double Coat</item>
         <item>Single Coat</item>
-        <item>Strong</item>
-        <item>Fragile</item>
-        <item>Drooling</item>
-        <item>Non-drooling</item>
-        <item>Healthy</item>
-        <item>Disease-prone</item>
-        <item>Large Appetite</item>
-        <item>Small Appetite</item>
         <item>Heavy Grooming</item>
         <item>Light Grooming</item>
+    </string-array>
+
+    <string-array name="body">
+        <item>BODY</item>
+        <item>Strong</item>
+        <item>Fragile</item>
         <item>Agile</item>
+        <item>Healthy</item>
+        <item>Disease-prone</item>
+    </string-array>
+
+    <string-array name="tolerance">
+        <item>TOLERANCE</item>
+        <item>Drooling</item>
+        <item>Non-drooling</item>
+        <item>Large Appetite</item>
+        <item>Small Appetite</item>
         <item>High Stamina</item>
         <item>Low Stamina</item>
         <item>Tolerates Cold</item>
         <item>Tolerates Warmth</item>
+    </string-array>
+
+    <string-array name="neutered">
+        <item>NEUTERED</item>
         <item>Neutered Yes</item>
         <item>Neutered No</item>
     </string-array>
 
-    <string-array name="behavioural">
-        <item></item>
-        <item>Apartment Adaptable</item>
-        <item>Non-Apartment</item>
+    <string-array name="energy">
+        <item>ENERGY</item>
         <item>High-energy</item>
         <item>Low-energy</item>
-        <item>Calm</item>
-        <item>Aggressive</item>
-        <item>Trainable</item>
-        <item>Stubborn</item>
-        <item>High Intelligence</item>
-        <item>Playful</item>
-        <item>Sedate</item>
-        <item>Easygoing</item>
-        <item>Decision-maker</item>
-        <item>Interactive</item>
         <item>Vigorous</item>
         <item>Intense</item>
         <item>Low Intensity</item>
+    </string-array>
+
+    <string-array name="exercise">
+        <item>EXERCISE</item>
         <item>High exercise</item>
         <item>Low exercise</item>
+    </string-array>
+
+    <string-array name="intelligence">
+        <item>INTELLIGENCE</item>
+        <item>Trainable</item>
+        <item>Stubborn</item>
+        <item>High Intelligence</item>
+        <item>Decision-maker</item>
+        <item>Calm</item>
+        <item>Aggressive</item>
+    </string-array>
+
+    <string-array name="playful">
+        <item>PLAYFUL</item>
+        <item>Playful</item>
+        <item>Sedate</item>
+        <item>Concentration</item>
+        <item>Interactive</item>
+        <item>Easygoing</item>
+    </string-array>
+
+    <string-array name="instinct">
+        <item>INSTINCT</item>
+        <item>Apartment Adaptable</item>
+        <item>Non-Apartment</item>
         <item>Destructive</item>
         <item>Passive</item>
         <item>High Prey Drive</item>
         <item>Low Prey Drive</item>
         <item>Barking</item>
         <item>Low Barking</item>
-        <item>Concentration</item>
     </string-array>
 
-    <string-array name="social">
-        <item></item>
-        <item>Quiet</item>
-        <item>Polite</item>
-        <item>Independent</item>
-        <item>Aloof</item>
+    <string-array name="people">
+        <item>PEOPLE</item>
+        <item>Comfortable with People</item>
+        <item>Stranger friendly</item>
+        <item>Protective</item>
+        <item>Dominant</item>
+        <item>Submissive</item>
+    </string-array>
+
+    <string-array name="family">
+        <item>FAMILY</item>
         <item>Bonds easily</item>
         <item>Difficult to bond</item>
         <item>Family affectionate</item>
         <item>Distant</item>
-        <item>Comfortable with People</item>
         <item>Child-friendly Yes</item>
         <item>Child-friendly No</item>
-        <item>Affectionate</item>
-        <item>Low stress</item>
-        <item>High stress</item>
+    </string-array>
+
+    <string-array name="dogs">
+        <item>DOGS</item>
         <item>Adaptable to Dogs</item>
         <item>Fights others</item>
         <item>Plays with others</item>
         <item>Sociable</item>
-        <item>Inquisitive</item>
-        <item>Stranger friendly</item>
-        <item>Protective</item>
         <item>Shy</item>
+    </string-array>
+
+    <string-array name="emotion">
+        <item>EMOTION</item>
+        <item>Low stress</item>
+        <item>High stress</item>
         <item>Sensitive</item>
         <item>Emotional</item>
         <item>Scared</item>
         <item>Resilient</item>
-        <item>Dominant</item>
-        <item>Submissive</item>
-        <item>High Barking</item>
-        <item>Low Barking</item>
         <item>Tolerates being Alone</item>
         <item>Hard to be Alone</item>
         <item>Anxious</item>
+    </string-array>
 
-
+    <string-array name="sociability">
+        <item>SOCIABILITY</item>
+        <item>Quiet</item>
+        <item>Polite</item>
+        <item>Independent</item>
+        <item>Aloof</item>
+        <item>Affectionate</item>
+        <item>Inquisitive</item>
+        <item>High Barking</item>
+        <item>Low Barking</item>
     </string-array>
 
     <string name="title_activity_company_profile">CompanyProfile</string>

@@ -1,15 +1,24 @@
 package com.haven.dog.doghaven.Activities;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Button;
 import android.app.ProgressDialog;
 import android.util.Log;
+import android.widget.Toast;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -17,6 +26,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.haven.dog.doghaven.Helpers.MyNetworkingSingletonVolley;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -28,20 +40,20 @@ import com.haven.dog.doghaven.R;
  */
 
 public class AddDogActivity extends AppCompatActivity implements View.OnClickListener {
-    EditText nameinsertET, ageinsertET, breedinsertET, companyinsertET, colorinsertET, illcurrentinsertET, illpastinsertET, vacinsertET, vacmissinginsertET;
-    Button AddDogBtn;
-    Spinner ddphys1, ddphys2, ddphys3, ddphys4, ddphys5, ddbeha1, ddbeha2, ddbeha3, ddbeha4, ddbeha5, ddsoc1, ddsoc2, ddsoc3, ddsoc4, ddsoc5;
-    private String dog_name, dog_breed, dog_age,dog_company, dog_color, dillcurr, dillpast, dvac, dvacmiss, phys1, phys2, phys3, phys4, phys5, beha1, beha2, beha3, beha4, beha5, soc1, soc2, soc3, soc4, soc5;
+    public static final int PICTURE_GALLERY_REQUEST = 21;
+    EditText  nameinsertET, ageinsertET, breedinsertET, companyinsertET, colorinsertET, illcurrentinsertET, illpastinsertET, vacinsertET, vacmissinginsertET;
+    Button AddDogBtn, GalleryBtn;
+    Spinner ddsize, ddfur, ddbody, ddtolerance, ddneutered, ddenergy, ddexercise, ddintelligence, ddplayful, ddinstinct, ddpeople, ddfamily, dddogs, ddemotion, ddsociability;
+    private String dog_name, dog_breed, dog_age,dog_company, dog_color, dillcurr, dillpast, dvac, dvacmiss, size, fur, body, tolerance, neutered, energy, exercise, intelligence, playful, instinct, people, family, dogs, emotion, sociability;
     private  ProgressDialog pDialog;
     private final String doghavenAPI_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php";
     private UserSessionManagment userSessionManag;
-
+    private ImageView PictureIV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_dog_page);
-        //addListenerOnDropDown();
 
         nameinsertET = (EditText) findViewById(R.id.NameInsertET);
         ageinsertET = (EditText) findViewById(R.id.AgeInsertET);
@@ -52,23 +64,26 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
         illpastinsertET = (EditText) findViewById(R.id.IllnessPastInsertET);
         vacinsertET = (EditText) findViewById(R.id.VaccinationInsertET);
         vacmissinginsertET = (EditText) findViewById(R.id.VaccinationsMissingInsertET);
-        ddphys1=(Spinner) findViewById(R.id.ddphys1);
-        ddphys2 = (Spinner) findViewById(R.id.ddphys2);
-        ddphys3=(Spinner) findViewById(R.id.ddphys3);
-        ddphys4 = (Spinner) findViewById(R.id.ddphys4);
-        ddphys5=(Spinner) findViewById(R.id.ddphys5);
-        ddbeha1 = (Spinner) findViewById(R.id.ddbeha1);
-        ddbeha2=(Spinner) findViewById(R.id.ddbeha2);
-        ddbeha3 = (Spinner) findViewById(R.id.ddbeha3);
-        ddbeha4=(Spinner) findViewById(R.id.ddbeha4);
-        ddbeha5 = (Spinner) findViewById(R.id.ddbeha5);
-        ddsoc1 = (Spinner) findViewById(R.id.ddsoc1);
-        ddsoc2=(Spinner) findViewById(R.id.ddsoc2);
-        ddsoc3 = (Spinner) findViewById(R.id.ddsoc3);
-        ddsoc4=(Spinner) findViewById(R.id.ddsoc4);
-        ddsoc5 = (Spinner) findViewById(R.id.ddsoc5);
+        ddsize=(Spinner) findViewById(R.id.ddsize);
+        ddfur = (Spinner) findViewById(R.id.ddfur);
+        ddbody=(Spinner) findViewById(R.id.ddbody);
+        ddtolerance = (Spinner) findViewById(R.id.ddtolerance);
+        ddneutered=(Spinner) findViewById(R.id.ddneutered);
+        ddenergy = (Spinner) findViewById(R.id.ddenergy);
+        ddexercise =(Spinner) findViewById(R.id.ddexercise);
+        ddintelligence = (Spinner) findViewById(R.id.ddintelligence);
+        ddplayful=(Spinner) findViewById(R.id.ddplayful);
+        ddinstinct = (Spinner) findViewById(R.id.ddinstinct);
+        ddpeople = (Spinner) findViewById(R.id.ddpeople);
+        ddfamily=(Spinner) findViewById(R.id.ddfamily);
+        dddogs = (Spinner) findViewById(R.id.dddogs);
+        ddemotion=(Spinner) findViewById(R.id.ddemotion);
+        ddsociability = (Spinner) findViewById(R.id.ddsociability);
 
         AddDogBtn = (Button) findViewById(R.id.AddDogBtn);
+        GalleryBtn = (Button) findViewById(R.id.GalleryBtn);
+
+        PictureIV = (ImageView) findViewById(R.id.PictureIV);
 
         AddDogBtn.setOnClickListener(this);
 
@@ -91,36 +106,43 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    public void onClick(View v) {
-        if(v.getId() == R.id.AddDogBtn){
 
-                dog_name = nameinsertET.getText().toString();
-                dog_age = ageinsertET.getText().toString();
-                dog_breed = breedinsertET.getText().toString();
-                dog_company = companyinsertET.getText().toString();
-                dog_color = colorinsertET.getText().toString();
-                dillcurr = illcurrentinsertET.getText().toString();
-                dillpast = illpastinsertET.getText().toString();
-                dvac = vacinsertET.getText().toString();
-                dvacmiss = vacmissinginsertET.getText().toString();
-                phys1 = ddphys1.getSelectedItem().toString();
-                phys2 = ddphys2.getSelectedItem().toString();
-                phys3 = ddphys3.getSelectedItem().toString();
-                phys4 = ddphys4.getSelectedItem().toString();
-                phys5 = ddphys5.getSelectedItem().toString();
-                beha1 = ddbeha1.getSelectedItem().toString();
-                beha2 = ddbeha2.getSelectedItem().toString();
-                beha3 = ddbeha3.getSelectedItem().toString();
-                beha4 = ddbeha4.getSelectedItem().toString();
-                beha5 = ddbeha5.getSelectedItem().toString();
-                soc1 = ddsoc1.getSelectedItem().toString();
-                soc2 = ddsoc2.getSelectedItem().toString();
-                soc3 = ddsoc3.getSelectedItem().toString();
-                soc4 = ddsoc4.getSelectedItem().toString();
-                soc5 = ddsoc5.getSelectedItem().toString();
+        @Override
+        public void onClick (View v){
+        Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(i, 1);
+        if (v.getId() == R.id.AddDogBtn) {
 
+            dog_name = nameinsertET.getText().toString();
+            dog_age = ageinsertET.getText().toString();
+            dog_breed = breedinsertET.getText().toString();
+            dog_company = companyinsertET.getText().toString();
+            dog_color = colorinsertET.getText().toString();
+            dillcurr = illcurrentinsertET.getText().toString();
+            dillpast = illpastinsertET.getText().toString();
+            dvac = vacinsertET.getText().toString();
+            dvacmiss = vacmissinginsertET.getText().toString();
+            size = ddsize.getSelectedItem().toString();
+            fur = ddfur.getSelectedItem().toString();
+            body = ddbody.getSelectedItem().toString();
+            tolerance = ddtolerance.getSelectedItem().toString();
+            neutered = ddneutered.getSelectedItem().toString();
+            energy = ddenergy.getSelectedItem().toString();
+            exercise = ddexercise.getSelectedItem().toString();
+            intelligence = ddintelligence.getSelectedItem().toString();
+            playful = ddplayful.getSelectedItem().toString();
+            instinct = ddinstinct.getSelectedItem().toString();
+            people = ddpeople.getSelectedItem().toString();
+            family = ddfamily.getSelectedItem().toString();
+            dogs = dddogs.getSelectedItem().toString();
+            emotion = ddemotion.getSelectedItem().toString();
+            sociability = ddsociability.getSelectedItem().toString();
 
-                addDog();
+            Log.i("Color is: ", dog_color);
+            Log.i("Size is:", size);
+            Log.i("fur is :", fur);
+
+            addDog();
         }
     }
 
@@ -144,12 +166,10 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
                         pDialog.hide();
                         Log.i("Returned data:R01", response);
                         if(response.equalsIgnoreCase("success")){
-                            //display message account has been created
 
-                            //lanuch the login activity
 
                         }else{
-                            //display errr message
+
                         }
 
                         ;
@@ -174,21 +194,21 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
                 params.put("dillpast", dillpast);
                 params.put("dvac", dvac);
                 params.put("dvacmiss", dvacmiss);
-                params.put("phys1", phys1);
-                params.put("phys2", phys2);
-                params.put("phys3", phys3);
-                params.put("phys4", phys4);
-                params.put("phys5", phys5);
-                params.put("beha1", beha1);
-                params.put("beha2", beha2);
-                params.put("beha3", beha3);
-                params.put("beha4", beha4);
-                params.put("beha5", beha5);
-                params.put("soc1", soc1);
-                params.put("soc2", soc2);
-                params.put("soc3", soc3);
-                params.put("soc4", soc4);
-                params.put("soc5", soc5);
+                params.put("size", size);
+                params.put("fur", fur);
+                params.put("body", body);
+                params.put("tolerance", tolerance);
+                params.put("neutered", neutered);
+                params.put("energy", energy);
+                params.put("exercise", exercise);
+                params.put("intelligence", intelligence);
+                params.put("playful", playful);
+                params.put("instinct", instinct);
+                params.put("people", people);
+                params.put("family", family);
+                params.put("dogs", dogs);
+                params.put("emotion", emotion);
+                params.put("sociability", sociability);
 
                 return params;
             }
@@ -198,53 +218,61 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
         MyNetworkingSingletonVolley.getInstance(this).addReuestToQueue(AddDogRequest);
     }
 
-      /*  StringRequest AddDogRequest = new StringRequest(Request.Method.POST,doghavenAPI_URL,
-                new Response.Listener<String>() {
+    public void onGalleryClicker(View v) {
+        Intent imageFinderIntent = new Intent(Intent.ACTION_PICK);
 
+        File imageDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        String imageDirectoryPath = imageDirectory.getPath();
 
+        Uri data = Uri.parse(imageDirectoryPath);
 
-                    @Override
-                    public void onResponse(String response) {
+        imageFinderIntent.setDataAndType(data, "image/*");
 
-                        pDialog.hide();
-                        Log.i("Returned data:R02", response);
-                        if(response.equalsIgnoreCase("success")){
-
-                            Intent intent = new Intent(AddDogActivity.this,AddDogActivity.class);
-                            startActivity(intent);
-
-                        }else{
-
-                        }
-
-                    }
-
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                    Log.i("volley error", error.toString());
-            }
-        }) {
-            @Override
-            protected Map<String,String> getParams() throws AuthFailureError {
-                Map<String,String> params = new HashMap<>();
-                params.put("adddog", "adddog");
-                params.put("dname", dname);
-                params.put("dage", dage);
-                params.put("dbreed", dbreed);
-
-                return params;
-            }
-
-        };
-
-        MyNetworkingSingletonVolley.getInstance(this).addReuestToQueue(AddDogRequest);
+        startActivityForResult(imageFinderIntent, PICTURE_GALLERY_REQUEST);
 
     }
 
-    */
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            if (requestCode == PICTURE_GALLERY_REQUEST) {
+                Uri pictureUri = data.getData();
 
-   /* private void addListenerOnDropDown() {
+                InputStream inputStream;
+
+                try {
+                    inputStream = getContentResolver().openInputStream(pictureUri);
+
+                    Bitmap image = BitmapFactory.decodeStream(inputStream);
+
+                    PictureIV.setImageBitmap(image);
+
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                    Toast.makeText(this, "Can't open image", Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+    }
+
+   /* protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK && null != data) {
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+            Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+            cursor.moveToFirst();
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            cursor.close();
+            ImageView PictureIV = (ImageView) findViewById(R.id.PictureIV);
+            PictureIV.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+
+        }
+    }*/
+
+
+    private void addListenerOnDropDown() {
+        ddsize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
@@ -255,7 +283,7 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
 
             }
         });
-    }*/
+    }
 
     private boolean authenticate() {
         Log.i("getLoggedIn value", "" + userSessionManag.getBreederLoggedIn());
