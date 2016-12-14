@@ -1,15 +1,24 @@
 package com.haven.dog.doghaven.Activities;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Button;
 import android.app.ProgressDialog;
 import android.util.Log;
+import android.widget.Toast;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -17,6 +26,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.haven.dog.doghaven.Helpers.MyNetworkingSingletonVolley;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -28,14 +40,15 @@ import com.haven.dog.doghaven.R;
  */
 
 public class AddDogActivity extends AppCompatActivity implements View.OnClickListener {
-    EditText nameinsertET, ageinsertET, breedinsertET, companyinsertET, colorinsertET, illcurrentinsertET, illpastinsertET, vacinsertET, vacmissinginsertET;
-    Button AddDogBtn;
+    public static final int PICTURE_GALLERY_REQUEST = 21;
+    EditText  nameinsertET, ageinsertET, breedinsertET, companyinsertET, colorinsertET, illcurrentinsertET, illpastinsertET, vacinsertET, vacmissinginsertET;
+    Button AddDogBtn, GalleryBtn;
     Spinner ddsize, ddfur, ddbody, ddtolerance, ddneutered, ddenergy, ddexercise, ddintelligence, ddplayful, ddinstinct, ddpeople, ddfamily, dddogs, ddemotion, ddsociability;
     private String dog_name, dog_breed, dog_age,dog_company, dog_color, dillcurr, dillpast, dvac, dvacmiss, size, fur, body, tolerance, neutered, energy, exercise, intelligence, playful, instinct, people, family, dogs, emotion, sociability;
     private  ProgressDialog pDialog;
     private final String doghavenAPI_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php";
     private UserSessionManagment userSessionManag;
-
+    private ImageView PictureIV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,9 +81,11 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
         ddsociability = (Spinner) findViewById(R.id.ddsociability);
 
         AddDogBtn = (Button) findViewById(R.id.AddDogBtn);
+        GalleryBtn = (Button) findViewById(R.id.GalleryBtn);
+
+        PictureIV = (ImageView) findViewById(R.id.PictureIV);
 
         AddDogBtn.setOnClickListener(this);
-        addListenerOnDropDown();
 
         //instantiates objects for reference
         userSessionManag = new UserSessionManagment(this);
@@ -91,40 +106,43 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    public void onClick(View v) {
-        addListenerOnDropDown();
-        if(v.getId() == R.id.AddDogBtn){
 
-                    dog_name = nameinsertET.getText().toString();
-                    dog_age = ageinsertET.getText().toString();
-                    dog_breed = breedinsertET.getText().toString();
-                    dog_company = companyinsertET.getText().toString();
-                    dog_color = colorinsertET.getText().toString();
-                    dillcurr = illcurrentinsertET.getText().toString();
-                    dillpast = illpastinsertET.getText().toString();
-                    dvac = vacinsertET.getText().toString();
-                    dvacmiss = vacmissinginsertET.getText().toString();
-                    size = ddsize.getSelectedItem().toString();
-                    fur = ddfur.getSelectedItem().toString();
-                    body = ddbody.getSelectedItem().toString();
-                    tolerance = ddtolerance.getSelectedItem().toString();
-                    neutered = ddneutered.getSelectedItem().toString();
-                    energy = ddenergy.getSelectedItem().toString();
-                    exercise = ddexercise.getSelectedItem().toString();
-                    intelligence = ddintelligence.getSelectedItem().toString();
-                    playful = ddplayful.getSelectedItem().toString();
-                    instinct = ddinstinct.getSelectedItem().toString();
-                    people = ddpeople.getSelectedItem().toString();
-                    family = ddfamily.getSelectedItem().toString();
-                    dogs = dddogs.getSelectedItem().toString();
-                    emotion = ddemotion.getSelectedItem().toString();
-                    sociability = ddsociability.getSelectedItem().toString();
+        @Override
+        public void onClick (View v){
+        Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(i, 1);
+        if (v.getId() == R.id.AddDogBtn) {
 
-                    Log.i("Color is: ", dog_color);
-                    Log.i("Size is:", size);
-                    Log.i("fur is :", fur);
+            dog_name = nameinsertET.getText().toString();
+            dog_age = ageinsertET.getText().toString();
+            dog_breed = breedinsertET.getText().toString();
+            dog_company = companyinsertET.getText().toString();
+            dog_color = colorinsertET.getText().toString();
+            dillcurr = illcurrentinsertET.getText().toString();
+            dillpast = illpastinsertET.getText().toString();
+            dvac = vacinsertET.getText().toString();
+            dvacmiss = vacmissinginsertET.getText().toString();
+            size = ddsize.getSelectedItem().toString();
+            fur = ddfur.getSelectedItem().toString();
+            body = ddbody.getSelectedItem().toString();
+            tolerance = ddtolerance.getSelectedItem().toString();
+            neutered = ddneutered.getSelectedItem().toString();
+            energy = ddenergy.getSelectedItem().toString();
+            exercise = ddexercise.getSelectedItem().toString();
+            intelligence = ddintelligence.getSelectedItem().toString();
+            playful = ddplayful.getSelectedItem().toString();
+            instinct = ddinstinct.getSelectedItem().toString();
+            people = ddpeople.getSelectedItem().toString();
+            family = ddfamily.getSelectedItem().toString();
+            dogs = dddogs.getSelectedItem().toString();
+            emotion = ddemotion.getSelectedItem().toString();
+            sociability = ddsociability.getSelectedItem().toString();
 
-                    addDog();
+            Log.i("Color is: ", dog_color);
+            Log.i("Size is:", size);
+            Log.i("fur is :", fur);
+
+            addDog();
         }
     }
 
@@ -200,51 +218,58 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
         MyNetworkingSingletonVolley.getInstance(this).addReuestToQueue(AddDogRequest);
     }
 
-      /*  StringRequest AddDogRequest = new StringRequest(Request.Method.POST,doghavenAPI_URL,
-                new Response.Listener<String>() {
+    public void onGalleryClicker(View v) {
+        Intent imageFinderIntent = new Intent(Intent.ACTION_PICK);
 
+        File imageDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        String imageDirectoryPath = imageDirectory.getPath();
 
+        Uri data = Uri.parse(imageDirectoryPath);
 
-                    @Override
-                    public void onResponse(String response) {
+        imageFinderIntent.setDataAndType(data, "image/*");
 
-                        pDialog.hide();
-                        Log.i("Returned data:R02", response);
-                        if(response.equalsIgnoreCase("success")){
-
-                            Intent intent = new Intent(AddDogActivity.this,AddDogActivity.class);
-                            startActivity(intent);
-
-                        }else{
-
-                        }
-
-                    }
-
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                    Log.i("volley error", error.toString());
-            }
-        }) {
-            @Override
-            protected Map<String,String> getParams() throws AuthFailureError {
-                Map<String,String> params = new HashMap<>();
-                params.put("adddog", "adddog");
-                params.put("dname", dname);
-                params.put("dage", dage);
-                params.put("dbreed", dbreed);
-
-                return params;
-            }
-
-        };
-
-        MyNetworkingSingletonVolley.getInstance(this).addReuestToQueue(AddDogRequest);
+        startActivityForResult(imageFinderIntent, PICTURE_GALLERY_REQUEST);
 
     }
 
-    */
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            if (requestCode == PICTURE_GALLERY_REQUEST) {
+                Uri pictureUri = data.getData();
+
+                InputStream inputStream;
+
+                try {
+                    inputStream = getContentResolver().openInputStream(pictureUri);
+
+                    Bitmap image = BitmapFactory.decodeStream(inputStream);
+
+                    PictureIV.setImageBitmap(image);
+
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                    Toast.makeText(this, "Can't open image", Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+    }
+
+   /* protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK && null != data) {
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+            Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+            cursor.moveToFirst();
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            cursor.close();
+            ImageView PictureIV = (ImageView) findViewById(R.id.PictureIV);
+            PictureIV.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+
+        }
+    }*/
+
 
     private void addListenerOnDropDown() {
         ddsize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

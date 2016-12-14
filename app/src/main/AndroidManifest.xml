@@ -7,6 +7,7 @@
          Permissions can be found at https://developer.android.com/reference/android/Manifest.permission.html#INTERNET
     -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -97,15 +98,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/AIzaSyAyjLucpuvkFHc5UbIC1KkxbZxWzIqqp8o" />
 
-        <activity
-            android:name=".Activities.StudMatchActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Activities.DogMatch"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Activities.CompletedDogMatch"
-            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name=".Activities.UserProfile"
