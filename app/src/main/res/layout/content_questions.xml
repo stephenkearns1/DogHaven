@@ -175,8 +175,8 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/q3.1"
-            android:visibility="visible"
+            android:id="@+id/q3_1"
+            android:visibility="gone"
                 android:background="@color/cardview_light_background"
                 android:layout_marginTop="1dp">
 

@@ -154,6 +154,7 @@
 
     //Questions Strings
     <string-array name="Q1">
+        <item></item>
         <item>Large</item>
         <item>Medium</item>
         <item>Small</item>
@@ -166,7 +167,6 @@
 
     <string-array name="Q3">
         <item>Working</item>
-        <item>Show/Agility</item>
         <item>Show/Agility</item>
         <item>Just a pet</item>
     </string-array>

@@ -6,11 +6,17 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.haven.dog.doghaven.R;
+
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
 
 public class Questions extends AppCompatActivity {
     Spinner q1sp,q2sp,q3sp,q3_1sp,q4sp,q5sp,q6sp,q7sp,q8sp,
@@ -24,6 +30,8 @@ public class Questions extends AppCompatActivity {
             instinct,people,family,dogs,emotion,social;
 
 
+
+    LinearLayout q3_1LL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +61,9 @@ public class Questions extends AppCompatActivity {
 
         q1iv = (ImageView) findViewById(R.id.q1IV);
         q2iv = (ImageView) findViewById(R.id.q2IV);
-        q3iv = (ImageView) findViewById(R.id.q3IV);
-        q3_1iv = (ImageView) findViewById(R.id.q3_1IV);
-        q4iv = (ImageView) findViewById(R.id.q4IV);
+        q3iv =(ImageView) findViewById(R.id.q3IV);
+        q3_1iv =(ImageView) findViewById(R.id.q3_1IV);
+        q4iv =(ImageView) findViewById(R.id.q4IV);
         q5iv = (ImageView) findViewById(R.id.q5IV);
         q6iv = (ImageView) findViewById(R.id.q6IV);
         q7iv = (ImageView) findViewById(R.id.q7IV);
@@ -69,7 +77,141 @@ public class Questions extends AppCompatActivity {
         q14iv = (ImageView) findViewById(R.id.q14IV);
         q15iv = (ImageView) findViewById(R.id.q15IV);
 
+        q3_1LL= (LinearLayout) findViewById(R.id.q3_1);
 
+
+
+        addListenerOnDropDown();
+
+
+
+    }
+
+    private void addListenerOnDropDown() {
+        q1sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+               if(q1sp.getItemAtPosition(i).toString().equals("Large")){
+                        size="Large";
+                }else if(q1sp.getItemAtPosition(i).toString().equals("Medium")){
+                    size="Medium";
+                }else{
+                    size="Small";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        q2sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+                    if(q2sp.getItemAtPosition(i).toString().equals("Yes I mind")){
+                        fur="Non-Shedding";
+                    }else {
+                        fur="Shedding";
+                    }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        q3sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+                if(q3sp.getItemAtPosition(i).toString().equals("Working")){
+                    body="Strong";
+                    q3_1LL.setVisibility(View.GONE);
+                }else if(q3sp.getItemAtPosition(i).toString().equals("Show/Agility")){
+                    body="Agile";
+                    q3_1LL.setVisibility(View.GONE);
+                }else {
+                    q3_1LL.setVisibility(VISIBLE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        q3_1sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+                if(q3_1sp.getItemAtPosition(i).toString().equals("Yes I mind")){
+                    body="Healthy";
+
+                }else {
+                    body="Disease-prone";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+        q4sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+                if(q4sp.getItemAtPosition(i).toString().equals("Hot")){
+                    tolerance="Tolerates Warmth";
+
+                }else if(q4sp.getItemAtPosition(i).toString().equals("Cold")){
+                    tolerance="Tolerates Cold";
+                }else{
+                   tolerance=" Tolerates Both";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        q5sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+                if(q5sp.getItemAtPosition(i).toString().equals("Yes")){
+                    fixed="Fixed Yes";
+
+                }else{
+                    fixed="Fixed No";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        q6sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+                if(q6sp.getItemAtPosition(i).toString().equals("Yes")){
+                    fixed="Fixed Yes";
+
+                }else{
+                    fixed="Fixed No";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
     }
 
