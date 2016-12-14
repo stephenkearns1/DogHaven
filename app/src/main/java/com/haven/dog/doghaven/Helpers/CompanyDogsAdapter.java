@@ -1,12 +1,23 @@
 package com.haven.dog.doghaven.Helpers;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.vision.text.Text;
+import com.haven.dog.doghaven.Activities.UserProfile;
 import com.haven.dog.doghaven.Models.Dog;
 import com.haven.dog.doghaven.R;
 
@@ -21,6 +32,8 @@ import java.util.List;
 public class CompanyDogsAdapter extends RecyclerView.Adapter<CompanyDogsAdapter.ViewHolder> {
     private List<Dog> dogList;
     private Context context;
+    private PopupWindow mPopupWindow;
+    private RelativeLayout mRelativeLayout;
 
     public CompanyDogsAdapter(Context context){
         this.context = context;
@@ -29,45 +42,135 @@ public class CompanyDogsAdapter extends RecyclerView.Adapter<CompanyDogsAdapter.
 
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView nametv, breedtv, agetv, colortv, sizetv, furtv, bodytv, tolerancetv, neuteredtv;
+        public TextView nametv, breedtv, agetv, colortv;
+        public Button physicalBtn, behaviourBtn, socialBtn, medicalBtn;
 
-        public ViewHolder(View v){
-              super(v);
-              nametv = (TextView) v.findViewById(R.id.dogname_tv);
-              breedtv = (TextView) v.findViewById(R.id.dogbreed_tv);
-              agetv = (TextView) v.findViewById(R.id.dogage_tv);
-              colortv = (TextView) v.findViewById(R.id.dogcolor_tv);
-              sizetv =(TextView) v.findViewById(R.id.size);
-              furtv = (TextView) v.findViewById(R.id.fur);
-              bodytv = (TextView) v.findViewById(R.id.body);
-              tolerancetv = (TextView) v.findViewById(R.id.tolerance);
-              neuteredtv = (TextView) v.findViewById(R.id.neutered);
+
+        public ViewHolder(View v) {
+            super(v);
+            nametv = (TextView) v.findViewById(R.id.dogname_tv);
+            breedtv = (TextView) v.findViewById(R.id.dogbreed_tv);
+            agetv = (TextView) v.findViewById(R.id.dogage_tv);
+            colortv = (TextView) v.findViewById(R.id.dogcolor_tv);
+            physicalBtn = (Button) v.findViewById(R.id.physocalAttrBtn);
+            behaviourBtn = (Button) v.findViewById(R.id.behaviourAttrBtn);
+            socialBtn = (Button) v.findViewById(R.id.socialAttrBtn);
+            medicalBtn = (Button) v.findViewById(R.id.medicalAttrBtn);
+
 
 
         }
+
+
     }
+
+
 
 
     @Override
     public CompanyDogsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view  = LayoutInflater.from(context).inflate(R.layout.company_dog_row, parent, false);
-        return new ViewHolder(view);
+        ViewHolder vh = new ViewHolder(view);
+        return vh;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
             final Dog dogModel = dogList.get(position);
             holder.nametv.setText(dogModel.getName());
             holder.breedtv.setText(dogModel.getBreed());
             holder.agetv.setText(dogModel.getAge());
             holder.colortv.setText(dogModel.getColor());
-            holder.sizetv.setText(dogModel.getSize());
-            holder.furtv.setText(dogModel.getFur());
-            holder.bodytv.setText(dogModel.getBody());
-            holder.tolerancetv.setText(dogModel.getTolerance());
-            holder.neuteredtv.setText(dogModel.getNeutered());
+            holder.physicalBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle("Physical Atrributes");
+                    builder.setMessage("Size:" + dogModel.getSize() + "\n" +
+                                        "Fur:" + dogModel.getFur())
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+
+                                }
+                            });
+
+                    builder.show();
+
+                   /*
+                    final Dialog dialog = new Dialog(context);
+
+                    dialog.setContentView(R.layout.popup_physical_attr);
+                    dialog.setTitle("Physical Attributes");
+
+
+                    Log.i("Made it to pop onclick", "here");
+                     LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    View popupView = inflater.inflate(R.layout.popup_physical_attr,null);
+
+                    //intiliase an new instance of popup window
+                    mPopupWindow = new PopupWindow(popupView);
+
+                    //getting a reference for custom view for display phyical attributes
+
+
+                    /*
+                    TextView size_tv = (TextView)dialog.findViewById(R.id.size_TV);
+                    TextView fur_tv = (TextView) dialog.findViewById(R.id.fur_TV);
+                    TextView body_tv = (TextView) dialog.findViewById(R.id.body_TV);
+                    TextView tolerance_tv = (TextView)dialog.findViewById(R.id.tolerance_TV);
+                    TextView neutered_tv = (TextView) dialog.findViewById(R.id.neutered_TV);
+                    Button cancelBtn = (Button) dialog.findViewById(R.id.cancelBtn);
+
+
+
+                    Dog dog = dogList.get(position);
+                    //set the attribute views with the dog attributes
+                    size_tv.setText(dog.getSize());
+                    fur_tv.setText(dog.getFur());
+                    body_tv.setText(dog.getBody());
+                    tolerance_tv.setText(dog.getTolerance());
+                    neutered_tv.setText(dog.getNeutered());
+
+                    cancelBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    dialog.show();
+
+                    */
+
+
+                }
+            });
+
+           holder.behaviourBtn.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+
+               }
+           });
+
+          holder.socialBtn.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+
+              }
+          });
+
+          holder.medicalBtn.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+
+              }
+          });
+
 
     }
 
@@ -93,5 +196,10 @@ public class CompanyDogsAdapter extends RecyclerView.Adapter<CompanyDogsAdapter.
             dogList.clear();
             notifyDataSetChanged();
         }
+    }
+
+    public void Remove(int position){
+        dogList.remove(position);
+        notifyDataSetChanged();
     }
 }

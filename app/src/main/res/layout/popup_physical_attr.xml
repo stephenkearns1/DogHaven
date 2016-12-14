@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+
+    <LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="77dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorPrimary">
+
+
+   <LinearLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:layout_marginTop="40dp"
+       android:layout_gravity="center">
+    <TextView
+        android:text="Size:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Size"
+        android:paddingRight="10dp"
+
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="23dp"
+        android:id="@+id/size_TV"
+        />
+
+   </LinearLayout>
+
+    <TextView
+        android:text="fur"
+        android:layout_width="123dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Size"
+        android:layout_alignStart="@+id/Size"
+        android:layout_marginTop="57dp"
+        android:id="@+id/textView16" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView16"
+        android:layout_alignEnd="@+id/size_TV"
+        android:id="@+id/fur_TV" />
+
+    <TextView
+        android:text="body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView16"
+        android:layout_alignEnd="@+id/textView16"
+        android:layout_marginTop="64dp"
+        android:id="@+id/body" />
+
+    <TextView
+        android:text="tolerance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/body"
+        android:layout_alignStart="@+id/body"
+        android:layout_marginTop="47dp"
+        android:id="@+id/tolerance" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tolerance"
+        android:layout_alignEnd="@+id/body_TV"
+        android:id="@+id/tolerance_TV" />
+
+    <TextView
+        android:text="neutered"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tolerance"
+        android:layout_alignStart="@+id/tolerance"
+        android:layout_marginTop="48dp"
+        android:id="@+id/neutered" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/neutered"
+        android:layout_alignStart="@+id/tolerance_TV"
+        android:id="@+id/neutered_TV" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/body_TV"
+        android:layout_above="@+id/tolerance"
+        android:layout_toEndOf="@+id/fur_TV" />
+
+    <Button
+        android:layout_width="400dp"
+        android:layout_height="50dp"
+        android:text="Cancel"
+        android:id="@+id/cancelBtn"/>
+    </LinearLayout>
+

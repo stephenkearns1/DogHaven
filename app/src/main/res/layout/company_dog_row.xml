@@ -48,68 +48,51 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Physical Attributes"/>
+                android:text="Physical Attributes"
+                android:layout_gravity="center"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="size"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="fur"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="body"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="tolerance"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="neutered"/>
-
-
-
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-            <TextView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:id="@+id/size"/>
+          <Button
+              android:layout_width="400dp"
+              android:layout_height="100dp"
+              android:layout_gravity="center"
+              android:id="@+id/physocalAttrBtn"
+              android:background="@color/colorAccent"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/fur"/>
+                android:text="Behaviour Attributes"
+                android:layout_gravity="center"/>
+
+            <Button
+                android:layout_width="400dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:id="@+id/behaviourAttrBtn"
+                android:background="@color/colorAccent"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/body"/>
+                android:text="Social Attributes"
+                android:layout_gravity="center"/>
+
+            <Button
+                android:layout_width="400dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:id="@+id/socialAttrBtn"
+                android:background="@color/colorAccent"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tolerance"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/neutered"/>
+                android:text="Medical Attributes"
+                android:layout_gravity="center"/>
 
-
-
-
-            </LinearLayout>
+            <Button
+                android:layout_width="400dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:id="@+id/medicalAttrBtn"
+                android:background="@color/colorAccent"/>
 
         </LinearLayout>
 
