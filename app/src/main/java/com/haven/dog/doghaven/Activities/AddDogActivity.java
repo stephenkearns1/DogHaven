@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Picture;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -21,14 +23,19 @@ import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.haven.dog.doghaven.Helpers.MyNetworkingSingletonVolley;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.Hashtable;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -40,15 +47,16 @@ import com.haven.dog.doghaven.R;
  */
 
 public class AddDogActivity extends AppCompatActivity implements View.OnClickListener {
-    public static final int PICTURE_GALLERY_REQUEST = 21;
     EditText  nameinsertET, ageinsertET, breedinsertET, companyinsertET, colorinsertET, illcurrentinsertET, illpastinsertET, vacinsertET, vacmissinginsertET;
-    Button AddDogBtn, GalleryBtn;
+    Button AddDogBtn, GalleryBtn, UploadBtn;
     Spinner ddsize, ddfur, ddbody, ddtolerance, ddneutered, ddenergy, ddexercise, ddintelligence, ddplayful, ddinstinct, ddpeople, ddfamily, dddogs, ddemotion, ddsociability;
-    private String dog_name, dog_breed, dog_age,dog_company, dog_color, dillcurr, dillpast, dvac, dvacmiss, size, fur, body, tolerance, neutered, energy, exercise, intelligence, playful, instinct, people, family, dogs, emotion, sociability;
+    private String dog_name, dog_breed, dog_age,dog_company, dog_color, dillcurr, dillpast, dvac, dvacmiss, size, fur, body, tolerance, neutered, energy, exercise, intelligence, playful, instinct, people, family, dogs, emotion, sociability, image;
     private  ProgressDialog pDialog;
     private final String doghavenAPI_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php";
     private UserSessionManagment userSessionManag;
     private ImageView PictureIV;
+    private Bitmap bitmap;
+    private int PICK_IMAGE_REQUEST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,10 +90,14 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
 
         AddDogBtn = (Button) findViewById(R.id.AddDogBtn);
         GalleryBtn = (Button) findViewById(R.id.GalleryBtn);
+        UploadBtn = (Button) findViewById(R.id.UploadBtn);
 
         PictureIV = (ImageView) findViewById(R.id.PictureIV);
 
         AddDogBtn.setOnClickListener(this);
+        GalleryBtn.setOnClickListener(this);
+        UploadBtn.setOnClickListener(this);
+
 
         //instantiates objects for reference
         userSessionManag = new UserSessionManagment(this);
@@ -109,8 +121,6 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
 
         @Override
         public void onClick (View v){
-        Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(i, 1);
         if (v.getId() == R.id.AddDogBtn) {
 
             dog_name = nameinsertET.getText().toString();
@@ -138,15 +148,88 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
             emotion = ddemotion.getSelectedItem().toString();
             sociability = ddsociability.getSelectedItem().toString();
 
-            Log.i("Color is: ", dog_color);
-            Log.i("Size is:", size);
-            Log.i("fur is :", fur);
 
             addDog();
+
+        }
+            else{
+            if(v.getId() == R.id.GalleryBtn){
+                onGalleryClicker();
+            }
+            else{
+                if(v.getId() == R.id.UploadBtn){
+
+                    image = getStringImage(bitmap);
+
+                    uploadImage();
+                }
+            }
         }
     }
 
+    public void onGalleryClicker() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+    }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri filePath = data.getData();
+            try {
+
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+
+                PictureIV.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public String getStringImage(Bitmap bmap){
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        bmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+        byte[] imageBytes = outputStream.toByteArray();
+        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        return encodedImage;
+    }
+
+    public void uploadImage(){
+        final ProgressDialog loading = ProgressDialog.show(this, "Uploading...", "Please wait...",false,false);
+        StringRequest ImageRequest = new StringRequest(Request.Method.POST, doghavenAPI_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        loading.dismiss();
+                        Toast.makeText(AddDogActivity.this, s , Toast.LENGTH_LONG).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        loading.dismiss();
+                        Toast.makeText(AddDogActivity.this, volleyError.getMessage().toString(), Toast.LENGTH_LONG).show();
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String,String> params = new Hashtable<String, String>();
+
+                params.put("uploadimage", "uploadimage");
+                params.put("image", image);
+
+                return params;
+            }
+        };
+
+        MyNetworkingSingletonVolley.getInstance(this).addReuestToQueue(ImageRequest);
+    }
 
     public void addDog(){
 
@@ -158,8 +241,6 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
         StringRequest AddDogRequest  = new StringRequest(Request.Method.POST,doghavenAPI_URL,
                 new Response.Listener<String>() {
 
-
-
                     @Override
                     public void onResponse(String response) {
 
@@ -167,12 +248,9 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
                         Log.i("Returned data:R01", response);
                         if(response.equalsIgnoreCase("success")){
 
-
                         }else{
 
                         }
-
-                        ;
                     }
 
                 }, new Response.ErrorListener() {
@@ -216,73 +294,6 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
 
         // Adding the request to the queue
         MyNetworkingSingletonVolley.getInstance(this).addReuestToQueue(AddDogRequest);
-    }
-
-    public void onGalleryClicker(View v) {
-        Intent imageFinderIntent = new Intent(Intent.ACTION_PICK);
-
-        File imageDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        String imageDirectoryPath = imageDirectory.getPath();
-
-        Uri data = Uri.parse(imageDirectoryPath);
-
-        imageFinderIntent.setDataAndType(data, "image/*");
-
-        startActivityForResult(imageFinderIntent, PICTURE_GALLERY_REQUEST);
-
-    }
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK) {
-            if (requestCode == PICTURE_GALLERY_REQUEST) {
-                Uri pictureUri = data.getData();
-
-                InputStream inputStream;
-
-                try {
-                    inputStream = getContentResolver().openInputStream(pictureUri);
-
-                    Bitmap image = BitmapFactory.decodeStream(inputStream);
-
-                    PictureIV.setImageBitmap(image);
-
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                    Toast.makeText(this, "Can't open image", Toast.LENGTH_LONG).show();
-                }
-            }
-        }
-    }
-
-   /* protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == RESULT_OK && null != data) {
-            Uri selectedImage = data.getData();
-            String[] filePathColumn = {MediaStore.Images.Media.DATA};
-            Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
-            cursor.moveToFirst();
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = cursor.getString(columnIndex);
-            cursor.close();
-            ImageView PictureIV = (ImageView) findViewById(R.id.PictureIV);
-            PictureIV.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-
-        }
-    }*/
-
-
-    private void addListenerOnDropDown() {
-        ddsize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
     }
 
     private boolean authenticate() {
