@@ -113,7 +113,13 @@
         <activity
             android:name=".Activities.Questions"
             android:label="@string/title_activity_questions"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>
