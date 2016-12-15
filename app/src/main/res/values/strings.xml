@@ -154,7 +154,6 @@
 
     //Questions Strings
     <string-array name="Q1">
-        <item></item>
         <item>Large</item>
         <item>Medium</item>
         <item>Small</item>
