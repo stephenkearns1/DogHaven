@@ -1,6 +1,8 @@
 package com.haven.dog.doghaven.Activities;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -20,11 +22,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.haven.dog.doghaven.Helpers.CompanyDogsAdapter;
+import com.haven.dog.doghaven.Helpers.MatchingAlogrithm;
 import com.haven.dog.doghaven.Helpers.MyNetworkingSingletonVolley;
 import com.haven.dog.doghaven.Helpers.UserSessionManagment;
 import com.haven.dog.doghaven.Models.Dog;
 import com.haven.dog.doghaven.Models.DogWeightedScore;
 import com.haven.dog.doghaven.Models.User;
+import com.haven.dog.doghaven.Models.UserPrefs;
 import com.haven.dog.doghaven.R;
 
 import org.json.JSONArray;
@@ -38,13 +42,16 @@ import java.util.Map;
 public class DogMatch extends AppCompatActivity {
 
     private ArrayList<Dog> dogsList;
-    private ArrayList<String> userPrefs;
+    private ArrayList<UserPrefs> userPrefsList;
+    private int user_id;
     private final String doghavenAPI_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php?GetAllDogs";
     private String name, breed, companyName, age, color;
     private RecyclerView mRecyclerView;
     private CompanyDogsAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private  UserSessionManagment userSessionManag;
+    private User user;
+    private MatchingAlogrithm match;
     // attributes
     private int dogId;
     private  String size, fur, body, tolerance, neutered;
@@ -56,6 +63,8 @@ public class DogMatch extends AppCompatActivity {
     private String TAG_energy = "energy", TAG_exercise ="exercise", TAG_intelligence= "intelligence", TAG_playful ="playful", TAG_instinct = "instinct";
     private String TAG_people="people", TAG_family="family", TAG_dogs="dogs", TAG_emotion="emotion", TAG_sociality="sociability";
     private String TAG_dillcur ="dillcurr", TAG_dillpast = "dillpast", TAG_dvac = "dvac", TAG_dvacmiss = "dvacmiss";
+    private ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,19 +89,72 @@ public class DogMatch extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
 
         //instantiates objects for reference
+        match = new MatchingAlogrithm();
         userSessionManag = new UserSessionManagment(this);
+        user = userSessionManag.UserLoggedIn();
+
 
 
 
         dogsList = new ArrayList<>();
-        userPrefs = new ArrayList<>();
+        userPrefsList = new ArrayList<>();
 
 
 
 
     }
 
-    public void RetriveDogList() {
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //checks to see if the user is authenticated if not it requests the user to login.
+        if (authenticate()) {
+            //display logged in or start main activity
+            displayUserDetails();
+        } else {
+            //starts loginIn activity
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
+
+
+       //get the logged in users ID to make a request to get the user perferances
+       user_id = user.getUserID();
+        GetUserPrefs();
+        RetriveDogList();
+
+
+    }
+    private void displayUserDetails() {
+        User user = userSessionManag.UserLoggedIn();
+
+        //set text views
+        // View header = navigationView.
+
+        //displayUsernameTV.setText(user.getUserName());
+        //displayUseremailTV.setText(user.getEmail())
+        //;
+
+        //set drawer with user name and email
+        //usernameTV.setText(user.getUsername());
+       // useremailTV.setText(user.getEmail());
+
+
+
+        Log.i("user Loggedin", user.getUsername() + user.getEmail());
+
+
+    }
+
+
+
+    private boolean authenticate() {
+        Log.i("getLoggedIn value", "" + userSessionManag.getLoggedIn());
+        return userSessionManag.getLoggedIn();
+    }
+
+
+    private void RetriveDogList() {
         JsonArrayRequest companyDogListRequest = new JsonArrayRequest(doghavenAPI_URL,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -163,8 +225,7 @@ public class DogMatch extends AppCompatActivity {
                                */
                             }
 
-                            //updates the adapter to display requested data
-                            mAdapter.AddAllDogs(dogsList);
+
 
 
                         } catch (JSONException e) {
@@ -197,4 +258,118 @@ public class DogMatch extends AppCompatActivity {
         MyNetworkingSingletonVolley.getInstance(this).addReuestToQueue(companyDogListRequest);
     }
 
+
+    private void GetUserPrefs(){
+        progressDialog = new ProgressDialog(DogMatch.this);
+        progressDialog.setMessage("Logging in");
+        progressDialog.setTitle("Authenticating");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.show();
+
+        StringRequest userPrefsRequest = new StringRequest(Request.Method.POST,doghavenAPI_URL,
+                new Response.Listener<String>() {
+
+
+
+                    @Override
+                    public void onResponse(String response) {
+
+                        Log.i("Response1", response);
+                        Log.i("Response length", "" + response.length());
+                        if (!(response.equals("failed"))){
+
+                            if (!(userPrefsList == null)) {
+                                userPrefsList.clear();
+
+                            }
+
+                            try {
+
+                                //JSONArray jsArray = new JSONArray(response);
+                                JSONObject jsUserObj= new JSONObject(response);
+
+                                //JSONObject jsUserObj = (JSONObject) jsArray.get(0);
+                                //she have a unique id
+
+                                   /*
+                                         Attributes user search is based on and order
+                                         Marken  Teder: Physical - Size, Fur, Body, Tolerance, Neutered
+                                         Marken  Teder: Behaviour - Energy, Exercise, Intelligence, Playful, Instinct
+                                         Marken  Teder: Social - People, Family, Dogs, Emotion, Sociability
+                                     */
+
+                                UserPrefs userPrefs = new UserPrefs(
+                                        jsUserObj.getString(TAG_size),jsUserObj.getString(TAG_fur),
+                                        jsUserObj.getString(TAG_body), jsUserObj.getString(TAG_tolerance),
+                                        jsUserObj.getString(TAG_neutered), jsUserObj.getString(TAG_energy),
+                                        jsUserObj.getString(TAG_exercise), jsUserObj.getString(TAG_intelligence),
+                                        jsUserObj.getString(TAG_playful), jsUserObj.getString(TAG_instinct),
+                                        jsUserObj.getString(TAG_people), jsUserObj.getString(TAG_family),
+                                        jsUserObj.getString(TAG_dogs), jsUserObj.getString(TAG_emotion),
+                                        jsUserObj.getString(TAG_sociality)
+                                );
+
+
+                                userPrefsList.add(userPrefs);
+
+
+                                progressDialog.hide();
+
+
+                                Log.i("Returned data json:L01", response);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+
+                            Log.i("Returned data:L01", response);
+                        }else{
+                            //error message saying incorrect details
+                            progressDialog.hide();
+                            final AlertDialog.Builder builder = new AlertDialog.Builder(DogMatch.this);
+                            builder.setMessage("User Preferances could not be found")
+                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+
+                                        }
+                                    });
+
+                            builder.show();
+                        }
+                    }
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            @Override
+            protected Map<String,String> getParams()  throws AuthFailureError{
+                Map<String,String> params = new HashMap<>();
+                //sending login signals to server that it is a login request and should handle accordingly
+                params.put("login", "login");
+                params.put("user_id", String.valueOf(user_id));
+                return params;
+            }
+        };
+
+
+
+        // Adding the request to the queue
+        MyNetworkingSingletonVolley.getInstance(this).addReuestToQueue(userPrefsRequest);
+    }
+
+    public void getMatches(){
+        //set the data in matchig algorthim to generate matches
+        match = new MatchingAlogrithm();
+        match.setDogList(dogsList);
+        match.setuserPrefs(userPrefsList);
+        match.AddDogWeightings();
+        ArrayList<Dog> dogsToShow = match.MostSuitedDogs();
+        mAdapter.ClearAll();
+        mAdapter.AddAllDogs(dogsToShow);
+    }
 }

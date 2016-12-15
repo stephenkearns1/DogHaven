@@ -2,6 +2,7 @@ package com.haven.dog.doghaven.Helpers;
 
 import com.haven.dog.doghaven.Models.Dog;
 import com.haven.dog.doghaven.Models.DogWeightedScore;
+import com.haven.dog.doghaven.Models.UserPrefs;
 
 import java.util.ArrayList;
 
@@ -14,7 +15,7 @@ public class MatchingAlogrithm {
 
     private ArrayList<Dog> dogList;
     private ArrayList<DogWeightedScore> dogScoreList;
-    private ArrayList<String> userCiteria;
+    private ArrayList<UserPrefs> userPrefs;
     private ArrayList<Dog> dogsToShow;
 
     public MatchingAlogrithm(){
@@ -28,7 +29,7 @@ public class MatchingAlogrithm {
 
         dogList = new ArrayList<>();
         dogScoreList = new ArrayList<>();
-        userCiteria = new ArrayList<>();
+        userPrefs = new ArrayList<>();
         dogsToShow = new ArrayList<>();
 
     }
@@ -40,8 +41,9 @@ public class MatchingAlogrithm {
         for(int i = 0; i < dogList.size(); i++){
 
             Dog dog = dogList.get(i);
+            //reset the score for next dogs score to be calculated
             int score = 0;
-            for(int j = 0; j < userCiteria.size(); j++){
+           // for(int j = 0; j < userPrefs.size(); j++){
         /*
              Attributes user search is based on and order
              Physical - Size, Fur, Body, Tolerance, Neutered
@@ -49,38 +51,38 @@ public class MatchingAlogrithm {
              Social - People, Family, Dogs, Emotion, Sociability
          */
                 //add weighting methods here
-                if(userCiteria.get(j).equalsIgnoreCase(dog.getSize()))
+                if(userPrefs.get(0).getSize().equalsIgnoreCase(dog.getSize()))
                     score++;
-                else if(userCiteria.get(j).equalsIgnoreCase(dog.getFur()))
+                else if(userPrefs.get(0).getFur().equalsIgnoreCase(dog.getFur()))
                     score++;
-                else if(userCiteria.get(j).equalsIgnoreCase(dog.getBody()))
+                else if(userPrefs.get(0).getBody().equalsIgnoreCase(dog.getBody()))
                     score++;
-                else if(userCiteria.get(j).equalsIgnoreCase(dog.getTolerance()))
+                else if(userPrefs.get(0).getTolerance().equalsIgnoreCase(dog.getTolerance()))
                     score++;
-                else if(userCiteria.get(j).equalsIgnoreCase(dog.getNeutered()))
+                else if(userPrefs.get(0).getNeutered().equalsIgnoreCase(dog.getNeutered()))
                     score++;
-                else if(userCiteria.get(j).equalsIgnoreCase(dog.getEnergy()))
+                else if(userPrefs.get(0).getEnergy().equalsIgnoreCase(dog.getEnergy()))
                     score++;
-                else if(userCiteria.get(j).equalsIgnoreCase(dog.getExercise()))
+                else if(userPrefs.get(0).getExercise().equalsIgnoreCase(dog.getExercise()))
                     score++;
-                else if(userCiteria.get(j).equalsIgnoreCase(dog.getIntelligence()))
+                else if(userPrefs.get(0).getIntelligence().equalsIgnoreCase(dog.getIntelligence()))
                     score++;
-                else if(userCiteria.get(j).equalsIgnoreCase(dog.getPlayful()))
+                else if(userPrefs.get(0).getPlayful().equalsIgnoreCase(dog.getPlayful()))
                     score++;
-                else if(userCiteria.get(j).equalsIgnoreCase(dog.getInstinct()))
+                else if(userPrefs.get(0).getInstinct().equalsIgnoreCase(dog.getInstinct()))
                     score++;
-                else if(userCiteria.get(j).equalsIgnoreCase(dog.getPeople()))
+                else if(userPrefs.get(0).getPeople().equalsIgnoreCase(dog.getPeople()))
                     score++;
-                else if(userCiteria.get(j).equalsIgnoreCase(dog.getFamily()))
+                else if(userPrefs.get(0).getFamily().equalsIgnoreCase(dog.getFamily()))
                     score++;
-                else if(userCiteria.get(j).equalsIgnoreCase(dog.getDogs()))
+                else if(userPrefs.get(0).getDogs().equalsIgnoreCase(dog.getDogs()))
                     score++;
-                else if(userCiteria.get(j).equalsIgnoreCase(dog.getEmotion()))
+                else if(userPrefs.get(0).getEmotion().equalsIgnoreCase(dog.getEmotion()))
                     score++;
-                else if(userCiteria.get(j).equalsIgnoreCase(dog.getSociality()))
+                else if(userPrefs.get(0).getSociability().equalsIgnoreCase(dog.getSociality()))
                     score++;
 
-            }
+            //}
 
             DogWeightedScore weightedDogScore = new DogWeightedScore(i, score);
             dogScoreList.add(weightedDogScore);
@@ -90,9 +92,19 @@ public class MatchingAlogrithm {
 
     public ArrayList MostSuitedDogs(){
 
+        QuickSort(0, dogScoreList.size()-1);
+        /*
         int starting_point = (0 + dogScoreList.size()-1) / 2;
 
         for(int i = dogScoreList.size()-1; i >=  starting_point; i--){
+
+            int index = dogScoreList.get(i).getIndexOfDogInList();
+            dogsToShow.add((Dog) dogList.get(index));
+        }
+
+        */
+
+        for(int i = 0; i < 3; i++){
 
             int index = dogScoreList.get(i).getIndexOfDogInList();
             dogsToShow.add((Dog) dogList.get(index));
@@ -123,11 +135,11 @@ public class MatchingAlogrithm {
 
         while(up < down){
 
-            while(start < end && ((Comparable)dogScoreList.get(up).getScore()).compareTo((Comparable)pivot.getScore()) < 0){
+            while(start < end && ((Comparable)dogScoreList.get(up).getScore()).compareTo((Comparable)pivot.getScore()) > 0){
                 up = up +1;
             }
 
-            while(down > start && (((Comparable)dogScoreList.get(down).getScore()).compareTo((Comparable)pivot.getScore()) > 0 || ((Comparable)dogScoreList.get(down).getScore()).compareTo((Comparable)pivot.getScore())== 0)){
+            while(down > start && (((Comparable)dogScoreList.get(down).getScore()).compareTo((Comparable)pivot.getScore()) < 0 || ((Comparable)dogScoreList.get(down).getScore()).compareTo((Comparable)pivot.getScore())== 0)){
                 down = down - 1;
             }
 
@@ -153,16 +165,13 @@ public class MatchingAlogrithm {
         this.dogList = dogList;
     }
 
-    public void setDogScoreList(ArrayList<DogWeightedScore> dogScoreList) {
-        this.dogScoreList = dogScoreList;
-    }
 
     public void setDogsToShow(ArrayList<Dog> dogsToShow) {
         this.dogsToShow = dogsToShow;
     }
 
-    public void setUserCiteria(ArrayList<String> userCiteria) {
-        this.userCiteria = userCiteria;
+    public void setuserPrefs(ArrayList<UserPrefs> userPrefs) {
+        this.userPrefs = userPrefs;
     }
 }
 
