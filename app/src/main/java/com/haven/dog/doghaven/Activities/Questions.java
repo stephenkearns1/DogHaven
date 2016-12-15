@@ -1,10 +1,13 @@
 package com.haven.dog.doghaven.Activities;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -13,12 +16,22 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.haven.dog.doghaven.Helpers.MyNetworkingSingletonVolley;
+import com.haven.dog.doghaven.Helpers.UserSessionManagment;
 import com.haven.dog.doghaven.R;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
-public class Questions extends AppCompatActivity {
+public class Questions extends AppCompatActivity implements View.OnClickListener{
     Spinner q1sp,q2sp,q3sp,q3_1sp,q4sp,q5sp,q6sp,q7sp,q8sp,
             q9sp,q10sp, q11sp, q12sp, q13sp,q13_1sp,q14sp,q15sp;
 
@@ -29,9 +42,15 @@ public class Questions extends AppCompatActivity {
     String size,fur,body,tolerance,fixed,energy,exercise,intelligence,temp,
             instinct,people,family,dogs,emotion,social;
 
+    Button addPref;
 
+    LinearLayout q3_1LL,q13_1LL;
 
-    LinearLayout q3_1LL;
+    private final String doghavenAPI_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php";
+
+    private UserSessionManagment userSessionManag;
+
+    private  ProgressDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,13 +97,34 @@ public class Questions extends AppCompatActivity {
         q15iv = (ImageView) findViewById(R.id.q15IV);
 
         q3_1LL= (LinearLayout) findViewById(R.id.q3_1);
+        q13_1LL= (LinearLayout) findViewById(R.id.q13_1);
 
+        addPref = (Button) findViewById(R.id.addPref);
 
-
+        userSessionManag = new UserSessionManagment(this);
         addListenerOnDropDown();
 
 
 
+
+    }
+
+    private boolean authenticate() {
+        Log.i("getLoggedIn value", "" + userSessionManag.getLoggedIn());
+        return userSessionManag.getLoggedIn();
+    }
+
+    protected void onStart() {
+        super.onStart();
+        //checks to see if the user is authenticated if not it requests the user to login.
+        if (authenticate() == true) {
+            //display logged in or start main activity
+            //displayUserDetails();
+        } else {
+            //starts loginIn activity
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
     }
 
     private void addListenerOnDropDown() {
@@ -199,11 +239,13 @@ public class Questions extends AppCompatActivity {
         q6sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
-                if(q6sp.getItemAtPosition(i).toString().equals("Yes")){
-                    fixed="Fixed Yes";
+                if(q6sp.getItemAtPosition(i).toString().equals("Very Energetic")){
+                    energy="High-energy";
 
+                } else if(q6sp.getItemAtPosition(i).toString().equals("Energetic")){
+                    energy="Medium-energy";
                 }else{
-                    fixed="Fixed No";
+                    energy="Low-energy";
                 }
             }
 
@@ -213,6 +255,241 @@ public class Questions extends AppCompatActivity {
             }
         });
 
+        q7sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+                if(q7sp.getItemAtPosition(i).toString().equals("Very Active")){
+                    exercise="High exercise";
+
+                }else if(q7sp.getItemAtPosition(i).toString().equals("Active")){
+                    exercise="Medium exercise";
+                }else{
+                    exercise="Low exercise";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        q8sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+                if(q8sp.getItemAtPosition(i).toString().equals("Yes I would have patience")){
+                    intelligence="Stubborn";
+
+                }else{
+                    intelligence="Stubborn";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        q9sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+                if(q9sp.getItemAtPosition(i).toString().equals("Dominate")){
+                    temp="Dominate";
+
+                }else{
+                    temp="Submissive";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        q10sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+                if(q10sp.getItemAtPosition(i).toString().equals("Yes")){
+                    instinct="High Prey Drive";
+
+                }else{
+                    instinct="Low Prey Drive";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        q11sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+                if(q11sp.getItemAtPosition(i).toString().equals("Yes")){
+                    people="Protective";
+
+                }else{
+                    people="Stranger friendly";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        q12sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+                if(q12sp.getItemAtPosition(i).toString().equals("Yes")){
+                    family="Child-friendly Yes";
+
+                }else{
+                    family="Child-friendly No";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+        q13sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+                if(q13sp.getItemAtPosition(i).toString().equals("Yes")){
+                    dogs="Sociable";
+                    q13_1LL.setVisibility(View.GONE);
+                }else{
+                    q13_1LL.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        q13_1sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+                if(q13sp.getItemAtPosition(i).toString().equals("Yes")){
+                    dogs="Sociable";
+
+                }else{
+                    dogs="Unsocial";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        q14sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+                if(q14sp.getItemAtPosition(i).toString().equals("Yes")){
+                    emotion="Tolerates being Alone";
+
+                }else{
+                    emotion="Hard to be Alone";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+        q15sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+                if(q15sp.getItemAtPosition(i).toString().equals("Yes")){
+                    social="Low Barking";
+
+                }else{
+                    social="High Barking";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
+    public void addPref(){
+
+        pDialog = new ProgressDialog(Questions.this);
+        pDialog.setMessage("...Processing...");
+        pDialog.setTitle("Adding User Preferences");
+        pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        pDialog.show();
+        StringRequest AddPrefsRequest  = new StringRequest(Request.Method.POST,doghavenAPI_URL,
+                new Response.Listener<String>() {
+
+                    @Override
+                    public void onResponse(String response) {
+
+                        pDialog.hide();
+                        Log.i("Returned data:R01", response);
+                        if(response.equalsIgnoreCase("success")){
+
+                        }else{
+
+                        }
+                    }
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            @Override
+            protected Map<String,String> getParams()  throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                params.put("addpref", "addpref");
+                params.put("size", size);
+                params.put("fur", fur);
+                params.put("body", body);
+                params.put("tolerance", tolerance);
+                params.put("neutered", fixed);
+                params.put("energy", energy);
+                params.put("exercise", exercise);
+                params.put("intelligence", intelligence);
+                params.put("playful", temp);
+                params.put("instinct", instinct);
+                params.put("people", people);
+                params.put("family", family);
+                params.put("dogs", dogs);
+                params.put("emotion", emotion);
+                params.put("sociability", social);
+
+                return params;
+            }
+        };
+
+        // Adding the request to the queue
+        MyNetworkingSingletonVolley.getInstance(this).addReuestToQueue(AddPrefsRequest);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.addPref) {
+            addPref();
+        }
+    }
 }
