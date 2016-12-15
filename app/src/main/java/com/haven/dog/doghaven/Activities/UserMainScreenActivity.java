@@ -148,7 +148,8 @@ public class UserMainScreenActivity extends AppCompatActivity
     public void onClick(View v) {
        switch(v.getId()){
            case R.id.dogmatchBtn:
-                //intent to search page
+               Intent dogmatch = new Intent(this,DogMatch.class);
+               startActivity(dogmatch);
                break;
            case R.id.breedInformationBtn:
                 Intent info= new Intent(this,BreedInfoActivity.class);
