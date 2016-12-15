@@ -314,6 +314,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             //store user data in sharedPerferances
             //check user type and display screen for user
             userSessionManag.SessionUserMangement(user);
+            Log.i("user_id", " " + user.getUserID());
             userSessionManag.setUserLoggedIn(true);
             Intent intent = new Intent(this,UserMainScreenActivity.class);
             startActivity(intent);

@@ -78,7 +78,7 @@ public class DogMatch extends AppCompatActivity {
         */
 
         //get a reference to the reycler view
-        mRecyclerView = (RecyclerView) findViewById(R.id.companyDogs_recyclerView);
+        mRecyclerView = (RecyclerView) findViewById(R.id.matchDogs_recyclerView);
 
         //sets the layout mangaer to use a linear layout for displaying views
         mLayoutManager = new LinearLayoutManager(this);

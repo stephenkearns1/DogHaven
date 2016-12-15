@@ -31,6 +31,16 @@ public class User {
     }
 
 
+    public User(String fName, String sName, String username, String email, String password){
+        this.userID = userID;
+        this.fName = fName;
+        this.sName = sName;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+
+    }
+
     public void setUserID(int userID) {
         this.userID = userID;
     }
