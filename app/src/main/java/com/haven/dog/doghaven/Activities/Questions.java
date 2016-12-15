@@ -23,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.haven.dog.doghaven.Helpers.MyNetworkingSingletonVolley;
 import com.haven.dog.doghaven.Helpers.UserSessionManagment;
+import com.haven.dog.doghaven.Models.User;
 import com.haven.dog.doghaven.R;
 
 import java.util.HashMap;
@@ -32,19 +33,20 @@ import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
 public class Questions extends AppCompatActivity implements View.OnClickListener{
-    Spinner q1sp,q2sp,q3sp,q3_1sp,q4sp,q5sp,q6sp,q7sp,q8sp,
+   private Spinner q1sp,q2sp,q3sp,q3_1sp,q4sp,q5sp,q6sp,q7sp,q8sp,
             q9sp,q10sp, q11sp, q12sp, q13sp,q13_1sp,q14sp,q15sp;
 
 
-    ImageView q1iv, q2iv, q3iv, q3_1iv, q4iv, q5iv, q6iv, q7iv,q8iv,
+   private ImageView q1iv, q2iv, q3iv, q3_1iv, q4iv, q5iv, q6iv, q7iv,q8iv,
               q9iv, q10iv, q11iv, q12iv, q13iv, q13_1iv, q14iv, q15iv;
 
-    String size,fur,body,tolerance,fixed,energy,exercise,intelligence,temp,
-            instinct,people,family,dogs,emotion,social;
+   private String size,fur,body,tolerance,fixed,energy,exercise,intelligence,temp,
+            instinct,people,family,dogs,emotion,social,user_id;
+   private int userId;
 
-    Button addPref;
+   private Button addPref;
 
-    LinearLayout q3_1LL,q13_1LL;
+    private LinearLayout q3_1LL,q13_1LL;
 
     private final String doghavenAPI_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php";
 
@@ -102,6 +104,9 @@ public class Questions extends AppCompatActivity implements View.OnClickListener
         addPref = (Button) findViewById(R.id.addPref);
 
         userSessionManag = new UserSessionManagment(this);
+        User user = userSessionManag.UserLoggedIn();
+        userId= user.getUserID();
+        user_id = Integer.toString(userId);
         addListenerOnDropDown();
 
 
@@ -462,6 +467,7 @@ public class Questions extends AppCompatActivity implements View.OnClickListener
             protected Map<String,String> getParams()  throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
                 params.put("addpref", "addpref");
+                params.put("user_id", user_id);
                 params.put("size", size);
                 params.put("fur", fur);
                 params.put("body", body);

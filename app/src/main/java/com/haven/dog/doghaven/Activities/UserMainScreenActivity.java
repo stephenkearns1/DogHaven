@@ -25,7 +25,7 @@ import com.haven.dog.doghaven.R;
 public class UserMainScreenActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
-    private Button dogmatch, breedinfo, breederSearch, dogparkLocator, profileBtn;
+    private Button dogmatch, breedinfo, breederSearch, dogparkLocator, profileBtn,question;
     private UserSessionManagment userSessionManag;
     private TextView usernameTV, useremailTV;
     @Override

@@ -110,21 +110,11 @@
             android:name=".Activities.CompanyDogActivity"
             android:label="@string/title_activity_company_dog"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Activities.Questions"
             android:label="@string/title_activity_questions"
             android:theme="@style/AppTheme.NoActionBar">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-
         </activity>
     </application>
 
