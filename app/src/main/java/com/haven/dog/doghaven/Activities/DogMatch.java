@@ -44,7 +44,8 @@ public class DogMatch extends AppCompatActivity {
     private ArrayList<Dog> dogsList;
     private ArrayList<UserPrefs> userPrefsList;
     private int user_id;
-    private final String doghavenAPI_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php?GetAllDogs";
+    private final String doghavenAPI_GetDogs_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php?GetAllDogs";
+    private final String doghavenAPI_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php";
     private String name, breed, companyName, age, color;
     private RecyclerView mRecyclerView;
     private CompanyDogsAdapter mAdapter;
@@ -102,6 +103,8 @@ public class DogMatch extends AppCompatActivity {
 
 
 
+
+
     }
 
     @Override
@@ -119,9 +122,11 @@ public class DogMatch extends AppCompatActivity {
 
 
        //get the logged in users ID to make a request to get the user perferances
-       user_id = user.getUserID();
+        user_id = user.getUserID();
         GetUserPrefs();
-        RetriveDogList();
+
+
+
 
 
     }
@@ -155,7 +160,7 @@ public class DogMatch extends AppCompatActivity {
 
 
     private void RetriveDogList() {
-        JsonArrayRequest companyDogListRequest = new JsonArrayRequest(doghavenAPI_URL,
+        JsonArrayRequest companyDogListRequest = new JsonArrayRequest(doghavenAPI_GetDogs_URL,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -223,9 +228,12 @@ public class DogMatch extends AppCompatActivity {
                                 EventsModel event = new EventsModel(id, eventCat, eventTitle, eventLocation,eventTime,eventDate,eventLat,eventLong);
                                 listOfEvents.add(event);
                                */
+
+                                //when user prefs have been received, find the dog matches for the user
+
                             }
 
-
+                            getMatches();
 
 
                         } catch (JSONException e) {
@@ -261,8 +269,8 @@ public class DogMatch extends AppCompatActivity {
 
     private void GetUserPrefs(){
         progressDialog = new ProgressDialog(DogMatch.this);
-        progressDialog.setMessage("Logging in");
-        progressDialog.setTitle("Authenticating");
+        progressDialog.setMessage("Finding matches..");
+        progressDialog.setTitle("Matching");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.show();
 
@@ -272,11 +280,12 @@ public class DogMatch extends AppCompatActivity {
 
 
                     @Override
-                    public void onResponse(String response) {
+                    public void onResponse(String nResponse) {
 
-                        Log.i("Response1", response);
-                        Log.i("Response length", "" + response.length());
-                        if (!(response.equals("failed"))){
+
+                        Log.i("Response1", nResponse);
+                        Log.i("Response length", "" + nResponse.length());
+                        if (!(nResponse.equals("failed"))){
 
                             if (!(userPrefsList == null)) {
                                 userPrefsList.clear();
@@ -286,7 +295,7 @@ public class DogMatch extends AppCompatActivity {
                             try {
 
                                 //JSONArray jsArray = new JSONArray(response);
-                                JSONObject jsUserObj= new JSONObject(response);
+                                JSONObject jsUserObj= new JSONObject(nResponse);
 
                                 //JSONObject jsUserObj = (JSONObject) jsArray.get(0);
                                 //she have a unique id
@@ -316,13 +325,15 @@ public class DogMatch extends AppCompatActivity {
                                 progressDialog.hide();
 
 
-                                Log.i("Returned data json:L01", response);
+                                RetriveDogList();
+
+                                Log.i("Returned data json:L01", nResponse);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
 
 
-                            Log.i("Returned data:L01", response);
+                            Log.i("Returned data:L01", nResponse);
                         }else{
                             //error message saying incorrect details
                             progressDialog.hide();
@@ -350,7 +361,8 @@ public class DogMatch extends AppCompatActivity {
             protected Map<String,String> getParams()  throws AuthFailureError{
                 Map<String,String> params = new HashMap<>();
                 //sending login signals to server that it is a login request and should handle accordingly
-                params.put("login", "login");
+                Log.i("user ID", "getting sent" + user_id);
+                params.put("GetUserPrefs", "GetUserPrefs");
                 params.put("user_id", String.valueOf(user_id));
                 return params;
             }
@@ -368,7 +380,8 @@ public class DogMatch extends AppCompatActivity {
         match.setDogList(dogsList);
         match.setuserPrefs(userPrefsList);
         match.AddDogWeightings();
-        ArrayList<Dog> dogsToShow = match.MostSuitedDogs();
+        match.MostSuitedDogs();
+        ArrayList<Dog> dogsToShow = match.getDogsToShow();
         mAdapter.ClearAll();
         mAdapter.AddAllDogs(dogsToShow);
     }
