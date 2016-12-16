@@ -38,8 +38,8 @@ public class MatchingAlogrithm {
 
     public void AddDogWeightings(){
 
+       // for(int i = 0; i < dogList.size()-1; i++){
         for(int i = 0; i < dogList.size()-1; i++){
-
             Dog dog = dogList.get(i);
             //reset the score for next dogs score to be calculated
             int score = 0;
@@ -177,10 +177,6 @@ public class MatchingAlogrithm {
         this.dogList = dogList;
     }
 
-
-    public void setDogsToShow(ArrayList<Dog> dogsToShow) {
-        this.dogsToShow = dogsToShow;
-    }
 
     public void setuserPrefs(ArrayList<UserPrefs> userPrefs) {
         this.userPrefs = userPrefs;
