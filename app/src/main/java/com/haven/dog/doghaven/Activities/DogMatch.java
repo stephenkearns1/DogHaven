@@ -389,6 +389,9 @@ public class DogMatch extends AppCompatActivity {
         match.MostSuitedDogs();
         ArrayList<Dog> dogsToShow = match.getDogsToShow();
         mAdapter.ClearAll();
+        if(dogsToShow.size() == 0){
+
+        }
         mAdapter.AddAllDogs(dogsToShow);
     }
 }

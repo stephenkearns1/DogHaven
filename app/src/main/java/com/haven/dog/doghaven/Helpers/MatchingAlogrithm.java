@@ -103,16 +103,20 @@ public class MatchingAlogrithm {
         }
 
         */
-        if(dogScoreList.size() == 1){
-            int index = dogScoreList.get(0).getIndexOfDogInList();
-            dogsToShow.add((Dog) dogList.get(index));
-        }else if(dogScoreList.size() < 3){
-            for(int i = 0; i < 3; i++){
+        //if the first score in the list is 0 then no matches have been found
+        if(dogScoreList.get(0).getScore() == 0){
+             return dogsToShow;
+        }else if(dogScoreList.get(0).getScore() == 15 && dogScoreList.get(1).getScore() == 15){
+            for(int i = 0; i < 2; i++){
 
                 int index = dogScoreList.get(i).getIndexOfDogInList();
                 dogsToShow.add((Dog) dogList.get(index));
             }
-        }else{
+        }else if(dogScoreList.get(0).getScore() == 15){
+
+            int index = dogScoreList.get(0).getIndexOfDogInList();
+            dogsToShow.add((Dog) dogList.get(index));
+        } else{
             for(int i = 0; i < 4; i++){
 
                 int index = dogScoreList.get(i).getIndexOfDogInList();
