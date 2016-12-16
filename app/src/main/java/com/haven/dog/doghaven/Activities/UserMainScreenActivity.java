@@ -54,12 +54,14 @@ public class UserMainScreenActivity extends AppCompatActivity
         breederSearch = (Button) findViewById(R.id.breederSearchBtn);
         dogparkLocator = (Button) findViewById(R.id.dogparkLocatorBtn);
         profileBtn = (Button) findViewById(R.id.userprofile_Btn);
+        question= (Button) findViewById(R.id.question3);
 
         dogmatch.setOnClickListener(this);
         breedinfo.setOnClickListener(this);
         breederSearch.setOnClickListener(this);
         dogparkLocator.setOnClickListener(this);
         profileBtn.setOnClickListener(this);
+        question.setOnClickListener(this);
 
         //instantiates objects for reference
         userSessionManag = new UserSessionManagment(this);
@@ -171,6 +173,11 @@ public class UserMainScreenActivity extends AppCompatActivity
            case R.id.userprofile_Btn:
                Intent profile = new Intent(this,UserProfile.class);
                startActivity(profile);
+               break;
+
+           case R.id.question3:
+               Intent question = new Intent(this,Questions.class);
+               startActivity(question);
                break;
        }
     }
