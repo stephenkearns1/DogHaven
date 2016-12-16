@@ -53,33 +53,33 @@ public class MatchingAlogrithm {
                 //add weighting methods here
                 if(userPrefs.get(0).getSize().equalsIgnoreCase(dog.getSize()))
                     score++;
-                else if(userPrefs.get(0).getFur().equalsIgnoreCase(dog.getFur()))
+                if(userPrefs.get(0).getFur().equalsIgnoreCase(dog.getFur()))
                     score++;
-                else if(userPrefs.get(0).getBody().equalsIgnoreCase(dog.getBody()))
+                if(userPrefs.get(0).getBody().equalsIgnoreCase(dog.getBody()))
                     score++;
-                else if(userPrefs.get(0).getTolerance().equalsIgnoreCase(dog.getTolerance()))
+                if(userPrefs.get(0).getTolerance().equalsIgnoreCase(dog.getTolerance()))
                     score++;
-                else if(userPrefs.get(0).getNeutered().equalsIgnoreCase(dog.getNeutered()))
+                if(userPrefs.get(0).getNeutered().equalsIgnoreCase(dog.getNeutered()))
                     score++;
-                else if(userPrefs.get(0).getEnergy().equalsIgnoreCase(dog.getEnergy()))
+                if(userPrefs.get(0).getEnergy().equalsIgnoreCase(dog.getEnergy()))
                     score++;
-                else if(userPrefs.get(0).getExercise().equalsIgnoreCase(dog.getExercise()))
+                if(userPrefs.get(0).getExercise().equalsIgnoreCase(dog.getExercise()))
                     score++;
-                else if(userPrefs.get(0).getIntelligence().equalsIgnoreCase(dog.getIntelligence()))
+                if(userPrefs.get(0).getIntelligence().equalsIgnoreCase(dog.getIntelligence()))
                     score++;
-                else if(userPrefs.get(0).getPlayful().equalsIgnoreCase(dog.getPlayful()))
+                if(userPrefs.get(0).getPlayful().equalsIgnoreCase(dog.getPlayful()))
                     score++;
-                else if(userPrefs.get(0).getInstinct().equalsIgnoreCase(dog.getInstinct()))
+                if(userPrefs.get(0).getInstinct().equalsIgnoreCase(dog.getInstinct()))
                     score++;
-                else if(userPrefs.get(0).getPeople().equalsIgnoreCase(dog.getPeople()))
+                if(userPrefs.get(0).getPeople().equalsIgnoreCase(dog.getPeople()))
                     score++;
-                else if(userPrefs.get(0).getFamily().equalsIgnoreCase(dog.getFamily()))
+                if(userPrefs.get(0).getFamily().equalsIgnoreCase(dog.getFamily()))
                     score++;
-                else if(userPrefs.get(0).getDogs().equalsIgnoreCase(dog.getDogs()))
+                if(userPrefs.get(0).getDogs().equalsIgnoreCase(dog.getDogs()))
                     score++;
-                else if(userPrefs.get(0).getEmotion().equalsIgnoreCase(dog.getEmotion()))
+                if(userPrefs.get(0).getEmotion().equalsIgnoreCase(dog.getEmotion()))
                     score++;
-                else if(userPrefs.get(0).getSociability().equalsIgnoreCase(dog.getSociality()))
+                if(userPrefs.get(0).getSociability().equalsIgnoreCase(dog.getSociality()))
                     score++;
 
             //}
@@ -103,12 +103,24 @@ public class MatchingAlogrithm {
         }
 
         */
-
-        for(int i = 0; i < 3; i++){
-
-            int index = dogScoreList.get(i).getIndexOfDogInList();
+        if(dogScoreList.size() == 1){
+            int index = dogScoreList.get(0).getIndexOfDogInList();
             dogsToShow.add((Dog) dogList.get(index));
+        }else if(dogScoreList.size() < 3){
+            for(int i = 0; i < 3; i++){
+
+                int index = dogScoreList.get(i).getIndexOfDogInList();
+                dogsToShow.add((Dog) dogList.get(index));
+            }
+        }else{
+            for(int i = 0; i < 4; i++){
+
+                int index = dogScoreList.get(i).getIndexOfDogInList();
+                dogsToShow.add((Dog) dogList.get(index));
+            }
         }
+
+
 
         return dogsToShow;
     }
@@ -172,6 +184,10 @@ public class MatchingAlogrithm {
 
     public void setuserPrefs(ArrayList<UserPrefs> userPrefs) {
         this.userPrefs = userPrefs;
+    }
+
+    public ArrayList<Dog> getDogsToShow() {
+        return dogsToShow;
     }
 }
 
