@@ -76,7 +76,7 @@ import java.util.List;
 
         @Override
         public com.haven.dog.doghaven.Helpers.MatchDogsAdapter .ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view  = LayoutInflater.from(context).inflate(R.layout.company_dog_row, parent, false);
+            View view  = LayoutInflater.from(context).inflate(R.layout.matched_dog_row, parent, false);
             com.haven.dog.doghaven.Helpers.MatchDogsAdapter .ViewHolder vh = new com.haven.dog.doghaven.Helpers.MatchDogsAdapter .ViewHolder(view);
             return vh;
         }

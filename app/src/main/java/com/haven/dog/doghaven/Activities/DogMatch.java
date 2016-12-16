@@ -22,6 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.haven.dog.doghaven.Helpers.CompanyDogsAdapter;
+import com.haven.dog.doghaven.Helpers.MatchDogsAdapter;
 import com.haven.dog.doghaven.Helpers.MatchingAlogrithm;
 import com.haven.dog.doghaven.Helpers.MyNetworkingSingletonVolley;
 import com.haven.dog.doghaven.Helpers.UserSessionManagment;
@@ -49,7 +50,7 @@ public class DogMatch extends AppCompatActivity {
     private final String doghavenAPI_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php";
     private String name, breed, companyName, age, color;
     private RecyclerView mRecyclerView;
-    private CompanyDogsAdapter mAdapter;
+    private MatchDogsAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private  UserSessionManagment userSessionManag;
     private User user;
@@ -85,11 +86,11 @@ public class DogMatch extends AppCompatActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.matchDogs_recyclerView);
 
         //sets the layout mangaer to use a linear layout for displaying views
-        mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         //sets up the recyler view to use the customer adapter for dogs
-        mAdapter = new CompanyDogsAdapter(this);
+        mAdapter = new MatchDogsAdapter(this);
         mRecyclerView.setAdapter(mAdapter);
 
         //instantiates objects for reference
