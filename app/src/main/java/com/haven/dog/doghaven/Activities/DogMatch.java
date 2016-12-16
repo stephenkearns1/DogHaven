@@ -182,7 +182,7 @@ public class DogMatch extends AppCompatActivity {
                         try {
 
 
-                            for (int i = 0; i < response.length(); i++) {
+                            for (int i = 0; i < response.length()-1; i++) {
                                 JSONObject dogObj = (JSONObject) response.get(i);
                                 dogId= Integer.parseInt(dogObj.getString("dog_id"));
                                 name =  dogObj.getString(TAG_dogname);

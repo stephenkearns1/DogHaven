@@ -457,6 +457,7 @@ public class Questions extends AppCompatActivity implements View.OnClickListener
                     public void onResponse(String response) {
 
                         pDialog.hide();
+                        pDialog.dismiss();
                         Log.i("Returned data:R01", response);
                         if(response.equalsIgnoreCase("success")){
 
