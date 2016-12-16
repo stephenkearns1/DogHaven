@@ -16,7 +16,14 @@
     android:background="#FF5722">
 
 
-         <ImageView
+    <Button
+        android:text="Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/question3"
+        android:layout_weight="0.07" />
+
+    <ImageView
             android:layout_width="300dp"
             android:layout_height="100dp"
             android:id="@+id/userhomescreenimage"

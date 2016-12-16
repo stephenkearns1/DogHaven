@@ -54,6 +54,8 @@ public class Questions extends AppCompatActivity implements View.OnClickListener
 
     private  ProgressDialog pDialog;
 
+    private User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,17 +104,20 @@ public class Questions extends AppCompatActivity implements View.OnClickListener
         q13_1LL= (LinearLayout) findViewById(R.id.q13_1);
 
         addPref = (Button) findViewById(R.id.addPref);
+        addPref.setOnClickListener(this);
 
         userSessionManag = new UserSessionManagment(this);
-        User user = userSessionManag.UserLoggedIn();
+        user = userSessionManag.UserLoggedIn();
         userId= user.getUserID();
-        user_id = Integer.toString(userId);
+
         addListenerOnDropDown();
 
 
 
 
     }
+
+
 
     private boolean authenticate() {
         Log.i("getLoggedIn value", "" + userSessionManag.getLoggedIn());
@@ -130,6 +135,9 @@ public class Questions extends AppCompatActivity implements View.OnClickListener
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
+
+
+
     }
 
     private void addListenerOnDropDown() {
@@ -467,7 +475,7 @@ public class Questions extends AppCompatActivity implements View.OnClickListener
             protected Map<String,String> getParams()  throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
                 params.put("addpref", "addpref");
-                params.put("user_id", user_id);
+                params.put("user_id",String.valueOf(userId));
                 params.put("size", size);
                 params.put("fur", fur);
                 params.put("body", body);

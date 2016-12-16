@@ -26,7 +26,7 @@ public class UserSessionManagment {
         public void SessionUserMangement(User user){
             this.user = user;
             SharedPreferences.Editor spEditor = userSessionManager.edit();
-            spEditor.putInt("userID", user.getUserID());
+            spEditor.putInt("user_id", user.getUserID());
             spEditor.putString("fname", user.getfName());
             spEditor.putString("sname", user.getsName());
             spEditor.putString("userName", user.getUsername());
@@ -50,15 +50,15 @@ public class UserSessionManagment {
     }
         //checks if users is logged in i,e true of if not i,e false
         public User UserLoggedIn(){
-            int userID = userSessionManager.getInt("ùserID", 0);
+            int userID = userSessionManager.getInt("user_id",47);
             String fname = userSessionManager.getString("fname", "");
             String sname = userSessionManager.getString("sname", "");
             String userName = userSessionManager.getString("userName", "");
             String email = userSessionManager.getString("email", "");
             String password = userSessionManager.getString("password", "");
 
-            //user = new User(userID, fname,sname,userName,email,password);
-            user = new User( fname,sname,userName,email,password);
+            user = new User(userID, fname,sname,userName,email,password);
+            //user = new User( fname,sname,userName,email,password);
             return user;
         }
 
