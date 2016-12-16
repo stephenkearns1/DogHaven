@@ -47,11 +47,11 @@ import com.haven.dog.doghaven.R;
  */
 
 public class AddDogActivity extends AppCompatActivity implements View.OnClickListener {
-    EditText  nameinsertET, ageinsertET, breedinsertET, companyinsertET, colorinsertET, illcurrentinsertET, illpastinsertET, vacinsertET, vacmissinginsertET;
+    EditText nameinsertET, ageinsertET, breedinsertET, companyinsertET, colorinsertET, illcurrentinsertET, illpastinsertET, vacinsertET, vacmissinginsertET;
     Button AddDogBtn, GalleryBtn, UploadBtn;
     Spinner ddsize, ddfur, ddbody, ddtolerance, ddneutered, ddenergy, ddexercise, ddintelligence, ddplayful, ddinstinct, ddpeople, ddfamily, dddogs, ddemotion, ddsociability;
-    private String dog_name, dog_breed, dog_age,dog_company, dog_color, dillcurr, dillpast, dvac, dvacmiss, size, fur, body, tolerance, neutered, energy, exercise, intelligence, playful, instinct, people, family, dogs, emotion, sociability, image;
-    private  ProgressDialog pDialog;
+    private String dog_name, dog_breed, dog_age, dog_company, dog_color, dillcurr, dillpast, dvac, dvacmiss, size, fur, body, tolerance, neutered, energy, exercise, intelligence, playful, instinct, people, family, dogs, emotion, sociability, image;
+    private ProgressDialog pDialog;
     private final String doghavenAPI_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php";
     private UserSessionManagment userSessionManag;
     private ImageView PictureIV;
@@ -72,20 +72,20 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
         illpastinsertET = (EditText) findViewById(R.id.IllnessPastInsertET);
         vacinsertET = (EditText) findViewById(R.id.VaccinationInsertET);
         vacmissinginsertET = (EditText) findViewById(R.id.VaccinationsMissingInsertET);
-        ddsize=(Spinner) findViewById(R.id.ddsize);
+        ddsize = (Spinner) findViewById(R.id.ddsize);
         ddfur = (Spinner) findViewById(R.id.ddfur);
-        ddbody=(Spinner) findViewById(R.id.ddbody);
+        ddbody = (Spinner) findViewById(R.id.ddbody);
         ddtolerance = (Spinner) findViewById(R.id.ddtolerance);
-        ddneutered=(Spinner) findViewById(R.id.ddneutered);
+        ddneutered = (Spinner) findViewById(R.id.ddneutered);
         ddenergy = (Spinner) findViewById(R.id.ddenergy);
-        ddexercise =(Spinner) findViewById(R.id.ddexercise);
+        ddexercise = (Spinner) findViewById(R.id.ddexercise);
         ddintelligence = (Spinner) findViewById(R.id.ddintelligence);
-        ddplayful=(Spinner) findViewById(R.id.ddplayful);
+        ddplayful = (Spinner) findViewById(R.id.ddplayful);
         ddinstinct = (Spinner) findViewById(R.id.ddinstinct);
         ddpeople = (Spinner) findViewById(R.id.ddpeople);
-        ddfamily=(Spinner) findViewById(R.id.ddfamily);
+        ddfamily = (Spinner) findViewById(R.id.ddfamily);
         dddogs = (Spinner) findViewById(R.id.dddogs);
-        ddemotion=(Spinner) findViewById(R.id.ddemotion);
+        ddemotion = (Spinner) findViewById(R.id.ddemotion);
         ddsociability = (Spinner) findViewById(R.id.ddsociability);
 
         AddDogBtn = (Button) findViewById(R.id.AddDogBtn);
@@ -119,8 +119,8 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 
-        @Override
-        public void onClick (View v){
+    @Override
+    public void onClick(View v) {
         if (v.getId() == R.id.AddDogBtn) {
 
             dog_name = nameinsertET.getText().toString();
@@ -148,16 +148,14 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
             emotion = ddemotion.getSelectedItem().toString();
             sociability = ddsociability.getSelectedItem().toString();
 
-
             addDog();
 
-        }
-            else{
-            if(v.getId() == R.id.GalleryBtn){
+
+        } else {
+            if (v.getId() == R.id.GalleryBtn) {
                 onGalleryClicker();
-            }
-            else{
-                if(v.getId() == R.id.UploadBtn){
+            } else {
+                if (v.getId() == R.id.UploadBtn) {
 
                     image = getStringImage(bitmap);
 
@@ -191,31 +189,61 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    public String getStringImage(Bitmap bmap){
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        bmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
-        byte[] imageBytes = outputStream.toByteArray();
-        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-        return encodedImage;
+    public String getStringImage(Bitmap bmap) {
+
+
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            bmap.compress(Bitmap.CompressFormat.JPEG, 50, outputStream);
+            byte[] imageBytes = outputStream.toByteArray();
+
+            try {
+                outputStream.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                outputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+            return encodedImage;
+
     }
 
+
+
+
     public void uploadImage(){
-        final ProgressDialog loading = ProgressDialog.show(this, "Uploading...", "Please wait...",false,false);
+        pDialog = new ProgressDialog(AddDogActivity.this);
+        pDialog.setMessage("...Processing...");
+        pDialog.setTitle("Uploading Image");
+        pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        pDialog.show();
         StringRequest ImageRequest = new StringRequest(Request.Method.POST, doghavenAPI_URL,
                 new Response.Listener<String>() {
                     @Override
-                    public void onResponse(String s) {
-                        loading.dismiss();
-                        Toast.makeText(AddDogActivity.this, s , Toast.LENGTH_LONG).show();
+                    public void onResponse(String response) {
+                        pDialog.hide();
+                        Log.i("Returned data:R01", response);
+                        if(response.equalsIgnoreCase("success")){
+
+                        }else{
+
+                        }
                     }
+
                 },
                 new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError volleyError) {
-                        loading.dismiss();
-                        Toast.makeText(AddDogActivity.this, volleyError.getMessage().toString(), Toast.LENGTH_LONG).show();
-                    }
-                }){
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                pDialog.hide();
+                Toast.makeText(AddDogActivity.this, error.getMessage().toString(), Toast.LENGTH_LONG).show();
+            }
+        }) {
+            
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
 
