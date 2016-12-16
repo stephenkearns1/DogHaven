@@ -12,7 +12,7 @@ import android.widget.Spinner;
 import com.haven.dog.doghaven.R;
 
 /**
- * Created by Marken Teder on 11/11/2016.
+  * Created by Marken Teder on 11/11/2016.
  */
 
 public class StudMatchActivity extends AppCompatActivity {

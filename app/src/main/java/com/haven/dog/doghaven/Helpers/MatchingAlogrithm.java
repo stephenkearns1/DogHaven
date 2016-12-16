@@ -38,7 +38,7 @@ public class MatchingAlogrithm {
 
     public void AddDogWeightings(){
 
-        for(int i = 0; i < dogList.size(); i++){
+        for(int i = 0; i < dogList.size()-1; i++){
 
             Dog dog = dogList.get(i);
             //reset the score for next dogs score to be calculated

@@ -37,6 +37,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DogMatch extends AppCompatActivity {
@@ -65,6 +66,8 @@ public class DogMatch extends AppCompatActivity {
     private String TAG_people="people", TAG_family="family", TAG_dogs="dogs", TAG_emotion="emotion", TAG_sociality="sociability";
     private String TAG_dillcur ="dillcurr", TAG_dillpast = "dillpast", TAG_dvac = "dvac", TAG_dvacmiss = "dvacmiss";
     private ProgressDialog progressDialog;
+    private List<Dog> dogstest;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +96,9 @@ public class DogMatch extends AppCompatActivity {
         match = new MatchingAlogrithm();
         userSessionManag = new UserSessionManagment(this);
         user = userSessionManag.UserLoggedIn();
+
+
+
 
 
 
