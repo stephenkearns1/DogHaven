@@ -237,7 +237,7 @@ public class CompanyDogActivity extends AppCompatActivity
                 Map<String, String> params = new HashMap<>();
                 //sending login signals to server that it is a login request and should handle accordingly
                 params.put("CompanyDogsExist", "");
-                params.put("companyname", "stescats");
+                params.put("companyname", companyName);
                 return params;
             }
         };
@@ -374,7 +374,7 @@ public class CompanyDogActivity extends AppCompatActivity
                     public void onResponse(JSONArray response) {
                         //check the response from the server
                         Log.i("New Response", response.toString());
-                        Log.i("New Response", response.toString());
+                        Log.i("Response lenght", "" + response.length());
 
                         if (!(dogList == null)) {
                             dogList.clear();
@@ -385,7 +385,7 @@ public class CompanyDogActivity extends AppCompatActivity
                         try {
 
 
-                            for (int i = 0; i < response.length()-1; i++) {
+                            for (int i = 0; i < response.length(); i++) {
                                 JSONObject dogObj = (JSONObject) response.get(i);
                                 dogId= Integer.parseInt(dogObj.getString("dog_id"));
                                 name =  dogObj.getString(TAG_dogname);

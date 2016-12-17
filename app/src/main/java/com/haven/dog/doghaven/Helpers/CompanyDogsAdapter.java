@@ -43,7 +43,8 @@ public class CompanyDogsAdapter extends RecyclerView.Adapter<CompanyDogsAdapter.
     private PopupWindow mPopupWindow;
     private RelativeLayout mRelativeLayout;
     private CompanyDogActivity companyDogs;
-    private final String doghavenAPI_GetDogs_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php?companydogs=";
+    private int dog_id;
+    private final String doghavenAPI_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php";
 
     public CompanyDogsAdapter(Context context){
         this.context = context;
@@ -184,6 +185,9 @@ public class CompanyDogsAdapter extends RecyclerView.Adapter<CompanyDogsAdapter.
         holder.deleteBtn.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View v){
+                Dog dog = dogList.get(position);
+                dog_id = dog.getDogId();
+                DeleteDog();
                RemoveDog(position);
             }
         });
@@ -223,9 +227,9 @@ public class CompanyDogsAdapter extends RecyclerView.Adapter<CompanyDogsAdapter.
 
 
 
-    public void CheckDogsBeenAdded(){
+    public void DeleteDog(){
 
-        StringRequest checkDogBeenAddedRequest  = new StringRequest(Request.Method.POST,  doghavenAPI_GetDogs_URL ,
+        StringRequest deleteDogRequest  = new StringRequest(Request.Method.POST,  doghavenAPI_URL  ,
                 new Response.Listener<String>() {
 
 
@@ -236,23 +240,17 @@ public class CompanyDogsAdapter extends RecyclerView.Adapter<CompanyDogsAdapter.
                         Log.i("New Response", response.toString());
 
 
-                        if(response.equals("true")){
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                        builder.setMessage("Deleted")
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
 
 
+                                    }
+                                });
 
-                        }else{
-                            final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                            builder.setMessage("No dogs have been addded")
-                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-
-
-                                        }
-                                    });
-
-                            builder.show();
-                        }
+                        builder.show();
                     }
 
                 }, new Response.ErrorListener() {
@@ -276,8 +274,8 @@ public class CompanyDogsAdapter extends RecyclerView.Adapter<CompanyDogsAdapter.
             protected Map<String, String> getParams ()throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 //sending login signals to server that it is a login request and should handle accordingly
-                params.put("CompanyDogsExist", "");
-                params.put("companyname", "stescats");
+                params.put("deletedog", "deletedog");
+                params.put("dog_id","" + dog_id);
                 return params;
             }
         };
@@ -286,7 +284,7 @@ public class CompanyDogsAdapter extends RecyclerView.Adapter<CompanyDogsAdapter.
 
 
         // Adding the request to the queue
-        MyNetworkingSingletonVolley.getInstance(context).addReuestToQueue(checkDogBeenAddedRequest);
+        MyNetworkingSingletonVolley.getInstance(context).addReuestToQueue(deleteDogRequest);
     }
 
 
