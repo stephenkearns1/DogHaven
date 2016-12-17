@@ -3,6 +3,10 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_questions"
+            android:icon="@drawable/ic_play_light"
+            android:title="Questions" />
+        <item
             android:id="@+id/nav_camera"
             android:icon="@drawable/ic_people_outline_black_24dp"
             android:title="Dog Match" />
@@ -15,22 +19,12 @@
             android:icon="@drawable/ic_search_black_24dp"
             android:title="Breeder Search" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_place_black_24dp"
-            android:title="Dogpark Locator" />
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Profile" />
+
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
+
 
 </menu>
