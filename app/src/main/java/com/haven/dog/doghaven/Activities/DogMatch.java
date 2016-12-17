@@ -254,18 +254,7 @@ public class DogMatch extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
 
             }
-        })
-
-        {
-            @Override
-            protected Map<String, String> getParams ()throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                //sending login signals to server that it is a login request and should handle accordingly
-                params.put("checkifuserexists", "checkifuserexists");
-                params.put("username", "");
-                return params;
-            }
-        };
+        });
 
 
 

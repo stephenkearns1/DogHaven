@@ -12,7 +12,7 @@ import android.widget.Button;
 import com.haven.dog.doghaven.R;
 
 public class BreederMainScreen extends AppCompatActivity implements View.OnClickListener {
-    Button profile,stud,add;
+    Button profile,stud,add, companydogsBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +23,11 @@ public class BreederMainScreen extends AppCompatActivity implements View.OnClick
         profile=(Button) findViewById(R.id.CompanyProfileBtn);
         stud= (Button) findViewById(R.id.studMatch);
         add=(Button) findViewById(R.id.addDog);
+        companydogsBtn = (Button) findViewById(R.id.CompanyDogsBtn);
         profile.setOnClickListener(this);
         stud.setOnClickListener(this);
         add.setOnClickListener(this);
+        companydogsBtn.setOnClickListener(this);
 
 
 
@@ -46,6 +48,11 @@ public class BreederMainScreen extends AppCompatActivity implements View.OnClick
             case R.id.addDog:
                 Intent ad= new Intent(this,AddDogActivity.class);
                 startActivity(ad);
+
+                break;
+            case R.id.CompanyDogsBtn:
+                Intent compDogs = new Intent(this,CompanyDogActivity.class);
+                startActivity(compDogs);
 
                 break;
 

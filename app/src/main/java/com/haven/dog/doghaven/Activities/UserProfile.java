@@ -278,10 +278,9 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
         newEmail = profile_email_et.getText().toString();
         newPassword = profile_password_et.getText().toString();
         confirmPassword = profile_password_confirm_et.getText().toString();
-        if(!(vailadate.IsVaildEmail(newEmail))){
-            profile_email_et.setError("Invalid email");
-        }
-       else if(!(newPassword.equals(confirmPassword))){
+        if(vailadate.IsVaildEmail(newEmail) == false){
+            profile_email_et.setError("Invaild email");
+        }else if(!(newPassword.equals(confirmPassword))){
             final AlertDialog.Builder builder = new AlertDialog.Builder(UserProfile.this);
             builder.setMessage("Passwords do not match")
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -293,20 +292,7 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
                     });
 
             builder.show();
-        }
-        else if(vailadate.IsVaildPassword(confirmPassword) == false){
-            final AlertDialog.Builder builder = new AlertDialog.Builder(UserProfile.this);
-            builder.setMessage("Invaild password")
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-
-                        }
-                    });
-
-            builder.show();
-        }else if(!(updatedUsername.equals(originalUsername))){
+        } else if(!(updatedUsername.equals(originalUsername))){
             CheckIfUserExists();
         }else{
             UpdateUserDetails();
