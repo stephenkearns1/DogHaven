@@ -212,7 +212,8 @@ public class DogparkLocatorActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            Intent info= new Intent(this,DogMatch.class);
+            startActivity(info);
         } else if (id == R.id.nav_gallery) {
             Intent info= new Intent(this,BreedInfoActivity.class);
             startActivity(info);
@@ -221,8 +222,11 @@ public class DogparkLocatorActivity extends AppCompatActivity
         } else if (id == R.id.nav_slideshow) {
             Intent intent = new Intent(this,BreederSearch.class);
             startActivity(intent);
-        } else if (id == R.id.nav_manage) {
-            Intent info= new Intent(this,DogparkLocatorActivity.class);
+        } else if (id == R.id.nav_questions) {
+            Intent info= new Intent(this,Questions.class);
+            startActivity(info);
+        }else if (id==R.id.nav_profile){
+            Intent info = new Intent(this,UserProfile.class);
             startActivity(info);
         }
 

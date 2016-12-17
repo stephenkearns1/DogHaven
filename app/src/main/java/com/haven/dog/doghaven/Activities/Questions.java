@@ -4,10 +4,16 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -32,13 +38,10 @@ import java.util.Map;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
-public class Questions extends AppCompatActivity implements View.OnClickListener{
+public class Questions extends AppCompatActivity implements View.OnClickListener,NavigationView.OnNavigationItemSelectedListener{
    private Spinner q1sp,q2sp,q3sp,q3_1sp,q4sp,q5sp,q6sp,q7sp,q8sp,
             q9sp,q10sp, q11sp, q12sp, q13sp,q13_1sp,q14sp,q15sp;
 
-
-   private ImageView q1iv, q2iv, q3iv, q3_1iv, q4iv, q5iv, q6iv, q7iv,q8iv,
-              q9iv, q10iv, q11iv, q12iv, q13iv, q13_1iv, q14iv, q15iv;
 
    private String size,fur,body,tolerance,fixed,energy,exercise,intelligence,temp,
             instinct,people,family,dogs,emotion,social,user_id;
@@ -55,6 +58,8 @@ public class Questions extends AppCompatActivity implements View.OnClickListener
     private  ProgressDialog pDialog;
 
     private User user;
+
+    private TextView usernameTV, useremailTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,23 +87,7 @@ public class Questions extends AppCompatActivity implements View.OnClickListener
 
 
 
-        q1iv = (ImageView) findViewById(R.id.q1IV);
-        q2iv = (ImageView) findViewById(R.id.q2IV);
-        q3iv =(ImageView) findViewById(R.id.q3IV);
-        q3_1iv =(ImageView) findViewById(R.id.q3_1IV);
-        q4iv =(ImageView) findViewById(R.id.q4IV);
-        q5iv = (ImageView) findViewById(R.id.q5IV);
-        q6iv = (ImageView) findViewById(R.id.q6IV);
-        q7iv = (ImageView) findViewById(R.id.q7IV);
-        q8iv = (ImageView) findViewById(R.id.q8IV);
-        q9iv = (ImageView) findViewById(R.id.q9IV);
-        q10iv = (ImageView) findViewById(R.id.q10IV);
-        q11iv = (ImageView) findViewById(R.id.q11IV);
-        q12iv = (ImageView) findViewById(R.id.q12IV);
-        q13iv = (ImageView) findViewById(R.id.q13IV);
-        q13_1iv = (ImageView) findViewById(R.id.q13_1IV);
-        q14iv = (ImageView) findViewById(R.id.q14IV);
-        q15iv = (ImageView) findViewById(R.id.q15IV);
+
 
         q3_1LL= (LinearLayout) findViewById(R.id.q3_1);
         q13_1LL= (LinearLayout) findViewById(R.id.q13_1);
@@ -111,6 +100,23 @@ public class Questions extends AppCompatActivity implements View.OnClickListener
         userId= user.getUserID();
 
         addListenerOnDropDown();
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        //Inflates the nav_header layout as the header and then access the elements in the nav_header to populate with user details in the drawer
+        View navHeader = navigationView.getHeaderView(0);
+        usernameTV = (TextView) navHeader.findViewById(R.id.usernameHeader_TV);
+        useremailTV = (TextView) navHeader.findViewById(R.id.useremailHeader_TV);
+
+        //instantiates objects for reference
+        userSessionManag = new UserSessionManagment(this);
 
 
 
@@ -139,6 +145,92 @@ public class Questions extends AppCompatActivity implements View.OnClickListener
 
 
     }
+
+    private void displayUserDetails() {
+        User user = userSessionManag.UserLoggedIn();
+
+        //set text views
+        // View header = navigationView.
+
+        //displayUsernameTV.setText(user.getUserName());
+        //displayUseremailTV.setText(user.getEmail())
+        //;
+        usernameTV.setText(user.getUsername());
+        useremailTV.setText(user.getEmail());
+
+
+
+        Log.i("user Loggedin", user.getUsername() + user.getEmail());
+
+
+    }
+
+
+
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.dogpark_locator, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_camera) {
+            Intent info= new Intent(this,DogMatch.class);
+            startActivity(info);
+        } else if (id == R.id.nav_gallery) {
+            Intent info= new Intent(this,BreedInfoActivity.class);
+            startActivity(info);
+
+
+        } else if (id == R.id.nav_slideshow) {
+            Intent intent = new Intent(this,BreederSearch.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_manage) {
+            Intent info= new Intent(this,DogparkLocatorActivity.class);
+            startActivity(info);
+        }else if (id==R.id.nav_profile){
+            Intent info = new Intent(this,UserProfile.class);
+            startActivity(info);
+        }
+
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
 
     private void addListenerOnDropDown() {
         q1sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
