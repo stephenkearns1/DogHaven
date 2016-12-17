@@ -6,15 +6,11 @@
             android:id="@+id/nav_questions"
             android:icon="@drawable/ic_play_light"
             android:title="Questions" />
-
         <item
             android:id="@+id/nav_camera"
             android:icon="@drawable/ic_people_outline_black_24dp"
             android:title="Dog Match" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_description_black_24dp"
-            android:title="Breed Information" />
+
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_search_black_24dp"
@@ -23,8 +19,12 @@
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_place_black_24dp"
             android:title="Dogpark Locator" />
-
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Profile" />
     </group>
+
 
 
 </menu>

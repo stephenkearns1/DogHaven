@@ -2,6 +2,7 @@ package com.haven.dog.doghaven.Activities;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -253,17 +254,22 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            Intent info= new Intent(this,DogMatch.class);
+            startActivity(info);
         } else if (id == R.id.nav_gallery) {
+            Intent info= new Intent(this,BreedInfoActivity.class);
+            startActivity(info);
+
 
         } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+            Intent intent = new Intent(this,BreederSearch.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_questions) {
+            Intent info= new Intent(this,Questions.class);
+            startActivity(info);
+        }else if (id == R.id.nav_manage) {
+            Intent info= new Intent(this,DogparkLocatorActivity.class);
+            startActivity(info);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

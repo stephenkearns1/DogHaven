@@ -53,7 +53,7 @@ public class BreederSearch extends AppCompatActivity  implements NavigationView.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dogpark_locator);
+        setContentView(R.layout.activity_breeder_search);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getLoc= (Button) findViewById(R.id.button2);
@@ -209,19 +209,24 @@ public class BreederSearch extends AppCompatActivity  implements NavigationView.
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            Intent info= new Intent(this,DogMatch.class);
+            startActivity(info);
         } else if (id == R.id.nav_gallery) {
             Intent info= new Intent(this,BreedInfoActivity.class);
             startActivity(info);
 
 
-        } else if (id == R.id.nav_slideshow) {
-            Intent intent = new Intent(this,BreederSearch.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_manage) {
+        }  else if (id == R.id.nav_manage) {
             Intent info= new Intent(this,DogparkLocatorActivity.class);
             startActivity(info);
+        }else if (id == R.id.nav_questions) {
+            Intent info= new Intent(this,Questions.class);
+            startActivity(info);
+        }else if (id==R.id.nav_profile){
+            Intent info = new Intent(this,UserProfile.class);
+            startActivity(info);
         }
+
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
