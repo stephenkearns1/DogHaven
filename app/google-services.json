@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "615566559449",
+    "firebase_url": "https://doghaven-d1613.firebaseio.com",
+    "project_id": "doghaven-d1613",
+    "storage_bucket": "doghaven-d1613.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:615566559449:android:a683319014180da0",
+        "android_client_info": {
+          "package_name": "com.haven.dog.doghaven"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "615566559449-i4o04q3j5bk72pfvbsvlecrvnl2q0dku.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.haven.dog.doghaven",
+            "certificate_hash": "D9F68EE4203714A5B3ADD101114C6F214A041676"
+          }
+        },
+        {
+          "client_id": "615566559449-lg3k04k2vl1mrce4sqb8o392mrubc6cg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvIOne0ZdrloCHD6o4RNrZH2PSpDwo_z8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "615566559449-lg3k04k2vl1mrce4sqb8o392mrubc6cg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
