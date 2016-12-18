@@ -65,11 +65,12 @@
             android:text="Search"
             android:layout_height="wrap_content"
             android:id="@+id/button2"
-            android:background="@color/colorAccent"
             android:layout_width="100dp"
             android:gravity="center_vertical|center_horizontal|center"
             android:layout_marginLeft="130dp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:textColor="@color/cardview_light_background"
+            android:backgroundTint="@color/cast_expanded_controller_background_color" />
 
     </LinearLayout>
 

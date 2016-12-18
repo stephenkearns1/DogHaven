@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_orange_dark">
+    android:background="@color/colorPrimary">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -19,503 +19,427 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp">
 
-        <TextView
-            android:text="Add a Dog"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:id="@+id/ImageContainer">
+
+            <Button
+                android:text="Gallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/GalleryBtn"
+                android:background="@drawable/round_button"
+                android:onClick="onGalleryClicker"
+                android:layout_weight="1"
+                android:layout_marginTop="26dp"
+                android:layout_below="@+id/ImageFloatText"
+                android:layout_alignStart="@+id/UploadBtn" />
+
+            <TextView
+                android:text="Choose Image From Gallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="15sp"
+                android:id="@+id/ImageFloatText"
+                android:layout_weight="1"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:id="@+id/textView15"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_height="4dp"
+                android:padding="10dp"
+                android:background="@color/cast_expanded_controller_background_color" />
+
+            <ImageView
+                app:srcCompat="@color/colorwhite"
+                android:id="@+id/PictureIV"
+                android:layout_weight="1"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_width="180dp"
+                android:layout_height="180dp" />
+
+            <Button
+                android:text="Upload"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/UploadBtn"
+                android:background="@drawable/round_button"
+                android:onClick="uploadImage"
+                android:layout_weight="1"
+                android:layout_marginStart="9dp"
+                android:layout_below="@+id/GalleryBtn"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="25dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="220dp"
+            android:layout_height="180dp"
+            android:id="@+id/DetailsContainer">
+
+            <EditText
+                android:layout_width="130dp"
+                android:ems="10"
+                android:textSize="13sp"
+                android:textStyle="italic"
+                android:id="@+id/IllnessPastInsertET"
+                android:hint="Past Illnesses"
+                android:layout_alignBaseline="@+id/IllnessCurrentInsertET"
+                android:layout_alignBottom="@+id/IllnessCurrentInsertET"
+                android:layout_alignParentEnd="true"
+                android:layout_weight="1"
+                android:textColorLink="?attr/actionMenuTextColor"
+                android:textColorHint="@color/cardview_light_background"
+                android:textColorHighlight="@color/colorPrimaryText"
+                android:layout_height="37dp" />
+
+            <EditText
+                android:layout_width="75dp"
+                android:textStyle="italic"
+                android:textColor="@android:color/black"
+                android:textSize="13sp"
+                android:ems="10"
+                android:id="@+id/ColorInsertET"
+                android:hint="Enter Color"
+                android:layout_alignBaseline="@+id/CompanyInsertET"
+                android:layout_alignBottom="@+id/CompanyInsertET"
+                android:layout_alignStart="@+id/BreedInsertET"
+                android:layout_weight="1"
+                android:textColorLink="?attr/actionMenuTextColor"
+                android:textColorHint="@color/colorwhite"
+                android:layout_height="37dp" />
+
+            <EditText
+                android:layout_width="75dp"
+                android:textStyle="italic"
+                android:textColor="@android:color/black"
+                android:textSize="13sp"
+                android:ems="10"
+                android:id="@+id/BreedInsertET"
+                android:hint="Enter Breed"
+                android:layout_weight="1"
+                android:layout_alignBaseline="@+id/AgeInsertET"
+                android:layout_alignBottom="@+id/AgeInsertET"
+                android:layout_alignParentEnd="true"
+                android:textColorLink="@android:color/black"
+                android:textColorHint="@color/colorwhite"
+                android:layout_height="37dp" />
+
+            <EditText
+                android:ems="10"
+                android:textColor="@android:color/black"
+                android:textStyle="italic"
+                android:textSize="13sp"
+                android:id="@+id/NameInsertET"
+                android:layout_width="75dp"
+                android:hint="Enter Name"
+                android:layout_weight="1"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:textColorLink="@android:color/black"
+                android:textColorHint="@color/colorwhite"
+                android:layout_height="37dp" />
+
+            <EditText
+                android:ems="10"
+                android:id="@+id/AgeInsertET"
+                android:textStyle="italic"
+                android:textColor="@android:color/black"
+                android:textSize="13sp"
+                android:textAlignment="center"
+                android:hint="Ent. Age"
+                android:layout_weight="1"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:textColorLink="@android:color/black"
+                android:textColorHint="@color/colorwhite"
+                android:layout_height="37dp"
+                android:layout_width="65dp" />
+
+            <EditText
+                android:ems="10"
+                android:id="@+id/SexInsertET"
+                android:textStyle="italic"
+                android:textColor="@android:color/black"
+                android:textSize="13sp"
+                android:textAlignment="center"
+                android:hint="Ent. Sex"
+                android:layout_weight="1"
+                android:layout_marginStart="20dp"
+                android:layout_below="@+id/AgeInsertET"
+                android:layout_alignStart="@+id/AgeInsertET"
+                android:layout_marginTop="16dp"
+                android:textColorLink="@android:color/black"
+                android:textColorHint="@color/colorwhite"
+                android:layout_height="37dp"
+                android:layout_width="65dp" />
+
+            <EditText
+                android:ems="10"
+                android:id="@+id/CompanyInsertET"
+                android:textSize="13sp"
+                android:textColor="@android:color/black"
+                android:hint="Company Name"
+                android:textStyle="italic"
+                android:layout_width="130dp"
+                android:layout_weight="1"
+                android:layout_alignTop="@+id/SexInsertET"
+                android:layout_alignParentStart="true"
+                android:textColorLink="@android:color/black"
+                android:textColorHint="@color/colorwhite"
+                android:layout_height="37dp" />
+
+            <EditText
+                android:layout_width="130dp"
+                android:ems="10"
+                android:textSize="13sp"
+                android:textStyle="italic"
+                android:id="@+id/IllnessCurrentInsertET"
+                android:hint="Current Illnesses"
+                android:layout_weight="1"
+                android:layout_below="@+id/CompanyInsertET"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="9dp"
+                android:textColorLink="@android:color/black"
+                android:textColorHint="@color/colorwhite"
+                android:layout_height="37dp" />
+
+            <EditText
+                android:layout_width="130dp"
+                android:ems="10"
+                android:textSize="13sp"
+                android:textStyle="italic"
+                android:id="@+id/VaccinationInsertET"
+                android:hint="All Vaccinations: Y/N"
+                android:layout_weight="1"
+                android:layout_below="@+id/IllnessCurrentInsertET"
+                android:layout_alignParentStart="true"
+                android:textColorLink="@android:color/black"
+                android:textColorHint="@color/colorwhite"
+                android:layout_height="37dp" />
+
+            <EditText
+                android:layout_width="130dp"
+                android:ems="10"
+                android:textSize="13sp"
+                android:textStyle="italic"
+                android:hint="State Missing "
+                android:id="@+id/VaccinationsMissingInsertET"
+                android:layout_weight="1"
+                android:layout_below="@+id/IllnessPastInsertET"
+                android:layout_alignParentEnd="true"
+                android:textColorLink="@android:color/black"
+                android:textColorHint="@color/cardview_light_background"
+                android:textColor="@android:color/black"
+                android:layout_height="37dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:id="@+id/textView17"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:background="@android:color/black"
+                android:padding="5dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="400dp"
+            android:id="@+id/CharacteristicContainer">
+
+            <TextView
+                android:text="Physical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="13sp"
+                android:id="@+id/PhysicalCatTV"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:text="Social"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="13sp"
+                android:id="@+id/SocialCatTV"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:text="Behavioural"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="13sp"
+                android:id="@+id/BehaviourCatTV"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <Spinner
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/ddsize"
+                android:entries="@array/size"
+                android:visibility="visible"
+                android:layout_below="@+id/PhysicalCatTV"
+                android:layout_alignParentStart="true" />
+
+            <Spinner
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:entries="@array/exercise"
+                android:visibility="visible"
+                android:id="@+id/ddexercise"
+                android:layout_alignBaseline="@+id/ddfur"
+                android:layout_alignBottom="@+id/ddfur"
+                android:layout_centerHorizontal="true" />
+
+            <Spinner
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:entries="@array/intelligence"
+                android:visibility="visible"
+                android:id="@+id/ddintelligence"
+                android:layout_alignBaseline="@+id/ddbody"
+                android:layout_alignBottom="@+id/ddbody"
+                android:layout_alignStart="@+id/ddexercise" />
+
+            <Spinner
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:entries="@array/playful"
+                android:visibility="visible"
+                android:id="@+id/ddplayful"
+                android:layout_alignBaseline="@+id/ddtolerance"
+                android:layout_alignBottom="@+id/ddtolerance"
+                android:layout_alignStart="@+id/ddintelligence" />
+
+            <Spinner
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:entries="@array/people"
+                android:visibility="visible"
+                android:id="@+id/ddpeople"
+                android:layout_below="@+id/SocialCatTV"
+                android:layout_alignParentEnd="true" />
+
+            <Spinner
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:entries="@array/family"
+                android:visibility="visible"
+                android:id="@+id/ddfamily"
+                android:layout_alignBaseline="@+id/ddexercise"
+                android:layout_alignBottom="@+id/ddexercise"
+                android:layout_alignParentEnd="true" />
+
+            <Spinner
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:entries="@array/dogs"
+                android:visibility="visible"
+                android:id="@+id/dddogs"
+                android:layout_alignBaseline="@+id/ddintelligence"
+                android:layout_alignBottom="@+id/ddintelligence"
+                android:layout_alignParentEnd="true" />
+
+            <Spinner
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:entries="@array/emotion"
+                android:visibility="visible"
+                android:id="@+id/ddemotion"
+                android:layout_alignBaseline="@+id/ddplayful"
+                android:layout_alignBottom="@+id/ddplayful"
+                android:layout_alignParentEnd="true" />
+
+            <Spinner
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:entries="@array/fur"
+                android:visibility="visible"
+                android:id="@+id/ddfur"
+                android:layout_below="@+id/ddsize"
+                android:layout_alignParentStart="true" />
+
+            <Spinner
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:entries="@array/body"
+                android:visibility="visible"
+                android:id="@+id/ddbody"
+                android:layout_below="@+id/ddfur"
+                android:layout_alignParentStart="true" />
+
+            <Spinner
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:entries="@array/tolerance"
+                android:visibility="visible"
+                android:id="@+id/ddtolerance"
+                android:layout_below="@+id/ddbody"
+                android:layout_alignParentStart="true" />
+
+            <Spinner
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:entries="@array/instinct"
+                android:visibility="visible"
+                android:id="@+id/ddinstinct"
+                android:layout_below="@+id/ddplayful"
+                android:layout_alignStart="@+id/ddplayful" />
+
+            <Spinner
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:entries="@array/neutered"
+                android:visibility="visible"
+                android:id="@+id/ddneutered"
+                android:layout_below="@+id/ddtolerance"
+                android:layout_alignParentStart="true" />
+
+            <Spinner
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:entries="@array/sociability"
+                android:visibility="visible"
+                android:id="@+id/ddsociability"
+                android:layout_below="@+id/ddemotion"
+                android:layout_alignParentEnd="true" />
+
+            <Spinner
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="11dp"
-            android:id="@+id/AddDogTV"
-            android:layout_width="wrap_content"
-            android:layout_alignParentTop="true"
+            android:entries="@array/energy"
+            android:visibility="visible"
+            android:id="@+id/ddenergy"
+            android:layout_below="@+id/BehaviourCatTV"
             android:layout_centerHorizontal="true" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/AddDogTV"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="405dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:background="@android:color/holo_orange_dark"
-            android:id="@+id/AddImageBody"
-            android:tag="AddImageBody">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="5dp"
-                android:background="@color/colorPrimaryDark"
-                android:id="@+id/AddImageContainer"
-                android:tag="AddImageContainer">
-
-                <TextView
-                    android:text="Choose Image From Gallery"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
-                    android:textSize="15sp"
-                    android:id="@+id/ImageFloatText"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
-
-                <ImageView
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    app:srcCompat="@color/altColorUserMainScreen"
-                    android:id="@+id/PictureIV"
-                    android:layout_alignParentEnd="true"
-                    android:layout_below="@+id/ImageFloatText" />
-
-                <Button
-                    android:text="Gallery"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/GalleryBtn"
-                    android:background="@drawable/round_button"
-                    android:onClick="onGalleryClicker"
-                    android:layout_below="@+id/ImageFloatText"
-                    android:layout_toStartOf="@+id/ImageFloatText" />
-
-                <Button
-                    android:text="Upload"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/UploadBtn"
-                    android:background="@drawable/round_button"
-                    android:onClick="uploadImage"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentStart="true" />
-
-            </RelativeLayout>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="210dp"
-            android:layout_marginBottom="220dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@android:color/holo_orange_dark"
-            android:id="@+id/DogDetailsBody"
-            android:tag="DogDetailsBody">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerVertical="true"
-                android:layout_alignParentStart="true"
-                android:layout_margin="5dp"
-                android:background="@color/colorPrimaryDark"
-                android:id="@+id/DogDetailsContainer"
-                android:tag="DogDetailsContainer">
-
-                <TextView
-                    android:text="Name:"
-                    android:id="@+id/NameHeadingTV"
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp"
-                    android:layout_height="15dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginTop="7dp"
-                    android:layout_width="35dp" />
-
-                <TextView
-                    android:text="Age:"
-                    android:layout_width="35dp"
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp"
-                    android:id="@+id/AgeHeadingTV"
-                    android:layout_alignBaseline="@+id/NameHeadingTV"
-                    android:layout_alignBottom="@+id/NameHeadingTV"
-                    android:layout_toEndOf="@+id/NameHeadingTV"
-                    android:layout_marginStart="77dp"
-                    android:layout_height="15dp" />
-
-                <TextView
-                    android:text="Breed:"
-                    android:id="@+id/BreedHeadingTV"
-                    android:layout_marginStart="53dp"
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp"
-                    android:layout_width="40dp"
-                    android:layout_height="15dp"
-                    android:layout_alignBaseline="@+id/AgeHeadingTV"
-                    android:layout_alignBottom="@+id/AgeHeadingTV"
-                    android:layout_toEndOf="@+id/AgeHeadingTV" />
-
-                <TextView
-                    android:text="Company:"
-                    android:layout_height="15dp"
-                    android:id="@+id/CompanyHeadingTV"
-                    android:textColor="@color/colorwhite"
-                    android:textSize="12sp"
-                    android:layout_width="55dp"
-                    android:layout_marginTop="9dp"
-                    android:layout_below="@+id/NameInsertET"
-                    android:layout_alignParentStart="true" />
-
-                <EditText
-                    android:layout_width="55dp"
-                    android:ems="10"
-                    android:id="@+id/AgeInsertET"
-                    android:textStyle="italic"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="12sp"
-                    android:textAlignment="center"
-                    android:layout_height="33dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignStart="@+id/AgeHeadingTV"
-                    android:layout_marginStart="25dp"
-                    android:hint="Ent. Age" />
-
-                <EditText
-                    android:layout_width="75dp"
-                    android:layout_height="33dp"
-                    android:textStyle="italic"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="12sp"
-                    android:ems="10"
-                    android:id="@+id/BreedInsertET"
-                    android:layout_alignParentTop="true"
-                    android:layout_toEndOf="@+id/BreedHeadingTV"
-                    android:hint="Enter Breed" />
-
-                <EditText
-                    android:layout_height="33dp"
-                    android:ems="10"
-                    android:id="@+id/CompanyInsertET"
-                    android:textSize="12sp"
-                    android:textColor="@android:color/darker_gray"
-                    android:hint="Enter Company Name"
-                    android:layout_below="@+id/NameInsertET"
-                    android:layout_toEndOf="@+id/CompanyHeadingTV"
-                    android:textStyle="italic"
-                    android:layout_width="130dp" />
-
-                <EditText
-                    android:ems="10"
-                    android:textColor="@android:color/darker_gray"
-                    android:textStyle="italic"
-                    android:textSize="12sp"
-                    android:id="@+id/NameInsertET"
-                    android:layout_height="33dp"
-                    android:layout_width="75dp"
-                    android:hint="Enter Name"
-                    android:layout_alignParentTop="true"
-                    android:layout_toEndOf="@+id/NameHeadingTV" />
-
-                <EditText
-                    android:layout_width="130dp"
-                    android:layout_height="33dp"
-                    android:ems="10"
-                    android:textSize="12sp"
-                    android:textStyle="italic"
-                    android:id="@+id/IllnessCurrentInsertET"
-                    android:layout_alignBaseline="@+id/IllnessHeadingTV"
-                    android:layout_alignBottom="@+id/IllnessHeadingTV"
-                    android:layout_alignStart="@+id/CompanyInsertET"
-                    android:hint="Current If Applicable" />
-
-                <EditText
-                    android:layout_width="130dp"
-                    android:layout_height="33dp"
-                    android:ems="10"
-                    android:textSize="12sp"
-                    android:textStyle="italic"
-                    android:id="@+id/IllnessPastInsertET"
-                    android:hint="Past Illnesses"
-                    android:layout_alignBaseline="@+id/IllnessCurrentInsertET"
-                    android:layout_alignBottom="@+id/IllnessCurrentInsertET"
-                    android:layout_alignStart="@+id/ColorHeadingTV" />
-
-                <EditText
-                    android:layout_width="130dp"
-                    android:layout_height="33dp"
-                    android:ems="10"
-                    android:textSize="12sp"
-                    android:textStyle="italic"
-                    android:id="@+id/VaccinationInsertET"
-                    android:hint="All Vaccinations: Y/N"
-                    android:layout_alignParentBottom="true"
-                    android:layout_toEndOf="@+id/VaccinationHeadingTV" />
-
-                <EditText
-                    android:layout_width="130dp"
-                    android:ems="10"
-                    android:textSize="12sp"
-                    android:textStyle="italic"
-                    android:hint="State Missing "
-                    android:id="@+id/VaccinationsMissingInsertET"
-                    android:layout_alignParentBottom="true"
-                    android:layout_toEndOf="@+id/VaccinationInsertET"
-                    android:layout_height="35dp" />
-
-                <TextView
-                    android:text="Color:"
-                    android:layout_width="55dp"
-                    android:layout_height="15dp"
-                    android:id="@+id/ColorHeadingTV"
-                    android:textColor="@color/colorwhite"
-                    android:textSize="12sp"
-                    android:layout_alignBaseline="@+id/CompanyHeadingTV"
-                    android:layout_alignBottom="@+id/CompanyHeadingTV"
-                    android:layout_alignStart="@+id/BreedHeadingTV" />
-
-                <EditText
-                    android:layout_width="75dp"
-                    android:layout_height="33dp"
-                    android:textStyle="italic"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="12sp"
-                    android:ems="10"
-                    android:id="@+id/ColorInsertET"
-                    android:hint="Enter Color"
-                    android:layout_below="@+id/BreedInsertET"
-                    android:layout_alignStart="@+id/BreedInsertET"
-                    android:paddingLeft="10dp"
-                    android:layout_marginLeft="5dp" />
-
-                <TextView
-                    android:text="Illnesses:"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/IllnessHeadingTV"
-                    android:layout_marginBottom="17dp"
-                    android:textSize="12sp"
-                    android:textStyle="italic"
-                    android:textColor="@color/colorwhite"
-                    android:layout_above="@+id/VaccinationInsertET"
-                    android:layout_alignParentStart="true" />
-
-                <TextView
-                    android:text="Vaccinations:"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/VaccinationHeadingTV"
-                    android:textSize="12sp"
-                    android:textStyle="italic"
-                    android:textColor="@color/colorwhite"
-                    android:layout_alignBaseline="@+id/VaccinationInsertET"
-                    android:layout_alignBottom="@+id/VaccinationInsertET"
-                    android:layout_alignParentStart="true" />
-
-            </RelativeLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="400dp"
-            android:layout_marginBottom="15dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@android:color/holo_orange_dark"
-            android:tag="DogCharBody"
-            android:id="@+id/DogCharBody">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerHorizontal="true"
+            <Button
+                android:text="Add Your Dog!"
+                android:layout_height="wrap_content"
+                android:id="@+id/AddDogBtn"
+                android:background="@drawable/round_button"
+                android:layout_width="110dp"
                 android:layout_alignParentBottom="true"
-                android:layout_margin="5dp"
-                android:background="@color/colorPrimaryDark"
-                android:id="@+id/DogCharContainer"
-                android:tag="DogCharContainer">
-
-                <TextView
-                    android:text="Physical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp"
-                    android:id="@+id/PhysicalCatTV"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentStart="true" />
-
-                <TextView
-                    android:text="Social"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp"
-                    android:id="@+id/SocialCatTV"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true" />
-
-                <TextView
-                    android:text="Behavioural"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp"
-                    android:id="@+id/BehaviourCatTV"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true" />
-
-                <Spinner
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/ddsize"
-                    android:entries="@array/size"
-                    android:visibility="visible"
-                    android:layout_below="@+id/PhysicalCatTV"
-                    android:layout_alignParentStart="true" />
-
-                <Spinner
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/energy"
-                    android:visibility="visible"
-                    android:id="@+id/ddenergy"
-                    android:layout_below="@+id/BehaviourCatTV"
-                    android:layout_centerHorizontal="true" />
-
-                <Spinner
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/exercise"
-                    android:visibility="visible"
-                    android:id="@+id/ddexercise"
-                    android:layout_alignBaseline="@+id/ddfur"
-                    android:layout_alignBottom="@+id/ddfur"
-                    android:layout_centerHorizontal="true" />
-
-                <Spinner
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/intelligence"
-                    android:visibility="visible"
-                    android:id="@+id/ddintelligence"
-                    android:layout_alignBaseline="@+id/ddbody"
-                    android:layout_alignBottom="@+id/ddbody"
-                    android:layout_alignStart="@+id/ddexercise" />
-
-                <Spinner
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/playful"
-                    android:visibility="visible"
-                    android:id="@+id/ddplayful"
-                    android:layout_alignBaseline="@+id/ddtolerance"
-                    android:layout_alignBottom="@+id/ddtolerance"
-                    android:layout_alignStart="@+id/ddintelligence" />
-
-                <Spinner
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/people"
-                    android:visibility="visible"
-                    android:id="@+id/ddpeople"
-                    android:layout_below="@+id/SocialCatTV"
-                    android:layout_alignParentEnd="true" />
-
-                <Spinner
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/family"
-                    android:visibility="visible"
-                    android:id="@+id/ddfamily"
-                    android:layout_alignBaseline="@+id/ddexercise"
-                    android:layout_alignBottom="@+id/ddexercise"
-                    android:layout_alignParentEnd="true" />
-
-                <Spinner
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/dogs"
-                    android:visibility="visible"
-                    android:id="@+id/dddogs"
-                    android:layout_alignBaseline="@+id/ddintelligence"
-                    android:layout_alignBottom="@+id/ddintelligence"
-                    android:layout_alignParentEnd="true" />
-
-                <Spinner
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/emotion"
-                    android:visibility="visible"
-                    android:id="@+id/ddemotion"
-                    android:layout_alignBaseline="@+id/ddplayful"
-                    android:layout_alignBottom="@+id/ddplayful"
-                    android:layout_alignParentEnd="true" />
-
-                <Spinner
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/fur"
-                    android:visibility="visible"
-                    android:id="@+id/ddfur"
-                    android:layout_below="@+id/ddsize"
-                    android:layout_alignParentStart="true" />
-
-                <Spinner
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/body"
-                    android:visibility="visible"
-                    android:id="@+id/ddbody"
-                    android:layout_below="@+id/ddfur"
-                    android:layout_alignParentStart="true" />
-
-                <Spinner
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/tolerance"
-                    android:visibility="visible"
-                    android:id="@+id/ddtolerance"
-                    android:layout_below="@+id/ddbody"
-                    android:layout_alignParentStart="true" />
-
-                <Spinner
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/instinct"
-                    android:visibility="visible"
-                    android:id="@+id/ddinstinct"
-                    android:layout_below="@+id/ddplayful"
-                    android:layout_alignStart="@+id/ddplayful" />
-
-                <Spinner
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/neutered"
-                    android:visibility="visible"
-                    android:id="@+id/ddneutered"
-                    android:layout_below="@+id/ddtolerance"
-                    android:layout_alignParentStart="true" />
-
-                <Spinner
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content"
-                    android:entries="@array/sociability"
-                    android:visibility="visible"
-                    android:id="@+id/ddsociability"
-                    android:layout_below="@+id/ddemotion"
-                    android:layout_alignParentEnd="true" />
-            </RelativeLayout>
+                android:layout_alignStart="@+id/ddinstinct"
+                android:padding="5dp" />
         </RelativeLayout>
-
-        <Button
-            android:text="Add Your Dog!"
-            android:layout_height="wrap_content"
-            android:id="@+id/AddDogBtn"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/round_button"
-            android:layout_marginTop="5dp"
-            android:layout_width="110dp" />
 
     </RelativeLayout>
 </RelativeLayout>

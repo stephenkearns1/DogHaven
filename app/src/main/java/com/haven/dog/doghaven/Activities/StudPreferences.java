@@ -3,11 +3,14 @@ package com.haven.dog.doghaven.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -26,7 +29,7 @@ import static android.view.View.VISIBLE;
  * Created by Sean on 18/12/2016.
  */
 
-public class StudPreferences extends AppCompatActivity implements View.OnClickListener {
+public class StudPreferences extends AppCompatActivity implements View.OnClickListener,NavigationView.OnNavigationItemSelectedListener {
     private String body,energy,intelligence,temp,
             instinct,people,breed;
 
@@ -41,10 +44,14 @@ public class StudPreferences extends AppCompatActivity implements View.OnClickLi
 
     private EditText breedname;
 
+    private TextView usernameTV, useremailTV;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_stud_questions);
+        setContentView(R.layout.activity_stud_prefences);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -63,6 +70,22 @@ public class StudPreferences extends AppCompatActivity implements View.OnClickLi
 
         userSessionManag = new UserSessionManagment(this);
         user = userSessionManag.UserLoggedIn();
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        //Inflates the nav_header layout as the header and then access the elements in the nav_header to populate with user details in the drawer
+        View navHeader = navigationView.getHeaderView(0);
+        usernameTV = (TextView) navHeader.findViewById(R.id.usernameHeader_TV);
+        useremailTV = (TextView) navHeader.findViewById(R.id.useremailHeader_TV);
+
+
 
 
     }
@@ -86,6 +109,87 @@ public class StudPreferences extends AppCompatActivity implements View.OnClickLi
 
 
 
+    }
+
+    private void displayUserDetails() {
+        User user = userSessionManag.UserLoggedIn();
+
+        //set text views
+        // View header = navigationView.
+
+        //displayUsernameTV.setText(user.getUserName());
+        //displayUseremailTV.setText(user.getEmail())
+        //;
+        usernameTV.setText(user.getUsername());
+        useremailTV.setText(user.getEmail());
+
+
+
+        Log.i("user Loggedin", user.getUsername() + user.getEmail());
+
+
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.dogpark_locator, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            //sign the user out of the application
+            userSessionManag.clearUserData();
+            Intent intent = new Intent(this,UserRegisterActivity.class);
+            startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_slideshow) {
+            Intent info= new Intent(this,AddDogActivity.class);
+            startActivity(info);
+        }  else if (id == R.id.nav_manage) {
+            Intent info= new Intent(this,CompanyDogActivity.class);
+            startActivity(info);
+        } else if (id == R.id.nav_gallery) {
+            Intent info= new Intent(this,StudPreferences.class);
+            startActivity(info);
+        } if (id == R.id.nav_camera) {
+            Intent info= new Intent(this,BreederProfile.class);
+            startActivity(info);
+        }
+
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 
     private void addListenerOnDropDown() {

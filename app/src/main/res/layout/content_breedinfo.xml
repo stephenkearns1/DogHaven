@@ -27,7 +27,7 @@
         android:background="@color/cardview_light_background"
         android:textColor="@android:color/background_dark"
         android:padding="1dp"
-        android:layout_marginLeft="155dp" />
+        android:layout_marginLeft="150dp" />
 
     <LinearLayout
         android:orientation="vertical"
