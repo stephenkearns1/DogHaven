@@ -81,7 +81,7 @@ public class StudMatchActivity extends AppCompatActivity {
 
 
         //get a reference to the reycler view
-        mRecyclerView = (RecyclerView) findViewById(R.id.matchDogs_recyclerView);
+        mRecyclerView = (RecyclerView) findViewById(R.id.studMatch_recyclerView);
 
         //sets the layout mangaer to use a linear layout for displaying views
         mLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
@@ -93,6 +93,8 @@ public class StudMatchActivity extends AppCompatActivity {
         //instantiates objects for reference
         match = new MatchingAlogrithm();
         userSessionManag = new UserSessionManagment(this);
+
+        studPrefs = new ArrayList<>();
 
 
 
@@ -118,15 +120,18 @@ public class StudMatchActivity extends AppCompatActivity {
 
          Bundle extras = getIntent().getExtras();
             if (extras != null) {
+                breed = extras.getString("breed");
                 body = extras.getString("body");
                 energy = extras.getString("energy");
-                intelligence  = extras.getString("intelligence ");
+                intelligence  = extras.getString("intelligence");
                 playful= extras.getString("playful");
                 instinct = extras.getString("instinct");
                 people= extras.getString("people");
+                Log.i("Body", body);
 
                 StudPrefs stud = new StudPrefs(body,energy,intelligence,playful,instinct,people);
                 studPrefs.add(stud);
+                GetStuds();
 
                 //The key argument here must match that used in the other activity
             }
