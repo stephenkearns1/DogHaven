@@ -11,7 +11,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.haven.dog.doghaven.Activities.BreederProfile"
-    tools:showIn="@layout/app_bar_breeder_profile">
+    tools:showIn="@layout/app_bar_breeder_profile"
+    android:background="@color/lightPrimaryColor">
 
 
     <ScrollView
@@ -74,11 +75,12 @@
 
 
             <Button
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:id="@+id/breeder_profile_updateBtn"
                 android:layout_gravity="center"
-                android:text="Update"/>
+                android:text="Update"
+                android:background="@color/colorAccent"/>
 
             
 

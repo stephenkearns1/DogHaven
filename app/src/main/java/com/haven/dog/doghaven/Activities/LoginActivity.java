@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -35,7 +36,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     // Variables
 
     EditText userNameET, userPasswordET;
-    Button login, registerBtn;
+    Button login;
+    TextView registerBtn;
     private String username,userPassword;
     private final String doghavenAPI_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php";
     private static final String tagUserID = "user_id";
@@ -60,7 +62,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         userNameET = (EditText) findViewById(R.id.usernameET);
         userPasswordET = (EditText) findViewById(R.id.userpasswordET);
         login = (Button) findViewById(R.id.loginbtn);
-        registerBtn = (Button) findViewById(R.id.registerBtnLogin);
+        registerBtn = (TextView) findViewById(R.id.link_signup);
+
         login.setOnClickListener(this);
         registerBtn.setOnClickListener(this);
 
@@ -97,7 +100,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     authenticate(user);
                 }
                 break;
-            case R.id.registerBtnLogin:
+            case R.id.link_signup:
                 Log.i("onClickReg", "onclick working register");
                 Intent intent = new Intent(this,UserRegisterActivity.class);
                 startActivity(intent);
@@ -113,9 +116,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void authenticate(User user){
 
         progressDialog = new ProgressDialog(LoginActivity.this);
-        progressDialog.setMessage("Logging in");
-        progressDialog.setTitle("Authenticating");
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
+                R.style.AppTheme);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Authenticating...");
         progressDialog.show();
 
         /*
