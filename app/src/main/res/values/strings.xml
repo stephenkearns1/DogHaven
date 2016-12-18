@@ -271,6 +271,7 @@
     <string name="title_activity_breeder_profile">BreederProfile</string>
     <string name="title_activity_company_dog">CompanyDogActivity</string>
     <string name="title_activity_questions">Questions</string>
+    <string name="title_helpers_breedinfo_popup">BreedInfo PopUp</string>
 
     <string name="signout">Sign out</string>
 

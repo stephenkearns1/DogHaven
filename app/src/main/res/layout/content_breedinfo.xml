@@ -7,48 +7,75 @@
     android:background="#5da5fd"
     android:weightSum="1">
 
-    <FrameLayout
+    <ImageView
+
+        app:srcCompat="@drawable/logo"
+        android:id="@+id/picHolder"
+        android:layout_height="299dp"
         android:layout_width="match_parent"
-        android:layout_height="531dp">
+        android:layout_weight="0.94"
+        android:padding="30dp" />
 
-        <TextView
-            android:text="Breed Info"
+    <TextView
+        android:text="Breed Info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/breedName"
+        android:textAlignment="viewStart"
+        android:textSize="18sp"
+        android:textStyle="normal|bold"
+        android:background="@color/colorAccent"
+        android:textColor="@android:color/background_dark"
+        android:padding="1dp" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.03"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/breedName"
-            android:textAlignment="viewStart"
-            android:textSize="18sp"
-            android:textStyle="normal|bold"
-            android:background="@color/colorAccent"
-            android:textColor="@android:color/background_dark"
-            android:padding="1dp" />
+            android:layout_height="wrap_content">
 
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="484dp"
-            android:layout_weight="1.14">
-
-            <LinearLayout
-                android:orientation="horizontal"
+            <Button
+                android:text="Physical"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:id="@+id/physicalBT"
+                android:layout_weight="1" />
 
-                <ImageView
+            <Button
+                android:text="Medical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/medicalBT"
+                android:layout_weight="1" />
+        </LinearLayout>
 
-                    app:srcCompat="@drawable/logo"
-                    android:id="@+id/picHolder"
-                    android:layout_height="match_parent"
-                    android:layout_width="400dp" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-                <ImageView
-                    android:layout_width="400dp"
-                    android:id="@+id/infoImage"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
+            <Button
+                android:text="Social"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/socialBT"
+                android:layout_weight="1" />
 
-            </LinearLayout>
-        </HorizontalScrollView>
-    </FrameLayout>
+            <Button
+                android:text="Exercise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/exerciseBT"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+    </LinearLayout>
 
     <Spinner
         android:id="@+id/ddsize"

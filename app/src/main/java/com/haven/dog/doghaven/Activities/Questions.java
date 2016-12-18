@@ -44,7 +44,7 @@ public class Questions extends AppCompatActivity implements View.OnClickListener
 
 
    private String size,fur,body,tolerance,fixed,energy,exercise,intelligence,temp,
-            instinct,people,family,dogs,emotion,social,user_id;
+            instinct,people,family,dogs,emotion,social;
    private int userId;
 
    private Button addPref;
