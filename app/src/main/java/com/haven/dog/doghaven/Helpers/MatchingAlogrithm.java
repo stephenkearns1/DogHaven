@@ -2,6 +2,7 @@ package com.haven.dog.doghaven.Helpers;
 
 import com.haven.dog.doghaven.Models.Dog;
 import com.haven.dog.doghaven.Models.DogWeightedScore;
+import com.haven.dog.doghaven.Models.StudPrefs;
 import com.haven.dog.doghaven.Models.UserPrefs;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class MatchingAlogrithm {
     private ArrayList<Dog> dogList;
     private ArrayList<DogWeightedScore> dogScoreList;
     private ArrayList<UserPrefs> userPrefs;
-    private ArrayList<String> breederPrefs;
+    private ArrayList<StudPrefs> breederPrefs;
     private ArrayList<Dog> dogsToShow;
 
     public MatchingAlogrithm(){
@@ -26,13 +27,15 @@ public class MatchingAlogrithm {
              Marken  Teder: Physical - Size, Fur, Body, Tolerance, Neutered
              Marken  Teder: Behaviour - Energy, Exercise, Intelligence, Playful, Instinct
              Marken  Teder: Social - People, Family, Dogs, Emotion, Sociability
+
+             Body  Energy  Intelligence Playful  Instinct People
          */
 
         dogList = new ArrayList<>();
         dogScoreList = new ArrayList<>();
         userPrefs = new ArrayList<>();
         dogsToShow = new ArrayList<>();
-
+        breederPrefs = new ArrayList<>();
     }
 
 
@@ -95,29 +98,19 @@ public class MatchingAlogrithm {
         // for(int i = 0; i < dogList.size()-1; i++){
         for(int i = 0; i < dogList.size()-1; i++){
             Dog dog = dogList.get(i);
+
             //reset the score for next dogs score to be calculated
             int score = 0;
             // for(int j = 0; j < userPrefs.size(); j++){
-        /*
-             Attributes user search is based on and order
-             Physical - Size, Fur, Body, Tolerance, Neutered
-             Behaviour - Energy, Exercise, Intelligence, Playful, Instinct
-             Social - People, Family, Dogs, Emotion, Sociability
+
+            // body , energy , intelligence ,playful , instinct,people
 
             //add weighting methods here
-            if(breederPrefs.get(0).getSize().equalsIgnoreCase(dog.getSize()))
-                score++;
-            if( breederPrefs.get(0).getFur().equalsIgnoreCase(dog.getFur()))
-                score++;
-            if( breederPrefs.get(0).getBody().equalsIgnoreCase(dog.getBody()))
-                score++;
-            if( breederPrefs.get(0).getTolerance().equalsIgnoreCase(dog.getTolerance()))
-                score++;
-            if( breederPrefs.get(0).getNeutered().equalsIgnoreCase(dog.getNeutered()))
+            if(breederPrefs.get(0).getBody().equalsIgnoreCase(dog.getBody()))
                 score++;
             if( breederPrefs.get(0).getEnergy().equalsIgnoreCase(dog.getEnergy()))
                 score++;
-            if( breederPrefs.get(0).getExercise().equalsIgnoreCase(dog.getExercise()))
+            if( breederPrefs.get(0).getBody().equalsIgnoreCase(dog.getBody()))
                 score++;
             if( breederPrefs.get(0).getIntelligence().equalsIgnoreCase(dog.getIntelligence()))
                 score++;
@@ -127,16 +120,8 @@ public class MatchingAlogrithm {
                 score++;
             if( breederPrefs.get(0).getPeople().equalsIgnoreCase(dog.getPeople()))
                 score++;
-            if( breederPrefs.get(0).getFamily().equalsIgnoreCase(dog.getFamily()))
-                score++;
-            if( breederPrefs.get(0).getDogs().equalsIgnoreCase(dog.getDogs()))
-                score++;
-            if( breederPrefs.get(0).getEmotion().equalsIgnoreCase(dog.getEmotion()))
-                score++;
-            if( breederPrefs.get(0).getSociability().equalsIgnoreCase(dog.getSociality()))
-                score++;
 
-            //} */
+
 
             DogWeightedScore weightedDogScore = new DogWeightedScore(i, score);
             dogScoreList.add(weightedDogScore);
@@ -160,7 +145,7 @@ public class MatchingAlogrithm {
         */
         //if the first score in the list is 0 then no matches have been found
         if(dogScoreList.get(0).getScore() == 0){
-             return dogsToShow;
+            return dogsToShow;
         }else if(dogScoreList.get(0).getScore() == 15 && dogScoreList.get(1).getScore() == 15){
             for(int i = 0; i < 2; i++){
 
@@ -168,6 +153,59 @@ public class MatchingAlogrithm {
                 dogsToShow.add((Dog) dogList.get(index));
             }
         }else if(dogScoreList.get(0).getScore() == 15){
+
+            int index = dogScoreList.get(0).getIndexOfDogInList();
+            dogsToShow.add((Dog) dogList.get(index));
+        } else if(dogScoreList.size() == 2){
+            for(int i = 0; i < 2; i++){
+
+                int index = dogScoreList.get(i).getIndexOfDogInList();
+                dogsToShow.add((Dog) dogList.get(index));
+            }
+        }else if(dogScoreList.size() == 3){
+            for(int i = 0; i < 3; i++){
+
+                int index = dogScoreList.get(i).getIndexOfDogInList();
+                dogsToShow.add((Dog) dogList.get(index));
+            }
+        }else {
+            for(int i = 0; i < 4; i++){
+
+                int index = dogScoreList.get(i).getIndexOfDogInList();
+                dogsToShow.add((Dog) dogList.get(index));
+            }
+        }
+
+
+
+
+
+        return dogsToShow;
+    }
+
+    public ArrayList MostSuitedStuds(){
+
+        QuickSort(0, dogScoreList.size()-1);
+        /*
+        int starting_point = (0 + dogScoreList.size()-1) / 2;
+
+        for(int i = dogScoreList.size()-1; i >=  starting_point; i--){
+
+            int index = dogScoreList.get(i).getIndexOfDogInList();
+            dogsToShow.add((Dog) dogList.get(index));
+        }
+
+        */
+        //if the first score in the list is 0 then no matches have been found
+        if(dogScoreList.get(0).getScore() == 0){
+            return dogsToShow;
+        }else if(dogScoreList.get(0).getScore() == 6 && dogScoreList.get(1).getScore() == 6){
+            for(int i = 0; i < 2; i++){
+
+                int index = dogScoreList.get(i).getIndexOfDogInList();
+                dogsToShow.add((Dog) dogList.get(index));
+            }
+        }else if(dogScoreList.get(0).getScore() == 6){
 
             int index = dogScoreList.get(0).getIndexOfDogInList();
             dogsToShow.add((Dog) dogList.get(index));
@@ -250,6 +288,9 @@ public class MatchingAlogrithm {
         this.dogList = dogList;
     }
 
+    public void setBreederPrefs(ArrayList<StudPrefs> breederPrefs) {
+        this.breederPrefs = breederPrefs;
+    }
 
     public void setuserPrefs(ArrayList<UserPrefs> userPrefs) {
         this.userPrefs = userPrefs;

@@ -28,6 +28,7 @@ import com.haven.dog.doghaven.Helpers.MyNetworkingSingletonVolley;
 import com.haven.dog.doghaven.Helpers.UserSessionManagment;
 import com.haven.dog.doghaven.Models.Breeder;
 import com.haven.dog.doghaven.Models.Dog;
+import com.haven.dog.doghaven.Models.StudPrefs;
 import com.haven.dog.doghaven.Models.UserPrefs;
 import com.haven.dog.doghaven.R;
 
@@ -49,6 +50,7 @@ public class StudMatchActivity extends AppCompatActivity {
     Spinner dropdown;
     ScrollView matchlist;
     private ArrayList<Dog> dogsList;
+    private ArrayList<StudPrefs> studPrefs;
     private int dogId;
     private String name, breed, companyName, age, color;
     private  String size, fur, body, tolerance, neutered;
@@ -79,7 +81,7 @@ public class StudMatchActivity extends AppCompatActivity {
 
 
         //get a reference to the reycler view
-        mRecyclerView = (RecyclerView) findViewById(R.id.matchDogs_recyclerView);
+        mRecyclerView = (RecyclerView) findViewById(R.id.studMatch_recyclerView);
 
         //sets the layout mangaer to use a linear layout for displaying views
         mLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
@@ -91,6 +93,8 @@ public class StudMatchActivity extends AppCompatActivity {
         //instantiates objects for reference
         match = new MatchingAlogrithm();
         userSessionManag = new UserSessionManagment(this);
+
+        studPrefs = new ArrayList<>();
 
 
 
@@ -109,15 +113,29 @@ public class StudMatchActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
+        // body , energy , intelligence ,playful , instinct,people
+
         //retrive data from stud match activity
 
-        /*
+
          Bundle extras = getIntent().getExtras();
             if (extras != null) {
-                String value = extras.getString("key");
+                breed = extras.getString("breed");
+                body = extras.getString("body");
+                energy = extras.getString("energy");
+                intelligence  = extras.getString("intelligence");
+                playful= extras.getString("playful");
+                instinct = extras.getString("instinct");
+                people= extras.getString("people");
+                Log.i("Body", body);
+
+                StudPrefs stud = new StudPrefs(body,energy,intelligence,playful,instinct,people);
+                studPrefs.add(stud);
+                GetStuds();
+
                 //The key argument here must match that used in the other activity
             }
-         */
+
 
     }
 
@@ -223,9 +241,9 @@ public class StudMatchActivity extends AppCompatActivity {
         //set the data in matchig algorthim to generate matches
         match = new MatchingAlogrithm();
         match.setDogList(dogsList);
-        //match.setuserPrefs();
-        match.AddDogWeightings();
-        match.MostSuitedDogs();
+        match.setBreederPrefs(studPrefs);
+        match.AddStudWeightings();
+        match.MostSuitedStuds();
         ArrayList<Dog> dogsToShow = match.getDogsToShow();
         mAdapter.ClearAll();
         if(dogsToShow.size() == 0){
