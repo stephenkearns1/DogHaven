@@ -108,51 +108,6 @@ import java.util.List;
 
                     builder.show();
 
-                   /*
-                    final Dialog dialog = new Dialog(context);
-
-                    dialog.setContentView(R.layout.popup_physical_attr);
-                    dialog.setTitle("Physical Attributes");
-
-
-                    Log.i("Made it to pop onclick", "here");
-                     LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    View popupView = inflater.inflate(R.layout.popup_physical_attr,null);
-
-                    //intiliase an new instance of popup window
-                    mPopupWindow = new PopupWindow(popupView);
-
-                    //getting a reference for custom view for display phyical attributes
-
-
-                    /*
-                    TextView size_tv = (TextView)dialog.findViewById(R.id.size_TV);
-                    TextView fur_tv = (TextView) dialog.findViewById(R.id.fur_TV);
-                    TextView body_tv = (TextView) dialog.findViewById(R.id.body_TV);
-                    TextView tolerance_tv = (TextView)dialog.findViewById(R.id.tolerance_TV);
-                    TextView neutered_tv = (TextView) dialog.findViewById(R.id.neutered_TV);
-                    Button cancelBtn = (Button) dialog.findViewById(R.id.cancelBtn);
-
-
-
-                    Dog dog = dogList.get(position);
-                    //set the attribute views with the dog attributes
-                    size_tv.setText(dog.getSize());
-                    fur_tv.setText(dog.getFur());
-                    body_tv.setText(dog.getBody());
-                    tolerance_tv.setText(dog.getTolerance());
-                    neutered_tv.setText(dog.getNeutered());
-
-                    cancelBtn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            dialog.dismiss();
-                        }
-                    });
-
-                    dialog.show();
-
-                    */
 
 
                 }
@@ -162,7 +117,7 @@ import java.util.List;
                 @Override
                 public void onClick(View v) {
                     final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                    builder.setTitle("Physical Atrributes");
+                    builder.setTitle("Behaviour Atrributes");
                     builder.setMessage("Energy: " + dogModel.getEnergy() + "\n" +
                             "Exercise: " + dogModel.getExercise()+ "\n" +
                     "Intelligence: " +dogModel.getIntelligence() + "\n" +
@@ -184,7 +139,7 @@ import java.util.List;
                 @Override
                 public void onClick(View v) {
                     final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                    builder.setTitle("Physical Atrributes");
+                    builder.setTitle("Social Atrributes");
                     builder.setMessage("People: " + dogModel.getPeople() + "\n" +
                             "Family: " + dogModel.getFamily()+ "\n" +
                             "Dogs: " + dogModel.getDogs()+ "\n" +
