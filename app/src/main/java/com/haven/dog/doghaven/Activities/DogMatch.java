@@ -9,6 +9,7 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -74,6 +75,7 @@ public class DogMatch extends AppCompatActivity implements NavigationView.OnNavi
     private String TAG_dillcur ="dillcurr", TAG_dillpast = "dillpast", TAG_dvac = "dvac", TAG_dvacmiss = "dvacmiss";
     private ProgressDialog progressDialog;
     private List<Dog> dogstest;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     private TextView usernameTV, useremailTV;
 
@@ -122,6 +124,14 @@ public class DogMatch extends AppCompatActivity implements NavigationView.OnNavi
 
 
 
+        mSwipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swifeRefresh);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                GetUserPrefs();
+            }
+        });
+
 
 
         dogsList = new ArrayList<>();
@@ -135,7 +145,7 @@ public class DogMatch extends AppCompatActivity implements NavigationView.OnNavi
     }
 
     @Override
-    protected void onStart() {
+    protected void onStart(){
         super.onStart();
         //checks to see if the user is authenticated if not it requests the user to login.
         if (authenticate()) {
@@ -469,5 +479,6 @@ public class DogMatch extends AppCompatActivity implements NavigationView.OnNavi
 
         }
         mAdapter.AddAllDogs(dogsToShow);
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 }

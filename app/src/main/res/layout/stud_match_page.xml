@@ -5,135 +5,14 @@
     android:layout_height="match_parent"
     android:background="@android:color/holo_orange_dark">
 
-    <RelativeLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/studMatch_recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_margin="5dp"
-        android:background="@color/colorPrimary"
-        android:id="@+id/MainBodyRL">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:text="Stud Match"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:id="@+id/PageHeadingTV" />
 
-        <TextView
-            android:text=""
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/BorderTV"
-            android:layout_alignParentTop="true"
-            android:background="@android:color/holo_orange_dark"
-            android:layout_marginTop="65dp"
-            android:layout_marginBottom="300dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:layout_marginTop="70dp"
-            android:layout_marginBottom="305dp"
-            android:background="@color/colorPrimaryDark"
-            android:id="@+id/ParamBody">
 
-        </RelativeLayout>
 
-        <TextView
-            android:text="Insert Parameters"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
-            android:textSize="15sp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="46dp"
-            android:id="@+id/InsertParHeadingTV" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/MatchingStudBprder"
-            android:background="@android:color/holo_orange_dark"
-            android:layout_marginTop="340dp"
-            android:layout_marginBottom="35dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="40dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:layout_marginTop="345dp"
-            android:background="@color/colorPrimaryDark"
-            android:id="@+id/MatchingStudioBody">
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="invisible"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentBottom="true"
-                android:id="@+id/MatchesScrollV">
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="1">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/matches"
-                        android:id="@+id/MatchesImgV" />
-                </LinearLayout>
-            </ScrollView>
-        </RelativeLayout>
-
-        <TextView
-            android:text="Breed:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorwhite"
-            android:textSize="15sp"
-            android:layout_alignTop="@+id/ParamBody"
-            android:layout_alignStart="@+id/ParamBody"
-            android:layout_marginStart="13dp"
-            android:layout_marginTop="10dp"
-            android:id="@+id/textView9" />
-
-        <TextView
-            android:text=""
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/StudMatchBorderTV"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
-
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:entries="@array/dogList"
-            android:id="@+id/BreedSpinner"
-            android:layout_alignTop="@+id/textView9"
-            android:layout_toEndOf="@+id/textView9"
-            android:layout_marginStart="12dp" />
-    </RelativeLayout>
+    </android.support.v7.widget.RecyclerView>
 </RelativeLayout>
