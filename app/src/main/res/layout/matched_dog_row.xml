@@ -13,21 +13,22 @@
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:cardCornerRadius="100dp"
+        card_view:cardCornerRadius="4dp"
         card_view:cardElevation="10dp"
         android:layout_marginTop="50dp"
-        android:background="@color/colorDivider">
+      >
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="@color/lightPrimaryColor"
+
 
 
                 >
@@ -36,7 +37,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="200dp"
                     card_view:srcCompat="@drawable/akita"
-                    android:scaleType="fitXY" />
+                    android:scaleType="fitXY"
+                    android:layout_marginTop="0dp"/>
                 <View
                     android:layout_width="fill_parent"
                     android:layout_height="3dp"
@@ -79,7 +81,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <Button

@@ -272,5 +272,7 @@
     <string name="title_activity_company_dog">CompanyDogActivity</string>
     <string name="title_activity_questions">Questions</string>
 
+    <string name="signout">Sign out</string>
+
 
 </resources>

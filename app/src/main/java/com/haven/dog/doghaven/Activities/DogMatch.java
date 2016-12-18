@@ -213,7 +213,9 @@ public class DogMatch extends AppCompatActivity implements NavigationView.OnNavi
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            userSessionManag.clearUserData();
+            Intent intent = new Intent(this,LoginActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
