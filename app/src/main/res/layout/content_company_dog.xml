@@ -13,12 +13,16 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context="com.haven.dog.doghaven.Activities.CompanyDogActivity"
         android:orientation="vertical">
-
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swifeRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/companyDogs_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </android.support.v7.widget.RecyclerView>
+        </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>
 
 

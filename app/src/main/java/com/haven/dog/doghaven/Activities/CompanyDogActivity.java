@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -53,6 +54,7 @@ public class CompanyDogActivity extends AppCompatActivity
     private  UserSessionManagment userSessionManag;
     private final String doghavenAPI_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php";
     private final String doghavenAPI_GetDogs_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php?companydogs=";
+    private SwipeRefreshLayout mSwipeRefreshLayout;
     private String name, breed, companyName, age, color;
     // attributes
     private int dogId;
@@ -105,6 +107,14 @@ public class CompanyDogActivity extends AppCompatActivity
         userSessionManag = new UserSessionManagment(this);
 
         dogList = new ArrayList<>();
+
+        mSwipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swifeRefresh);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                CheckDogsBeenAdded();
+            }
+        });
 
 
 
@@ -201,6 +211,7 @@ public class CompanyDogActivity extends AppCompatActivity
                           RetriveDogListForCompany();
 
                         }else{
+                            mSwipeRefreshLayout.setRefreshing(false);
                             final AlertDialog.Builder builder = new AlertDialog.Builder(CompanyDogActivity.this);
                             builder.setMessage("No dogs have been addded")
                                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -375,6 +386,8 @@ public class CompanyDogActivity extends AppCompatActivity
                         //check the response from the server
                         Log.i("New Response", response.toString());
                         Log.i("Response lenght", "" + response.length());
+
+                        mSwipeRefreshLayout.setRefreshing(false);
 
                         if (!(dogList == null)) {
                             dogList.clear();

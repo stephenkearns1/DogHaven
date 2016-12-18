@@ -148,7 +148,10 @@ public class BreedInfoActivity extends AppCompatActivity implements NavigationVi
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            //sign the user out of the application
+            userSessionManag.clearUserData();
+            Intent intent = new Intent(this,LoginActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

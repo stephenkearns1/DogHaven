@@ -16,6 +16,7 @@ public class MatchingAlogrithm {
     private ArrayList<Dog> dogList;
     private ArrayList<DogWeightedScore> dogScoreList;
     private ArrayList<UserPrefs> userPrefs;
+    private ArrayList<String> breederPrefs;
     private ArrayList<Dog> dogsToShow;
 
     public MatchingAlogrithm(){
@@ -89,6 +90,60 @@ public class MatchingAlogrithm {
         }
     }
 
+    public void AddStudWeightings(){
+
+        // for(int i = 0; i < dogList.size()-1; i++){
+        for(int i = 0; i < dogList.size()-1; i++){
+            Dog dog = dogList.get(i);
+            //reset the score for next dogs score to be calculated
+            int score = 0;
+            // for(int j = 0; j < userPrefs.size(); j++){
+        /*
+             Attributes user search is based on and order
+             Physical - Size, Fur, Body, Tolerance, Neutered
+             Behaviour - Energy, Exercise, Intelligence, Playful, Instinct
+             Social - People, Family, Dogs, Emotion, Sociability
+
+            //add weighting methods here
+            if(breederPrefs.get(0).getSize().equalsIgnoreCase(dog.getSize()))
+                score++;
+            if( breederPrefs.get(0).getFur().equalsIgnoreCase(dog.getFur()))
+                score++;
+            if( breederPrefs.get(0).getBody().equalsIgnoreCase(dog.getBody()))
+                score++;
+            if( breederPrefs.get(0).getTolerance().equalsIgnoreCase(dog.getTolerance()))
+                score++;
+            if( breederPrefs.get(0).getNeutered().equalsIgnoreCase(dog.getNeutered()))
+                score++;
+            if( breederPrefs.get(0).getEnergy().equalsIgnoreCase(dog.getEnergy()))
+                score++;
+            if( breederPrefs.get(0).getExercise().equalsIgnoreCase(dog.getExercise()))
+                score++;
+            if( breederPrefs.get(0).getIntelligence().equalsIgnoreCase(dog.getIntelligence()))
+                score++;
+            if( breederPrefs.get(0).getPlayful().equalsIgnoreCase(dog.getPlayful()))
+                score++;
+            if( breederPrefs.get(0).getInstinct().equalsIgnoreCase(dog.getInstinct()))
+                score++;
+            if( breederPrefs.get(0).getPeople().equalsIgnoreCase(dog.getPeople()))
+                score++;
+            if( breederPrefs.get(0).getFamily().equalsIgnoreCase(dog.getFamily()))
+                score++;
+            if( breederPrefs.get(0).getDogs().equalsIgnoreCase(dog.getDogs()))
+                score++;
+            if( breederPrefs.get(0).getEmotion().equalsIgnoreCase(dog.getEmotion()))
+                score++;
+            if( breederPrefs.get(0).getSociability().equalsIgnoreCase(dog.getSociality()))
+                score++;
+
+            //} */
+
+            DogWeightedScore weightedDogScore = new DogWeightedScore(i, score);
+            dogScoreList.add(weightedDogScore);
+        }
+    }
+
+
 
     public ArrayList MostSuitedDogs(){
 
@@ -116,13 +171,27 @@ public class MatchingAlogrithm {
 
             int index = dogScoreList.get(0).getIndexOfDogInList();
             dogsToShow.add((Dog) dogList.get(index));
-        } else{
+        } else if(dogScoreList.size() == 2){
+            for(int i = 0; i < 2; i++){
+
+                int index = dogScoreList.get(i).getIndexOfDogInList();
+                dogsToShow.add((Dog) dogList.get(index));
+            }
+        }else if(dogScoreList.size() == 3){
+            for(int i = 0; i < 3; i++){
+
+                int index = dogScoreList.get(i).getIndexOfDogInList();
+                dogsToShow.add((Dog) dogList.get(index));
+            }
+        }else {
             for(int i = 0; i < 4; i++){
 
                 int index = dogScoreList.get(i).getIndexOfDogInList();
                 dogsToShow.add((Dog) dogList.get(index));
             }
         }
+
+
 
 
 

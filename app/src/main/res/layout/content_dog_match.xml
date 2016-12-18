@@ -14,14 +14,22 @@ app:layout_behavior="@string/appbar_scrolling_view_behavior"
 tools:context="com.haven.dog.doghaven.Activities.DogMatch"
 tools:showIn="@layout/activity_dog_match">
 
-<android.support.v7.widget.RecyclerView
-    android:id="@+id/matchDogs_recyclerView"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swifeRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/matchDogs_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
 
 
 
-</android.support.v7.widget.RecyclerView>
+        </android.support.v7.widget.RecyclerView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

@@ -2,6 +2,7 @@ package com.haven.dog.doghaven.Activities;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -92,6 +93,14 @@ public class BreederProfile extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
+        if (authenticate() == true) {
+            //display logged in or start main activity
+            displayUserDetails();
+        } else {
+            //starts loginIn activity
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
 
         Breeder company  = userSessionManag.BreederLoggedIn();
         originalCompanyname = company.getCompanyname();
@@ -321,4 +330,32 @@ public class BreederProfile extends AppCompatActivity
         }
 
     }
+
+
+    private void displayUserDetails() {
+        Breeder breeder = userSessionManag.BreederLoggedIn();
+
+        //set text views
+        // View header = navigationView.
+
+        //displayUsernameTV.setText(user.getUserName());
+        //displayUseremailTV.setText(user.getEmail())
+        //;
+        //usernameTV.setText(user.getUsername());
+        //useremailTV.setText(user.getEmail());
+
+
+
+        //Log.i("user Loggedin", user.getUsername() + user.getEmail());
+
+
+    }
+
+
+
+    private boolean authenticate() {
+        Log.i("getLoggedIn value", "" + userSessionManag.getBreederLoggedIn());
+        return userSessionManag.getBreederLoggedIn();
+    }
+
 }
