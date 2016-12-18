@@ -128,7 +128,7 @@ public class CompanyDogsAdapter extends RecyclerView.Adapter<CompanyDogsAdapter.
             @Override
             public void onClick(View v) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Physical Atrributes");
+                builder.setTitle("Behaviour Atrributes");
                 builder.setMessage("Energy: " + dogModel.getEnergy() + "\n" +
                         "Exercise: " + dogModel.getExercise()+ "\n" +
                         "Intelligence: " +dogModel.getIntelligence() + "\n" +
@@ -150,7 +150,7 @@ public class CompanyDogsAdapter extends RecyclerView.Adapter<CompanyDogsAdapter.
             @Override
             public void onClick(View v) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Physical Atrributes");
+                builder.setTitle("Social Atrributes");
                 builder.setMessage("People: " + dogModel.getPeople() + "\n" +
                         "Family: " + dogModel.getFamily()+ "\n" +
                         "Dogs: " + dogModel.getDogs()+ "\n" +
