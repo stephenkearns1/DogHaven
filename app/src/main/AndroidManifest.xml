@@ -48,7 +48,6 @@
             android:name=".Activities.UserRegisterActivity"
             android:label="UserRegister" />
         <activity
-<<<<<<< HEAD
             android:name=".Activities.AddDogActivity" />
 
         <activity android:name=".Activities.BreederRegisterActivity" />

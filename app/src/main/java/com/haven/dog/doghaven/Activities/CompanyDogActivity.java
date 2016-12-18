@@ -2,6 +2,7 @@ package com.haven.dog.doghaven.Activities;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -178,17 +179,14 @@ public class CompanyDogActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            Intent info= new Intent(this,BreederProfile.class);
+            startActivity(info);
+        }  else if (id == R.id.nav_slideshow) {
+            Intent info= new Intent(this,AddDogActivity.class);
+            startActivity(info);
         } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+            Intent info= new Intent(this,StudPreferences.class);
+            startActivity(info);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
