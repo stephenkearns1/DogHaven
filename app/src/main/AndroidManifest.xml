@@ -131,6 +131,27 @@
         </activity>
 
         <activity
+            android:name=".Helpers.BreedInfo_PopUp2"
+            android:label="@string/title_helpers_breedinfo_popup2"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+
+        <activity
+            android:name=".Helpers.BreedInfo_PopUp3"
+            android:label="@string/title_helpers_breedinfo_popup3"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+
+        <activity
+            android:name=".Helpers.BreedInfo_PopUp4"
+            android:label="@string/title_helpers_breedinfo_popup4"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+
+        <activity
             android:name=".Activities.StudPreferences"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>

@@ -29,11 +29,17 @@
         android:layout_height="match_parent"
         android:layout_marginTop="20dp">
 
+
+
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@color/colorUserHomeButtons">
+
+
 
             <LinearLayout
                 android:orientation="vertical"
@@ -55,7 +61,48 @@
             </LinearLayout>
 
 
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/q16"
+                android:visibility="visible"
+                android:background="@color/cardview_light_background"
+                android:layout_marginTop="1dp">
 
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:text="What Breed Do you Want ?"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/q16TV"
+                        android:layout_weight="1"
+                        android:textColor="@color/cast_expanded_controller_background_color"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:ems="10"
+                        android:id="@+id/breedNametf"
+                        android:layout_weight="1"
+                        android:hint="Enter Breed Name" />
+                </LinearLayout>
+
+            </LinearLayout>
 
 
 
@@ -313,6 +360,10 @@
                 </LinearLayout>
 
             </LinearLayout>
+
+
+
+
 
 
 

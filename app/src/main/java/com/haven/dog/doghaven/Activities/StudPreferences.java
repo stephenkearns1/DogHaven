@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -27,16 +28,18 @@ import static android.view.View.VISIBLE;
 
 public class StudPreferences extends AppCompatActivity implements View.OnClickListener {
     private String body,energy,intelligence,temp,
-            instinct,people;
+            instinct,people,breed;
 
-    private Spinner q1sp,q2sp,q3sp,q3_1sp,q4sp,q5sp,q6sp,q7sp,q8sp,
-            q9sp,q10sp, q11sp, q12sp, q13sp,q13_1sp,q14sp,q15sp;
+    private Spinner q3sp,q6sp,q8sp,
+            q9sp,q10sp, q11sp;
 
     private Button addPref;
 
     private UserSessionManagment userSessionManag;
 
     private User user;
+
+    private EditText breedname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,8 @@ public class StudPreferences extends AppCompatActivity implements View.OnClickLi
         q9sp = (Spinner) findViewById(R.id.q9SP);
         q10sp = (Spinner) findViewById(R.id.q10SP);
         q11sp = (Spinner) findViewById(R.id.q11SP);
+        breedname= (EditText) findViewById(R.id.breedNametf);
+        breed = breedname.getText().toString();
         addListenerOnDropDown();
 
         addPref = (Button) findViewById(R.id.addPref);
@@ -197,6 +202,7 @@ public class StudPreferences extends AppCompatActivity implements View.OnClickLi
 
         Bundle bundle = new Bundle();
 //Add your data from getFactualResults method to bundle
+        bundle.putString("breed", breed);
         bundle.putString("body", body);
         bundle.putString("energy", energy);
         bundle.putString("intelligence", intelligence);

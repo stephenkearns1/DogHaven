@@ -272,6 +272,9 @@
     <string name="title_activity_company_dog">CompanyDogActivity</string>
     <string name="title_activity_questions">Questions</string>
     <string name="title_helpers_breedinfo_popup">BreedInfo PopUp</string>
+    <string name="title_helpers_breedinfo_popup2">BreedInfo PopUp2</string>
+    <string name="title_helpers_breedinfo_popup3">BreedInfo PopUp3</string>
+    <string name="title_helpers_breedinfo_popup4">BreedInfo PopUp4</string>
 
     <string name="signout">Sign out</string>
 
