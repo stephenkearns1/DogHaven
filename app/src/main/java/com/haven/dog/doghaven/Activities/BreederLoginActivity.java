@@ -57,11 +57,15 @@ public class BreederLoginActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_breeder_login);
 
+
+        /*
+            init and getting reference to views and adapters
+         */
+
         companynameET = (EditText) findViewById(R.id.breederCompanynameET);
         passwordET = (EditText) findViewById(R.id.breederpasswordET);
 
         loginBtn = (Button) findViewById(R.id.breederloginActivitybtn);
-        //registerBtn = (Button) findViewById(R.id.breederregisterBtnLogin);
         breederSignup = (TextView) findViewById(R.id.breeder_signup);
         loginBtn.setOnClickListener(this);
         breederSignup.setOnClickListener(this);
@@ -86,13 +90,13 @@ public class BreederLoginActivity extends AppCompatActivity implements View.OnCl
                 companynameET.setError("Please enter a vail companyname");
             }else {
 
-                //mite not have to store username, password for checking only on return store details
+                //Retrieves the breeders cred to authenticate
                 companyname = companynameET.getText().toString();
                 password = passwordET.getText().toString();
 
                 breeder = new Breeder(companyname, password);
 
-                //call login method
+                //makes a request to the server to authenticate a user
                 authenticate(breeder);
             }
         }else if(v.getId() == R.id.breeder_signup){
@@ -113,7 +117,9 @@ public class BreederLoginActivity extends AppCompatActivity implements View.OnCl
         errorDialog.setTitle("Failed ");
 
 
-        StringRequest jsArryRequest = new StringRequest(Request.Method.POST,doghavenAPI_URL,
+
+        // checks to see if a user exists with the entered cred, if so the logs the user into the application
+        StringRequest loginRequest = new StringRequest(Request.Method.POST,doghavenAPI_URL,
                 new Response.Listener<String>() {
 
                     @Override
@@ -191,7 +197,7 @@ public class BreederLoginActivity extends AppCompatActivity implements View.OnCl
 
 
         // Adding the request to the queue
-        MyNetworkingSingletonVolley.getInstance(this).addReuestToQueue(jsArryRequest);
+        MyNetworkingSingletonVolley.getInstance(this).addReuestToQueue(loginRequest);
     }
 
     public void LogBreederIn(Breeder breeder){
@@ -203,7 +209,17 @@ public class BreederLoginActivity extends AppCompatActivity implements View.OnCl
             startActivity(intent);
 
         }else{
-            //display error message saying invaild cred
+            final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(BreederLoginActivity.this);
+            builder.setMessage("Company does not exist")
+                    .setPositiveButton("RETRY", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+
+                        }
+                    });
+
+            builder.show();
         }
     }
 

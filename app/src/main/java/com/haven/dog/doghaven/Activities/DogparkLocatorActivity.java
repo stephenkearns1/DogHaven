@@ -154,12 +154,6 @@ public class DogparkLocatorActivity extends AppCompatActivity
     private void displayUserDetails() {
         User user = userSessionManag.UserLoggedIn();
 
-        //set text views
-        // View header = navigationView.
-
-        //displayUsernameTV.setText(user.getUserName());
-        //displayUseremailTV.setText(user.getEmail())
-        //;
         usernameTV.setText(user.getUsername());
         useremailTV.setText(user.getEmail());
 

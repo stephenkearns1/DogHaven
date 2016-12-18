@@ -46,6 +46,12 @@ import java.util.List;
         }
 
 
+           /*
+
+           Uses the viewholder pattern to hold reference to views
+
+         */
+
 
         public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -72,6 +78,9 @@ import java.util.List;
         }
 
 
+          /*
+                 When the view is been binding get referance and set elements with custom data based on the dogs
+           */
 
 
         @Override
@@ -117,7 +126,7 @@ import java.util.List;
                 @Override
                 public void onClick(View v) {
                     final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                    builder.setTitle("Physical Atrributes");
+                    builder.setTitle("Behaviour Atrributes");
                     builder.setMessage("Energy: " + dogModel.getEnergy() + "\n" +
                             "Exercise: " + dogModel.getExercise()+ "\n" +
                     "Intelligence: " +dogModel.getIntelligence() + "\n" +
@@ -139,7 +148,7 @@ import java.util.List;
                 @Override
                 public void onClick(View v) {
                     final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                    builder.setTitle("Physical Atrributes");
+                    builder.setTitle("Social Atrributes");
                     builder.setMessage("People: " + dogModel.getPeople() + "\n" +
                             "Family: " + dogModel.getFamily()+ "\n" +
                             "Dogs: " + dogModel.getDogs()+ "\n" +

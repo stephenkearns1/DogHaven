@@ -93,6 +93,10 @@ public class CompanyDogsAdapter extends RecyclerView.Adapter<CompanyDogsAdapter.
         return vh;
     }
 
+    /*
+        When the view is been binding get referance and set elements with custom data based on the dogs
+     */
+
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
             final Dog dogModel = dogList.get(position);
@@ -128,7 +132,7 @@ public class CompanyDogsAdapter extends RecyclerView.Adapter<CompanyDogsAdapter.
             @Override
             public void onClick(View v) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Physical Atrributes");
+                builder.setTitle("Behaviour Atrributes");
                 builder.setMessage("Energy: " + dogModel.getEnergy() + "\n" +
                         "Exercise: " + dogModel.getExercise()+ "\n" +
                         "Intelligence: " +dogModel.getIntelligence() + "\n" +
@@ -150,7 +154,7 @@ public class CompanyDogsAdapter extends RecyclerView.Adapter<CompanyDogsAdapter.
             @Override
             public void onClick(View v) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Physical Atrributes");
+                builder.setTitle("Social Atrributes");
                 builder.setMessage("People: " + dogModel.getPeople() + "\n" +
                         "Family: " + dogModel.getFamily()+ "\n" +
                         "Dogs: " + dogModel.getDogs()+ "\n" +
@@ -214,7 +218,9 @@ public class CompanyDogsAdapter extends RecyclerView.Adapter<CompanyDogsAdapter.
 
 
 
-
+    /*
+        When a dog has been deleted, make a request to also delete the dog from the database.
+     */
     public void DeleteDog(){
 
         StringRequest deleteDogRequest  = new StringRequest(Request.Method.POST,  doghavenAPI_URL  ,

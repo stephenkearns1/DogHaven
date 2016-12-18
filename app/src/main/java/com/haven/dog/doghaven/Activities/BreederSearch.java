@@ -151,18 +151,13 @@ public class BreederSearch extends AppCompatActivity  implements NavigationView.
     private void displayUserDetails() {
         User user = userSessionManag.UserLoggedIn();
 
-        //set text views
-        // View header = navigationView.
 
-        //displayUsernameTV.setText(user.getUserName());
-        //displayUseremailTV.setText(user.getEmail())
-        //;
         usernameTV.setText(user.getUsername());
         useremailTV.setText(user.getEmail());
 
 
 
-        Log.i("user Loggedin", user.getUsername() + user.getEmail());
+
 
 
     }
