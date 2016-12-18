@@ -12,7 +12,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_breeder_main_screen"
-    android:background="@color/colorAccent">
+    android:background="@color/cast_expanded_controller_progress_text_color">
 
 
 
@@ -28,7 +28,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:id="@+id/bImageHolder"
-        android:layout_height="170dp" />
+        android:layout_height="170dp"
+        android:background="@color/cast_expanded_controller_progress_text_color" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -55,7 +56,7 @@
             <ImageButton
                 android:layout_width="80dp"
                 android:src="@drawable/ic_search_black_24dp"
-                android:background="@color/colorPrimary"
+                android:background="@color/cast_libraries_material_featurehighlight_outer_highlight_default_color"
                 android:layout_height="69dp" />
 
             <Button
@@ -65,7 +66,7 @@
                 android:padding="15dp"
                 android:text="Company Profile"
                 android:layout_weight="0.07"
-                android:background="@color/colorwhite"
+                android:background="@color/cast_libraries_material_featurehighlight_outer_highlight_default_color"
                 android:id="@+id/CompanyProfileBtn"
                 android:layout_height="69dp" />
 
@@ -83,7 +84,7 @@
             <ImageButton
                 android:layout_width="80dp"
                 android:src="@drawable/ic_search_black_24dp"
-                android:background="@color/colorPrimary"
+                android:background="@color/cast_libraries_material_featurehighlight_outer_highlight_default_color"
                 android:layout_height="69dp" />
 
             <Button
@@ -93,7 +94,7 @@
                 android:padding="15dp"
                 android:text="Stud Match"
                 android:layout_weight="0.07"
-                android:background="@color/colorwhite"
+                android:background="@color/cast_libraries_material_featurehighlight_outer_highlight_default_color"
                 android:id="@+id/studMatch"
                 android:layout_height="69dp" />
 
@@ -110,7 +111,7 @@
             <ImageButton
                 android:layout_width="80dp"
                 android:src="@drawable/ic_search_black_24dp"
-                android:background="@color/colorPrimary"
+                android:background="@color/cast_libraries_material_featurehighlight_outer_highlight_default_color"
                 android:layout_height="69dp" />
 
             <Button
@@ -120,7 +121,7 @@
                 android:padding="15dp"
                 android:text="Add Dog"
                 android:layout_weight="0.07"
-                android:background="@color/colorwhite"
+                android:background="@color/cast_libraries_material_featurehighlight_outer_highlight_default_color"
                 android:id="@+id/addDog"
                 android:layout_height="69dp" />
 
@@ -138,7 +139,7 @@
             <ImageButton
                 android:layout_width="80dp"
                 android:src="@drawable/ic_search_black_24dp"
-                android:background="@color/colorPrimary"
+                android:background="@color/cast_libraries_material_featurehighlight_outer_highlight_default_color"
                 android:layout_height="69dp" />
 
             <Button
@@ -148,7 +149,7 @@
                 android:padding="15dp"
                 android:text="Company Dogs"
                 android:layout_weight="0.07"
-                android:background="@color/colorwhite"
+                android:background="@color/cast_libraries_material_featurehighlight_outer_highlight_default_color"
                 android:id="@+id/CompanyDogsBtn"
                 android:layout_height="69dp" />
 
