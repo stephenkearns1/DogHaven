@@ -94,6 +94,7 @@
                         android:visibility="visible"
                         android:layout_marginTop="3dp"
                         android:elevation="3dp"
+                        android:layout_marginRight="4dp"
                         />
 
 
@@ -105,6 +106,7 @@
                         android:text="Behaviour"
                         android:background="@color/colorAccent"
                         android:layout_marginTop="3dp"
+                        android:layout_marginRight="4dp"
                         />
 
 
@@ -115,7 +117,8 @@
                         android:id="@+id/socialAttrBtn"
                         android:text="Social "
                         android:background="@color/colorAccent"
-                        android:layout_marginTop="3dp"/>
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="4dp"/>
 
 
                     <Button
