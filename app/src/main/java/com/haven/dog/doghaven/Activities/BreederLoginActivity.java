@@ -33,6 +33,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BreederLoginActivity extends AppCompatActivity implements View.OnClickListener   {
+
     private EditText companynameET, passwordET;
     private Button loginBtn, registerBtn;
     private String companyname, password;

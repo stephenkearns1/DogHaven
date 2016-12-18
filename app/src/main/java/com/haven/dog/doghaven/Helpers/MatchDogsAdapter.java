@@ -93,8 +93,11 @@ import java.util.List;
                 public void onClick(View v) {
                     final AlertDialog.Builder builder = new AlertDialog.Builder(context);
                     builder.setTitle("Physical Atrributes");
-                    builder.setMessage("Size:" + dogModel.getSize() + "\n" +
-                            "Fur:" + dogModel.getFur())
+                    builder.setMessage("Size: " + dogModel.getSize() + "\n" +
+                            "Fur: " + dogModel.getFur()+ "\n" +
+                            "Body: " + dogModel.getBody()+ "\n" +
+                            "Tolerance: " + dogModel.getTolerance()+ "\n" +
+                            "Neutered: " + dogModel.getNeutered())
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -158,14 +161,44 @@ import java.util.List;
             holder.behaviourBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle("Physical Atrributes");
+                    builder.setMessage("Energy: " + dogModel.getEnergy() + "\n" +
+                            "Exercise: " + dogModel.getExercise()+ "\n" +
+                    "Intelligence: " +dogModel.getIntelligence() + "\n" +
+                            "Playful: " + dogModel.getPlayful()+ "\n" +
+                            "Instinct: " +dogModel.getInstinct())
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
 
+
+                                }
+                            });
+
+                    builder.show();
                 }
             });
 
             holder.socialBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle("Physical Atrributes");
+                    builder.setMessage("People: " + dogModel.getPeople() + "\n" +
+                            "Family: " + dogModel.getFamily()+ "\n" +
+                            "Dogs: " + dogModel.getDogs()+ "\n" +
+                            "Emotion: " +dogModel.getEmotion() + "\n" +
+                            "Sociability: " + dogModel.getSociality())
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
 
+
+                                }
+                            });
+
+                    builder.show();
                 }
             });
 
@@ -185,9 +218,9 @@ import java.util.List;
         }
 
 
-        public void addDog(Dog newDog){
+        public void addDog(Dog newDog,int position){
             dogList.add(newDog);
-            notifyDataSetChanged();
+            notifyItemInserted(position);
         }
 
         public void AddAllDogs(List<Dog> newDogs){
@@ -205,7 +238,7 @@ import java.util.List;
 
         public void Remove(int position){
             dogList.remove(position);
-            notifyDataSetChanged();
+            notifyItemRemoved(position);
         }
     }
 
