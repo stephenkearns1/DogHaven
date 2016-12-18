@@ -5,7 +5,7 @@ package com.haven.dog.doghaven.Models;
  */
 
 public class Dog {
-    private String name, breed, companyName, age, color;
+    private String name, gender, breed, companyName, age, color;
     //physical attributes
     private int dogId;
     private  String size, fur, body, tolerance, neutered;
@@ -14,7 +14,7 @@ public class Dog {
     private String dillcur, dillpast, dvac, dvacmiss;
 
 
-    public Dog(int dogId, String name, String breed,String companyName, String age, String color,
+    public Dog(int dogId, String name, String gender, String breed,String companyName, String age, String color,
                String size, String fur, String body, String tolerance, String neutered,
                String energy, String exercise,  String intelligence,  String playful, String instinct,
                String people, String family, String dogs, String emotion, String sociality,
@@ -22,6 +22,7 @@ public class Dog {
     ){
         this.dogId = dogId;
         this.name = name;
+        this.gender = gender;
         this.breed = breed;
         this.age = age;
         this.color = color;
@@ -45,6 +46,10 @@ public class Dog {
         this.dvac = dvac;
         this.dvacmiss = dvacmiss;
 
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public void setDogId(int dogId) {
@@ -155,6 +160,10 @@ public class Dog {
 
     public String getName() {
         return name;
+    }
+
+    public String getGender() {
+        return gender;
     }
 
     public String getBreed() {

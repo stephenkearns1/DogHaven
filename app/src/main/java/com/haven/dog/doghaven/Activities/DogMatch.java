@@ -55,7 +55,7 @@ public class DogMatch extends AppCompatActivity implements NavigationView.OnNavi
     private int user_id;
     private final String doghavenAPI_GetDogs_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php?GetAllDogs";
     private final String doghavenAPI_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php";
-    private String name, breed, companyName, age, color;
+    private String name, breed,gender, companyName, age, color;
     private RecyclerView mRecyclerView;
     private MatchDogsAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -68,7 +68,7 @@ public class DogMatch extends AppCompatActivity implements NavigationView.OnNavi
     private String energy, exercise, intelligence, playful,instinct;
     private String people, family, dogs, emotion, sociability;
     private String dillcur, dillpast, dvac, dvacmiss;
-    private String TAG_dogname = "dog_name", TAG_age = "dog_age", TAG_breed = "dog_breed", TAG_company = "dog_company", TAG_color= "dog_color";
+    private String TAG_dogname = "dog_name", TAG_age = "dog_age", TAG_breed = "dog_breed",TAG_gender = "dog_sex", TAG_company = "dog_company", TAG_color= "dog_color";
     private String TAG_size = "size", TAG_fur = "fur", TAG_body = "body", TAG_tolerance = "tolerance", TAG_neutered ="neutered";
     private String TAG_energy = "energy", TAG_exercise ="exercise", TAG_intelligence= "intelligence", TAG_playful ="playful", TAG_instinct = "instinct";
     private String TAG_people="people", TAG_family="family", TAG_dogs="dogs", TAG_emotion="emotion", TAG_sociality="sociability";
@@ -285,6 +285,7 @@ public class DogMatch extends AppCompatActivity implements NavigationView.OnNavi
                                 name =  dogObj.getString(TAG_dogname);
                                 age = dogObj.getString(TAG_age);
                                 breed = dogObj.getString(TAG_breed);
+                                gender = dogObj.getString(TAG_gender);
                                 companyName = dogObj.getString(TAG_company);
                                 color = dogObj.getString(TAG_color);
                                 size = dogObj.getString(TAG_size);
@@ -307,10 +308,13 @@ public class DogMatch extends AppCompatActivity implements NavigationView.OnNavi
                                 dvac = dogObj.getString(TAG_dvac);
                                 dvacmiss = dogObj.getString(TAG_dvacmiss);
 
-                                Dog dog = new Dog(dogId, name, age, breed, companyName, color, size, fur, body
-                                        ,tolerance, neutered, energy,exercise, intelligence, playful, instinct, people
-                                        ,family,dogs,emotion, sociability, dillcur, dillpast, dvac, dvacmiss
+                                Dog dog = new Dog(dogId,name, breed,gender,companyName,  age,  color,
+                                        size,  fur, body,  tolerance,  neutered,
+                                        energy,  exercise,   intelligence,   playful,  instinct,
+                                        people, family,dogs, emotion,  sociability,
+                                        dillcur, dillpast,dvac, dvacmiss
                                 );
+
 
                                 dogsList.add(dog);
                                 /*
@@ -377,7 +381,7 @@ public class DogMatch extends AppCompatActivity implements NavigationView.OnNavi
 
                         Log.i("Response1", nResponse);
                         Log.i("Response length", "" + nResponse.length());
-                        if (!(nResponse.equals("failed"))){
+                        if (!(nResponse.equals("false"))){
 
                             if (!(userPrefsList == null)) {
                                 userPrefsList.clear();
@@ -477,8 +481,21 @@ public class DogMatch extends AppCompatActivity implements NavigationView.OnNavi
         mAdapter.ClearAll();
         if(dogsToShow.size() == 0){
 
+            mSwipeRefreshLayout.setRefreshing(false);
+            final AlertDialog.Builder builder = new AlertDialog.Builder(DogMatch.this);
+            builder.setMessage("No matches found")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+
+                        }
+                    });
+
+            builder.show();
+        }else {
+            mAdapter.AddAllDogs(dogsToShow);
+            mSwipeRefreshLayout.setRefreshing(false);
         }
-        mAdapter.AddAllDogs(dogsToShow);
-        mSwipeRefreshLayout.setRefreshing(false);
     }
 }

@@ -30,8 +30,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:name=".Activities.LoginActivity">
+
+        </activity>
         <activity
             android:name=".Activities.UserMainScreenActivity"
             android:label="@string/title_activity_main_screen"
@@ -45,13 +46,11 @@
         </activity>
         <activity
             android:name=".Activities.UserRegisterActivity"
-            android:label="UserRegister"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="UserRegister" />
         <activity
-            android:name=".Activities.AddDogActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.BreederRegisterActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:name=".Activities.AddDogActivity" />
+
+        <activity android:name=".Activities.BreederRegisterActivity" />
         <activity
             android:name=".Activities.DogparkLocatorActivity"
             android:label="@string/title_activity_dogpark_locator"
@@ -132,14 +131,14 @@
             android:name=".Activities.StudPreferences"
             android:theme="@style/AppTheme.NoActionBar"/>
         <service
-            android:name="com.haven.dog.doghaven.MyFirebaseMessagingService">
+            android:name="com.haven.dog.doghaven.Activities.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
 
         <service
-            android:name="com.haven.dog.doghaven.MyFirebaseInstanceIDService">
+            android:name="com.haven.dog.doghaven.Activities.MyFirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>

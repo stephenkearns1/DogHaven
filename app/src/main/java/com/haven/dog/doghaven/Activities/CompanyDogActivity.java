@@ -2,6 +2,7 @@ package com.haven.dog.doghaven.Activities;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -20,6 +21,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.OvershootInterpolator;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -45,6 +47,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
+import jp.wasabeef.recyclerview.animators.FadeInAnimator;
+import jp.wasabeef.recyclerview.animators.FlipInLeftYAnimator;
+
 public class CompanyDogActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private RecyclerView mRecyclerView;
@@ -55,14 +61,14 @@ public class CompanyDogActivity extends AppCompatActivity
     private final String doghavenAPI_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php";
     private final String doghavenAPI_GetDogs_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php?companydogs=";
     private SwipeRefreshLayout mSwipeRefreshLayout;
-    private String name, breed, companyName, age, color;
+    private String name, gender, breed, companyName, age, color;
     // attributes
     private int dogId;
     private  String size, fur, body, tolerance, neutered;
     private String energy, exercise, intelligence, playful,instinct;
     private String people, family, dogs, emotion, sociability;
     private String dillcur, dillpast, dvac, dvacmiss;
-    private String TAG_dogname = "dog_name", TAG_age = "dog_age", TAG_breed = "dog_breed", TAG_company = "dog_company", TAG_color= "dog_color";
+    private String TAG_dogname = "dog_name", TAG_age = "dog_age", TAG_breed = "dog_breed",TAG_gender= "dog_sex",  TAG_company = "dog_company", TAG_color= "dog_color";
     private String TAG_size = "size", TAG_fur = "fur", TAG_body = "body", TAG_tolerance = "tolerance", TAG_neutered ="neutered";
     private String TAG_energy = "energy", TAG_exercise ="exercise", TAG_intelligence= "intelligence", TAG_playful ="playful", TAG_instinct = "instinct";
     private String TAG_people="people", TAG_family="family", TAG_dogs="dogs", TAG_emotion="emotion", TAG_sociality="sociability";
@@ -94,10 +100,12 @@ public class CompanyDogActivity extends AppCompatActivity
 
         //get a reference to the reycler view
         mRecyclerView = (RecyclerView) findViewById(R.id.companyDogs_recyclerView);
+        mRecyclerView.setItemAnimator(new FlipInLeftYAnimator());
 
         //sets the layout mangaer to use a linear layout for displaying views
-        mLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
+        mLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setItemAnimator(new FadeInAnimator());
 
         //sets up the recyler view to use the customer adapter for dogs
         mAdapter = new CompanyDogsAdapter(this);
@@ -171,17 +179,14 @@ public class CompanyDogActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            Intent info= new Intent(this,BreederProfile.class);
+            startActivity(info);
+        }  else if (id == R.id.nav_slideshow) {
+            Intent info= new Intent(this,AddDogActivity.class);
+            startActivity(info);
         } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+            Intent info= new Intent(this,StudPreferences.class);
+            startActivity(info);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -379,10 +384,13 @@ public class CompanyDogActivity extends AppCompatActivity
                     // Adding the request to the queue
                    // MyNetworkingSingletonVolley.getInstance(this).addReuestToQueue(companyDogListRequest);
 
-        JsonArrayRequest companyDogListRequest = new JsonArrayRequest(doghavenAPI_GetDogs_URL+companyName,
-                new Response.Listener<JSONArray>() {
+        StringRequest companyDogListRequest = new StringRequest(Request.Method.POST,doghavenAPI_URL,
+                new Response.Listener<String>() {
+
+
+
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(String response) {
                         //check the response from the server
                         Log.i("New Response", response.toString());
                         Log.i("Response lenght", "" + response.length());
@@ -397,12 +405,14 @@ public class CompanyDogActivity extends AppCompatActivity
                         mAdapter.ClearAll();
                         try {
 
+                            JSONArray jsArryDogList = new JSONArray(response);
 
-                            for (int i = 0; i < response.length(); i++) {
-                                JSONObject dogObj = (JSONObject) response.get(i);
+                            for (int i = 0; i <  jsArryDogList.length()-1; i++) {
+                                JSONObject dogObj = (JSONObject)  jsArryDogList.get(i);
                                 dogId= Integer.parseInt(dogObj.getString("dog_id"));
                                 name =  dogObj.getString(TAG_dogname);
                                 age = dogObj.getString(TAG_age);
+                                gender = dogObj.getString(TAG_gender);
                                 breed = dogObj.getString(TAG_breed);
                                 companyName = dogObj.getString(TAG_company);
                                 color = dogObj.getString(TAG_color);
@@ -426,7 +436,7 @@ public class CompanyDogActivity extends AppCompatActivity
                                 dvac = dogObj.getString(TAG_dvac);
                                 dvacmiss = dogObj.getString(TAG_dvacmiss);
 
-                                Dog dog = new Dog(dogId, name, age, breed, companyName, color, size, fur, body
+                                Dog dog = new Dog(dogId, name, age,breed, gender, companyName, color, size, fur, body
                                         ,tolerance, neutered, energy,exercise, intelligence, playful, instinct, people
                                         ,family,dogs,emotion, sociability, dillcur, dillpast, dvac, dvacmiss
                                 );
@@ -477,7 +487,16 @@ public class CompanyDogActivity extends AppCompatActivity
             public void onErrorResponse(VolleyError error) {
 
             }
-        });
+        }){
+            @Override
+            protected Map<String,String> getParams()  throws AuthFailureError{
+                Map<String,String> params = new HashMap<>();
+                //sending login signals to server that it is a login request and should handle accordingly
+                params.put("GetCompanyDogs", "");
+                params.put("compnayname", companyName);
+                return params;
+            }
+        };
 
 
 

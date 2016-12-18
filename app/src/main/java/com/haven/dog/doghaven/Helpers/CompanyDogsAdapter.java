@@ -94,22 +94,25 @@ public class CompanyDogsAdapter extends RecyclerView.Adapter<CompanyDogsAdapter.
             holder.breedtv.setText(dogModel.getBreed());
             holder.agetv.setText(dogModel.getAge());
             holder.colortv.setText(dogModel.getColor());
-            holder.physicalBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                    builder.setTitle("Physical Atrributes");
-                    builder.setMessage("Size:" + dogModel.getSize() + "\n" +
-                                        "Fur:" + dogModel.getFur())
-                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
+        holder.physicalBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Physical Atrributes");
+                builder.setMessage("Size: " + dogModel.getSize() + "\n" +
+                        "Fur: " + dogModel.getFur()+ "\n" +
+                        "Body: " + dogModel.getBody()+ "\n" +
+                        "Tolerance: " + dogModel.getTolerance()+ "\n" +
+                        "Neutered: " + dogModel.getNeutered())
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
 
 
-                                }
-                            });
+                            }
+                        });
 
-                    builder.show();
+                builder.show();
 
                    /*
                     final Dialog dialog = new Dialog(context);
@@ -158,24 +161,55 @@ public class CompanyDogsAdapter extends RecyclerView.Adapter<CompanyDogsAdapter.
                     */
 
 
-                }
-            });
+            }
+        });
 
-           holder.behaviourBtn.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View v) {
+        holder.behaviourBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Physical Atrributes");
+                builder.setMessage("Energy: " + dogModel.getEnergy() + "\n" +
+                        "Exercise: " + dogModel.getExercise()+ "\n" +
+                        "Intelligence: " +dogModel.getIntelligence() + "\n" +
+                        "Playful: " + dogModel.getPlayful()+ "\n" +
+                        "Instinct: " +dogModel.getInstinct())
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
 
-               }
-           });
 
-          holder.socialBtn.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
+                            }
+                        });
 
-              }
-          });
+                builder.show();
+            }
+        });
 
-          holder.medicalBtn.setOnClickListener(new View.OnClickListener() {
+        holder.socialBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Physical Atrributes");
+                builder.setMessage("People: " + dogModel.getPeople() + "\n" +
+                        "Family: " + dogModel.getFamily()+ "\n" +
+                        "Dogs: " + dogModel.getDogs()+ "\n" +
+                        "Emotion: " +dogModel.getEmotion() + "\n" +
+                        "Sociability: " + dogModel.getSociality())
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+
+                            }
+                        });
+
+                builder.show();
+            }
+        });
+
+
+        holder.medicalBtn.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {
 
@@ -201,9 +235,9 @@ public class CompanyDogsAdapter extends RecyclerView.Adapter<CompanyDogsAdapter.
     }
 
 
-    public void addDog(Dog newDog){
+    public void addDog(Dog newDog, int position){
         dogList.add(newDog);
-        notifyDataSetChanged();
+        notifyItemInserted(position);
     }
 
     public void AddAllDogs(List<Dog> newDogs){
@@ -221,7 +255,7 @@ public class CompanyDogsAdapter extends RecyclerView.Adapter<CompanyDogsAdapter.
 
     public void RemoveDog(int position){
         dogList.remove(position);
-        notifyDataSetChanged();
+        notifyItemRemoved(position);
     }
 
 

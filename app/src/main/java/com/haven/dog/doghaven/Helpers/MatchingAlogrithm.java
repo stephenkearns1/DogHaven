@@ -144,16 +144,21 @@ public class MatchingAlogrithm {
 
         */
         //if the first score in the list is 0 then no matches have been found
-        if(dogScoreList.get(0).getScore() == 0){
+        if(dogScoreList.size() == 0){
+
+        }
+        else if(dogScoreList.size() > 0 && dogScoreList.get(0).getScore() == 0){
             return dogsToShow;
-        }else if(dogScoreList.get(0).getScore() == 15 && dogScoreList.get(1).getScore() == 15){
+        }else if(dogScoreList.size() > 0 &&dogScoreList.get(0).getScore() == 15 && dogScoreList.get(1).getScore() == 15){
             for(int i = 0; i < 2; i++){
 
                 int index = dogScoreList.get(i).getIndexOfDogInList();
                 dogsToShow.add((Dog) dogList.get(index));
             }
-        }else if(dogScoreList.get(0).getScore() == 15){
-
+        }else if(dogScoreList.size() > 0 &&dogScoreList.get(0).getScore() == 15){
+            int index = dogScoreList.get(0).getIndexOfDogInList();
+            dogsToShow.add((Dog) dogList.get(index));
+        }else if(dogScoreList.size() == 1){
             int index = dogScoreList.get(0).getIndexOfDogInList();
             dogsToShow.add((Dog) dogList.get(index));
         } else if(dogScoreList.size() == 2){
@@ -168,12 +173,15 @@ public class MatchingAlogrithm {
                 int index = dogScoreList.get(i).getIndexOfDogInList();
                 dogsToShow.add((Dog) dogList.get(index));
             }
-        }else {
+        }else if(dogScoreList.size()> 4){
             for(int i = 0; i < 4; i++){
 
                 int index = dogScoreList.get(i).getIndexOfDogInList();
                 dogsToShow.add((Dog) dogList.get(index));
             }
+        }else{
+
+            return dogScoreList;
         }
 
 
@@ -207,6 +215,9 @@ public class MatchingAlogrithm {
             }
         }else if(dogScoreList.get(0).getScore() == 6){
 
+            int index = dogScoreList.get(0).getIndexOfDogInList();
+            dogsToShow.add((Dog) dogList.get(index));
+        }else if(dogScoreList.size() == 1){
             int index = dogScoreList.get(0).getIndexOfDogInList();
             dogsToShow.add((Dog) dogList.get(index));
         } else if(dogScoreList.size() == 2){
@@ -258,7 +269,7 @@ public class MatchingAlogrithm {
 
         while(up < down){
 
-            while(start < end && ((Comparable)dogScoreList.get(up).getScore()).compareTo((Comparable)pivot.getScore()) > 0){
+            while(up < end && ((Comparable)dogScoreList.get(up).getScore()).compareTo((Comparable)pivot.getScore()) > 0){
                 up = up +1;
             }
 

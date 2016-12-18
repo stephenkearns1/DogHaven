@@ -269,18 +269,18 @@ public class BreederProfile extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
+        if (id == R.id.nav_slideshow) {
+            Intent info= new Intent(this,AddDogActivity.class);
+            startActivity(info);
+        }  else if (id == R.id.nav_manage) {
+            Intent info= new Intent(this,CompanyDogActivity.class);
+            startActivity(info);
         } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+            Intent info= new Intent(this,StudPreferences.class);
+            startActivity(info);
+        } if (id == R.id.nav_camera) {
+            Intent info= new Intent(this,BreederProfile.class);
+            startActivity(info);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
