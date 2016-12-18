@@ -71,7 +71,7 @@ public class BreederMainScreen extends AppCompatActivity implements View.OnClick
                 startActivity(pb);
                 break;
             case R.id.studMatch:
-                Intent info= new Intent(this,StudMatchActivity.class);
+                Intent info= new Intent(this,StudPreferences.class);
                 startActivity(info);
                 break;
 

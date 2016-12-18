@@ -129,6 +129,10 @@
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
+
+        <activity
+            android:name=".Activities.StudPreferences"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 
