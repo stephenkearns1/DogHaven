@@ -62,7 +62,7 @@ import java.util.List;
                 physicalBtn = (Button) v.findViewById(R.id.physocalAttrBtn);
                 behaviourBtn = (Button) v.findViewById(R.id.behaviourAttrBtn);
                 socialBtn = (Button) v.findViewById(R.id.socialAttrBtn);
-                medicalBtn = (Button) v.findViewById(R.id.medicalAttrBtn);
+
 
 
 
@@ -202,12 +202,7 @@ import java.util.List;
                 }
             });
 
-            holder.medicalBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
 
-                }
-            });
 
 
         }

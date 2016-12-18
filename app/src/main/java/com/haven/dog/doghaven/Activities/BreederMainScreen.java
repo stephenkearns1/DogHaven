@@ -58,7 +58,7 @@ public class BreederMainScreen extends AppCompatActivity implements View.OnClick
             displayUserDetails();
         } else {
             //starts loginIn activity
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(this, StartActivtiy.class);
             startActivity(intent);
         }
     }

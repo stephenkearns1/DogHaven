@@ -59,6 +59,13 @@ public class CompanyDogsAdapter extends RecyclerView.Adapter<CompanyDogsAdapter.
         public Button physicalBtn, behaviourBtn, socialBtn, medicalBtn, deleteBtn;
 
 
+        /*
+
+           Uses the viewholder pattern to hold reference to views
+
+         */
+
+
         public ViewHolder(View v) {
             super(v);
             nametv = (TextView) v.findViewById(R.id.dogname_tv);
@@ -68,7 +75,6 @@ public class CompanyDogsAdapter extends RecyclerView.Adapter<CompanyDogsAdapter.
             physicalBtn = (Button) v.findViewById(R.id.physocalAttrBtn);
             behaviourBtn = (Button) v.findViewById(R.id.behaviourAttrBtn);
             socialBtn = (Button) v.findViewById(R.id.socialAttrBtn);
-            medicalBtn = (Button) v.findViewById(R.id.medicalAttrBtn);
             deleteBtn = (Button) v.findViewById(R.id.deleteDog_btn);
 
 
@@ -114,53 +120,7 @@ public class CompanyDogsAdapter extends RecyclerView.Adapter<CompanyDogsAdapter.
 
                 builder.show();
 
-                   /*
-                    final Dialog dialog = new Dialog(context);
-
-                    dialog.setContentView(R.layout.popup_physical_attr);
-                    dialog.setTitle("Physical Attributes");
-
-
-                    Log.i("Made it to pop onclick", "here");
-                     LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    View popupView = inflater.inflate(R.layout.popup_physical_attr,null);
-
-                    //intiliase an new instance of popup window
-                    mPopupWindow = new PopupWindow(popupView);
-
-                    //getting a reference for custom view for display phyical attributes
-
-
-                    /*
-                    TextView size_tv = (TextView)dialog.findViewById(R.id.size_TV);
-                    TextView fur_tv = (TextView) dialog.findViewById(R.id.fur_TV);
-                    TextView body_tv = (TextView) dialog.findViewById(R.id.body_TV);
-                    TextView tolerance_tv = (TextView)dialog.findViewById(R.id.tolerance_TV);
-                    TextView neutered_tv = (TextView) dialog.findViewById(R.id.neutered_TV);
-                    Button cancelBtn = (Button) dialog.findViewById(R.id.cancelBtn);
-
-
-
-                    Dog dog = dogList.get(position);
-                    //set the attribute views with the dog attributes
-                    size_tv.setText(dog.getSize());
-                    fur_tv.setText(dog.getFur());
-                    body_tv.setText(dog.getBody());
-                    tolerance_tv.setText(dog.getTolerance());
-                    neutered_tv.setText(dog.getNeutered());
-
-                    cancelBtn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            dialog.dismiss();
-                        }
-                    });
-
-                    dialog.show();
-
-                    */
-
-
+                
             }
         });
 
@@ -209,12 +169,6 @@ public class CompanyDogsAdapter extends RecyclerView.Adapter<CompanyDogsAdapter.
         });
 
 
-        holder.medicalBtn.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-
-              }
-          });
 
         holder.deleteBtn.setOnClickListener(new View.OnClickListener(){
 

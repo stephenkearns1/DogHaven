@@ -82,7 +82,7 @@ public class UserMainScreenActivity extends AppCompatActivity
             displayUserDetails();
         } else {
             //starts loginIn activity
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(this, StartActivtiy.class);
             startActivity(intent);
         }
     }

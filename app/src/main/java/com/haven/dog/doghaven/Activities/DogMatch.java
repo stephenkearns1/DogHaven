@@ -153,7 +153,7 @@ public class DogMatch extends AppCompatActivity implements NavigationView.OnNavi
             displayUserDetails();
         } else {
             //starts loginIn activity
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(this, StartActivtiy.class);
             startActivity(intent);
         }
 
@@ -178,8 +178,8 @@ public class DogMatch extends AppCompatActivity implements NavigationView.OnNavi
         //;
 
         //set drawer with user name and email
-        //usernameTV.setText(user.getUsername());
-       // useremailTV.setText(user.getEmail());
+        usernameTV.setText(user.getUsername());
+        useremailTV.setText(user.getEmail());
 
 
 

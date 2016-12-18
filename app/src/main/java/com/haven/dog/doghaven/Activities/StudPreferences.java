@@ -80,7 +80,7 @@ public class StudPreferences extends AppCompatActivity implements View.OnClickLi
             //displayUserDetails();
         } else {
             //starts loginIn activity
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(this, StartActivtiy.class);
             startActivity(intent);
         }
 

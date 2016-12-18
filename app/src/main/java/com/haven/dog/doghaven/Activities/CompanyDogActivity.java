@@ -2,6 +2,7 @@ package com.haven.dog.doghaven.Activities;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -130,6 +131,15 @@ public class CompanyDogActivity extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
+        //checks to see if the user is authenticated if not it requests the user to login.
+        if (authenticate() == true) {
+            //display logged in or start main activity
+            displayUserDetails();
+        } else {
+            //starts loginIn activity
+            Intent intent = new Intent(this, StartActivtiy.class);
+            startActivity(intent);
+        }
         Breeder breeder = userSessionManag.BreederLoggedIn();
         companyName = breeder.getCompanyname();
         Log.i("companyname", companyName);
@@ -508,7 +518,29 @@ public class CompanyDogActivity extends AppCompatActivity
 
 
 
-    public void DeleteDog(int dogID){
-        Log.i("DogID from adapter", " " + dogID);
+    private void displayUserDetails() {
+        Breeder breeder = userSessionManag.BreederLoggedIn();
+
+        //set text views
+        // View header = navigationView.
+
+        //displayUsernameTV.setText(user.getUserName());
+        //displayUseremailTV.setText(user.getEmail())
+        //;
+        //usernameTV.setText(user.getUsername());
+        //useremailTV.setText(user.getEmail());
+
+
+
+        //Log.i("user Loggedin", user.getUsername() + user.getEmail());
+
+
+    }
+
+
+
+    private boolean authenticate() {
+        Log.i("getLoggedIn value", "" + userSessionManag.getBreederLoggedIn());
+        return userSessionManag.getBreederLoggedIn();
     }
 }

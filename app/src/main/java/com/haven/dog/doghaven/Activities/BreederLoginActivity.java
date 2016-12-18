@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -46,6 +47,7 @@ public class BreederLoginActivity extends AppCompatActivity implements View.OnCl
     private static final String tagCompanyAddr= "address";
     private static final String tagCompanyCounty= "county";
     private static final String tagCompanyPassword= "password";
+    TextView breederSignup;
 
     private PopupWindow popupWindow;
     private LinearLayout linearLayout;
@@ -59,9 +61,10 @@ public class BreederLoginActivity extends AppCompatActivity implements View.OnCl
         passwordET = (EditText) findViewById(R.id.breederpasswordET);
 
         loginBtn = (Button) findViewById(R.id.breederloginActivitybtn);
-        registerBtn = (Button) findViewById(R.id.breederregisterBtnLogin);
+        //registerBtn = (Button) findViewById(R.id.breederregisterBtnLogin);
+        breederSignup = (TextView) findViewById(R.id.breeder_signup);
         loginBtn.setOnClickListener(this);
-        registerBtn.setOnClickListener(this);
+        breederSignup.setOnClickListener(this);
 
         popupWindow = new PopupWindow(this);
         linearLayout = new LinearLayout(this);
@@ -92,7 +95,7 @@ public class BreederLoginActivity extends AppCompatActivity implements View.OnCl
                 //call login method
                 authenticate(breeder);
             }
-        }else if(v.getId() == R.id.breederregisterBtnLogin){
+        }else if(v.getId() == R.id.breeder_signup){
             Intent intent = new Intent(this,BreederRegisterActivity.class);
             startActivity(intent);
         }

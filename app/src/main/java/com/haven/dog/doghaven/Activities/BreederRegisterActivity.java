@@ -29,6 +29,7 @@ public class BreederRegisterActivity extends AppCompatActivity implements View.O
     private  ProgressDialog progressDialog;
     private final String doghavenAPI_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php";
     private Validation validation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

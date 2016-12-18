@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -63,6 +64,7 @@ public class StudMatchActivity extends AppCompatActivity {
     private String TAG_energy = "energy", TAG_exercise ="exercise", TAG_intelligence= "intelligence", TAG_playful ="playful", TAG_instinct = "instinct";
     private String TAG_people="people", TAG_family="family", TAG_dogs="dogs", TAG_emotion="emotion", TAG_sociality="sociability";
     private String TAG_dillcur ="dillcurr", TAG_dillpast = "dillpast", TAG_dvac = "dvac", TAG_dvacmiss = "dvacmiss";
+    private  SwipeRefreshLayout  mSwipeRefreshLayout;
     private ProgressDialog progressDialog;
     private UserSessionManagment userSessionManag;
     private MatchingAlogrithm match;
@@ -98,6 +100,14 @@ public class StudMatchActivity extends AppCompatActivity {
         studPrefs = new ArrayList<>();
         dogsList = new ArrayList<>();
 
+        mSwipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swifeRefresh);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                GetStuds();
+            }
+        });
+
 
 
 
@@ -106,12 +116,30 @@ public class StudMatchActivity extends AppCompatActivity {
     }
     protected void onStart() {
         super.onStart();
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            breed = extras.getString("breed");
+            body = extras.getString("body");
+            energy = extras.getString("energy");
+            intelligence  = extras.getString("intelligence");
+            playful= extras.getString("playful");
+            instinct = extras.getString("instinct");
+            people= extras.getString("people");
+            Log.i("Body", body);
+
+            StudPrefs stud = new StudPrefs(body,energy,intelligence,playful,instinct,people);
+            studPrefs.add(stud);
+            GetStuds();
+
+            //The key argument here must match that used in the other activity
+        }
+
         if (authenticate() == true) {
             //display logged in or start main activity
             displayUserDetails();
         } else {
             //starts loginIn activity
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(this, StartActivtiy.class);
             startActivity(intent);
         }
 
@@ -120,23 +148,7 @@ public class StudMatchActivity extends AppCompatActivity {
         //retrive data from stud match activity
 
 
-         Bundle extras = getIntent().getExtras();
-            if (extras != null) {
-                breed = extras.getString("breed");
-                body = extras.getString("body");
-                energy = extras.getString("energy");
-                intelligence  = extras.getString("intelligence");
-                playful= extras.getString("playful");
-                instinct = extras.getString("instinct");
-                people= extras.getString("people");
-                Log.i("Body", body);
 
-                StudPrefs stud = new StudPrefs(body,energy,intelligence,playful,instinct,people);
-                studPrefs.add(stud);
-                GetStuds();
-
-                //The key argument here must match that used in the other activity
-            }
 
 
     }

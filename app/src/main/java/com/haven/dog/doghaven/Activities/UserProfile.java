@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -47,6 +48,7 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
     private String originalUsername, updatedUsername, newEmail, newPassword, confirmPassword;
     private final String doghavenAPI_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php";
     private Validation vailadate;
+    private TextView usernameTV, useremailTV;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +74,10 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        View navHeader = navigationView.getHeaderView(0);
+        usernameTV = (TextView) navHeader.findViewById(R.id.usernameHeader_TV);
+        useremailTV = (TextView) navHeader.findViewById(R.id.useremailHeader_TV);
+
         profile_username_et = (EditText) findViewById(R.id.profile_username);
         profile_email_et = (EditText) findViewById(R.id.user_profile_email_ET);
         profile_password_et = (EditText) findViewById(R.id.profile_password);
@@ -87,6 +93,15 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
     @Override
     protected void onStart() {
         super.onStart();
+        //checks to see if the user is authenticated if not it requests the user to login.
+        if (authenticate() == true) {
+            //display logged in or start main activity
+            displayUserDetails();
+        } else {
+            //starts loginIn activity
+            Intent intent = new Intent(this, StartActivtiy.class);
+            startActivity(intent);
+        }
 
         User user = userSessionManag.UserLoggedIn();
         originalUsername = user.getUsername();
@@ -308,5 +323,32 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
         }
 
 
+    }
+
+
+    private void displayUserDetails() {
+        User user = userSessionManag.UserLoggedIn();
+
+        //set text views
+        // View header = navigationView.
+
+        //displayUsernameTV.setText(user.getUserName());
+        //displayUseremailTV.setText(user.getEmail())
+        //;
+        usernameTV.setText(user.getUsername());
+        useremailTV.setText(user.getEmail());
+
+
+
+        Log.i("user Loggedin", user.getUsername() + user.getEmail());
+
+
+    }
+
+
+
+    private boolean authenticate() {
+        Log.i("getLoggedIn value", "" + userSessionManag.getLoggedIn());
+        return userSessionManag.getLoggedIn();
     }
 }

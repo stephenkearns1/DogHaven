@@ -1,5 +1,6 @@
 package com.haven.dog.doghaven.Activities;
 
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -33,6 +34,7 @@ import com.haven.dog.doghaven.Helpers.MyNetworkingSingletonVolley;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Hashtable;
@@ -57,6 +59,7 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
     private ImageView PictureIV;
     private Bitmap bitmap;
     private int PICK_IMAGE_REQUEST = 1;
+    String imgPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,7 +116,7 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
             //displayUserDetails();
         } else {
             //starts loginIn activity
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(this, StartActivtiy.class);
             startActivity(intent);
         }
     }
@@ -243,7 +246,7 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
                 Toast.makeText(AddDogActivity.this, error.getMessage().toString(), Toast.LENGTH_LONG).show();
             }
         }) {
-            
+
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
 
@@ -290,7 +293,7 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             protected Map<String,String> getParams()  throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
-                params.put("adddog", "adddog");
+                params.put("adddog", "");
                 params.put("dog_name", dog_name);
                 params.put("dog_age", dog_age);
                 params.put("dog_breed", dog_breed);
@@ -328,6 +331,25 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
         Log.i("getLoggedIn value", "" + userSessionManag.getBreederLoggedIn());
         return userSessionManag.getBreederLoggedIn();
     }
+
+
+    public Uri StoreInMemory(){
+
+        String filename = "myfile";
+        String string = "Hello world!";
+        FileOutputStream outputStream;
+
+
+            ContextWrapper cw = new ContextWrapper(getApplicationContext());
+            File directory = cw.getDir("imageDir", getApplication().MODE_PRIVATE);
+            File file = new File(directory,System.currentTimeMillis() + ".png");
+            Uri imgUri = Uri.fromFile(file);
+            this.imgPath = file.getAbsolutePath();
+            return imgUri;
+        }
+
+
+
 
 
 }
