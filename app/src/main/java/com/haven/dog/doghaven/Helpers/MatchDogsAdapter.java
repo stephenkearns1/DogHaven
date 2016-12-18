@@ -46,6 +46,12 @@ import java.util.List;
         }
 
 
+           /*
+
+           Uses the viewholder pattern to hold reference to views
+
+         */
+
 
         public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -72,6 +78,9 @@ import java.util.List;
         }
 
 
+          /*
+                 When the view is been binding get referance and set elements with custom data based on the dogs
+           */
 
 
         @Override
