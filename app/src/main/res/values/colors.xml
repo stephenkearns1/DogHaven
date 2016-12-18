@@ -2,13 +2,14 @@
 <resources>
     <color name="colorPrimary">#F44336</color>
     <color name="colorPrimaryDark">#D32F2F</color>
-    <color name="colorAccent">#FF5252</color>
+    <color name="colorAccent">#ff5252</color>
     <color name="colorPrimaryText">#212121</color>
     <color name="secondaryColor">#9E9E9E</color>
-    <color name="colorDivider">#BDBDBD</color>#757575
-    <color name="lightPrimaryColor">#FFCDD2</color>
+    <color name="colorDivider">#BDBDBD</color>
+    <color name="lightPrimaryColor">#FEFFFE</color>
     <color name="colorUserHomePage">#f7c265</color>
-    <color name="colorUserHomeButtons">#1f6fef</color>#BBDEFB
+    <color name="colorUserHomeButtons">#1f6fef</color>
     <color name="colorwhite">#ffffff</color>
     <color name="altColorUserMainScreen">#9bc1ff</color>
 </resources>
+

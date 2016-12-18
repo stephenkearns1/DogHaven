@@ -26,7 +26,7 @@
         <RatingBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/ratingBar1"
+            android:id="@+id/exerciseRB1"
             android:numStars="4"
             android:isIndicator="true" />
 
@@ -52,7 +52,7 @@
         <RatingBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/ratingBar2"
+            android:id="@+id/exerciseRB2"
             android:numStars="4"
             android:isIndicator="true" />
 
@@ -78,7 +78,7 @@
         <RatingBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/ratingBar3"
+            android:id="@+id/exerciseRB3"
             android:numStars="4"
             android:isIndicator="true" />
 
@@ -104,7 +104,7 @@
         <RatingBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/ratingBar4"
+            android:id="@+id/exerciseRB4"
             android:numStars="4"
             android:isIndicator="true" />
 

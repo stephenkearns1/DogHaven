@@ -13,7 +13,7 @@
         android:id="@+id/card_view"
         android:layout_gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="520dp"
         card_view:cardCornerRadius="4dp">
 
 
@@ -26,7 +26,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:weightSum="1">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -66,13 +67,14 @@
 
                 <Button
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:id="@+id/physocalAttrBtn"
                     android:text="Phyical Attributes"
                     android:background="@color/colorAccent"
                     android:visibility="visible"
                     android:elevation="3dp"
+                    android:layout_marginBottom="4dp"
                     />
 
 
@@ -82,7 +84,9 @@
                     android:layout_gravity="center"
                     android:id="@+id/behaviourAttrBtn"
                     android:text="Behaviour Attaibrutes"
-                    android:background="@color/colorAccent"/>
+                    android:background="@color/colorAccent"
+                    android:layout_weight="0.35"
+                    android:layout_marginBottom="4dp"/>
 
 
                 <Button
@@ -91,7 +95,8 @@
                     android:layout_gravity="center"
                     android:id="@+id/socialAttrBtn"
                     android:text="Social Attributes"
-                    android:background="@color/colorAccent"/>
+                    android:background="@color/colorAccent"
+                    android:layout_marginBottom="4dp"/>
 
 
                 <Button
@@ -100,14 +105,16 @@
                     android:layout_gravity="center"
                     android:id="@+id/medicalAttrBtn"
                     android:text="Medical Attributes"
-                    android:background="@color/colorAccent"/>
+                    android:background="@color/colorAccent"
+                    android:layout_marginBottom="4dp"/>
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:text="Delete"
                     android:id="@+id/deleteDog_btn"
-                  android:background="@color/colorAccent"/>
+                  android:background="@color/colorAccent"
+                    android:layout_marginBottom="4dp"/>
             </LinearLayout>
 
         </ScrollView>

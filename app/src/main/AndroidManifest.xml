@@ -48,17 +48,22 @@
             android:name=".Activities.UserRegisterActivity"
             android:label="UserRegister" />
         <activity
+<<<<<<< HEAD
             android:name=".Activities.AddDogActivity" />
 
         <activity android:name=".Activities.BreederRegisterActivity" />
         <activity
             android:name=".Activities.DogparkLocatorActivity"
             android:label="@string/title_activity_dogpark_locator"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+          ></activity>
         <activity
             android:name=".Activities.BreedInfoActivity"
             android:label="@string/title_activity_breed_info"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            >
+
+        </activity>
         <activity android:name=".Activities.BreederLoginActivity" />
         <activity
             android:name=".Activities.BreederSearch"
@@ -95,7 +100,7 @@
              sign the APK for publishing.
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
-        <meta-data5
+        <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/AIzaSyAyjLucpuvkFHc5UbIC1KkxbZxWzIqqp8o" />
 
@@ -124,36 +129,22 @@
         </activity>
 
         <activity
-            android:name=".Helpers.BreedInfo_PopUp"
-            android:label="@string/title_helpers_breedinfo_popup"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-
-        <activity
-            android:name=".Helpers.BreedInfo_PopUp2"
-            android:label="@string/title_helpers_breedinfo_popup2"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-
-        <activity
-            android:name=".Helpers.BreedInfo_PopUp3"
-            android:label="@string/title_helpers_breedinfo_popup3"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-
-        <activity
-            android:name=".Helpers.BreedInfo_PopUp4"
-            android:label="@string/title_helpers_breedinfo_popup4"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-
-        <activity
             android:name=".Activities.StudPreferences"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <service
+            android:name="com.haven.dog.doghaven.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <service
+            android:name="com.haven.dog.doghaven.MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+
     </application>
 
 
