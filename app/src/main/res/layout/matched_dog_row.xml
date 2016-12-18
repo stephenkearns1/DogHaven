@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/lightPrimaryColor">
 
 
 
@@ -12,7 +13,10 @@
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:cardCornerRadius="4dp">
+        card_view:cardCornerRadius="100dp"
+        card_view:cardElevation="10dp"
+        android:layout_marginTop="50dp"
+        android:background="@color/colorDivider">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -23,13 +27,27 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:padding="10dp">
+                android:background="@color/lightPrimaryColor"
+
+
+                >
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="200dp"
                     card_view:srcCompat="@drawable/akita"
                     android:scaleType="fitXY" />
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="3dp"
+                    android:background="@color/colorDivider"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
 
                 <TextView
                     android:layout_marginTop="10dp"
@@ -59,46 +77,56 @@
                     android:text="Physical Attributes"
                     android:layout_gravity="center"/>
 
-
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
                     <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_gravity="center"
                         android:id="@+id/physocalAttrBtn"
-                        android:text="Phyical Attributes"
+                        android:text="Phyical"
                         android:background="@color/colorAccent"
                         android:visibility="visible"
+                        android:layout_marginTop="3dp"
                         android:elevation="3dp"
                         />
 
 
                     <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_gravity="center"
                         android:id="@+id/behaviourAttrBtn"
-                        android:text="Behaviour Attaibrutes"
-                        android:background="@color/colorAccent"/>
+                        android:text="Behaviour"
+                        android:background="@color/colorAccent"
+                        android:layout_marginTop="3dp"
+                        />
 
 
                     <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_gravity="center"
                         android:id="@+id/socialAttrBtn"
-                        android:text="Social Attributes"
-                        android:background="@color/colorAccent"/>
+                        android:text="Social "
+                        android:background="@color/colorAccent"
+                        android:layout_marginTop="3dp"/>
 
 
                     <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_gravity="center"
                         android:id="@+id/medicalAttrBtn"
-                        android:text="Medical Attributes"
-                        android:background="@color/colorAccent"/>
+                        android:text="Medical "
+                        android:background="@color/colorAccent"
+                        android:layout_marginTop="3dp"/>
+                </LinearLayout>
 
+            </LinearLayout>
 
             </LinearLayout>
 

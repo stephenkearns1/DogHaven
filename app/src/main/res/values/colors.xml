@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2196f3</color>
-    <color name="colorPrimaryDark">#1976d2</color>
-    <color name="colorAccent">#ff5722</color>
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#1976D2</color>
+    <color name="colorAccent">#9E9E9E</color>
+    <color name="colorPrimaryText">#212121</color>
+    <color name="secondaryColor">#9E9E9E</color>
+    <color name="colorDivider">#BDBDBD</color>#757575
+    <color name="lightPrimaryColor">#BBDEFB</color>
     <color name="colorUserHomePage">#f7c265</color>
-    <color name="colorUserHomeButtons">#1f6fef</color>
+    <color name="colorUserHomeButtons">#1f6fef</color>#BBDEFB
     <color name="colorwhite">#ffffff</color>
     <color name="altColorUserMainScreen">#9bc1ff</color>
 </resources>
