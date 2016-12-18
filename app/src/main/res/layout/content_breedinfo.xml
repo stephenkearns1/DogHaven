@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#5da5fd"
+    android:background="@color/cardview_light_background"
     android:weightSum="1">
 
     <ImageView
@@ -18,15 +18,16 @@
 
     <TextView
         android:text="Breed Info"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/breedName"
         android:textAlignment="viewStart"
         android:textSize="18sp"
         android:textStyle="normal|bold"
-        android:background="@color/colorAccent"
+        android:background="@color/cardview_light_background"
         android:textColor="@android:color/background_dark"
-        android:padding="1dp" />
+        android:padding="1dp"
+        android:layout_marginLeft="155dp" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -45,14 +46,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/physicalBT"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:backgroundTint="@color/colorAccent" />
 
             <Button
                 android:text="Medical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/medicalBT"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:backgroundTint="@color/colorAccent" />
         </LinearLayout>
 
         <LinearLayout
@@ -65,14 +68,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/socialBT"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:backgroundTint="@color/colorAccent" />
 
             <Button
                 android:text="Exercise"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/exerciseBT"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:backgroundTint="@color/colorAccent" />
         </LinearLayout>
 
     </LinearLayout>
