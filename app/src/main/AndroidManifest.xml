@@ -30,8 +30,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:name=".Activities.LoginActivity">
+
+        </activity>
         <activity
             android:name=".Activities.UserMainScreenActivity"
             android:label="@string/title_activity_main_screen"
@@ -45,13 +46,12 @@
         </activity>
         <activity
             android:name=".Activities.UserRegisterActivity"
-            android:label="UserRegister"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="UserRegister" />
         <activity
-            android:name=".Activities.AddDogActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.BreederRegisterActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+<<<<<<< HEAD
+            android:name=".Activities.AddDogActivity" />
+
+        <activity android:name=".Activities.BreederRegisterActivity" />
         <activity
             android:name=".Activities.DogparkLocatorActivity"
             android:label="@string/title_activity_dogpark_locator"
