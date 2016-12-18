@@ -122,6 +122,13 @@
             android:label="@string/title_activity_questions"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+
+        <activity
+            android:name=".Helpers.BreedInfo_PopUp"
+            android:label="@string/title_helpers_breedinfo_popup"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
     </application>
 
 

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:weightSum="1"
+    android:paddingLeft="5dp">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:layout_marginTop="200dp">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:id="@+id/textView5"
+            android:text="General Health"
+            android:textSize="24sp"
+
+            android:layout_weight="0.49"
+            android:layout_width="100dp" />
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/medicalRB1"
+            android:numStars="4"
+            android:isIndicator="true" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:text="Grooming"
+            android:textSize="22sp"
+            android:layout_weight="0.48"
+
+            android:layout_width="100dp" />
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/medicalRB2"
+            android:numStars="4"
+            android:isIndicator="true" />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView6"
+            android:text="Drooling"
+            android:textSize="24sp"
+            android:layout_weight="0.48"
+            />
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/medicalRB3"
+            android:numStars="4"
+            android:isIndicator="true" />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView8"
+            android:text="Barking"
+            android:textSize="24sp"
+            android:layout_weight="0.48"
+            />
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/medicalRB4"
+            android:numStars="4"
+            android:isIndicator="true" />
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
