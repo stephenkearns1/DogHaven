@@ -47,10 +47,10 @@ import com.haven.dog.doghaven.R;
  */
 
 public class AddDogActivity extends AppCompatActivity implements View.OnClickListener {
-    EditText nameinsertET, ageinsertET, breedinsertET, companyinsertET, colorinsertET, illcurrentinsertET, illpastinsertET, vacinsertET, vacmissinginsertET;
+    EditText nameinsertET, ageinsertET, sexinsertET, breedinsertET, companyinsertET, colorinsertET, illcurrentinsertET, illpastinsertET, vacinsertET, vacmissinginsertET;
     Button AddDogBtn, GalleryBtn, UploadBtn;
     Spinner ddsize, ddfur, ddbody, ddtolerance, ddneutered, ddenergy, ddexercise, ddintelligence, ddplayful, ddinstinct, ddpeople, ddfamily, dddogs, ddemotion, ddsociability;
-    private String dog_name, dog_breed, dog_age, dog_company, dog_color, dillcurr, dillpast, dvac, dvacmiss, size, fur, body, tolerance, neutered, energy, exercise, intelligence, playful, instinct, people, family, dogs, emotion, sociability, image;
+    private String dog_name, dog_breed, dog_sex, dog_age, dog_company, dog_color, dillcurr, dillpast, dvac, dvacmiss, size, fur, body, tolerance, neutered, energy, exercise, intelligence, playful, instinct, people, family, dogs, emotion, sociability, image;
     private ProgressDialog pDialog;
     private final String doghavenAPI_URL = "https://doghaven-backend-app-stephenkearns1.c9users.io/index.php";
     private UserSessionManagment userSessionManag;
@@ -65,6 +65,7 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
 
         nameinsertET = (EditText) findViewById(R.id.NameInsertET);
         ageinsertET = (EditText) findViewById(R.id.AgeInsertET);
+        sexinsertET = (EditText) findViewById(R.id.SexInsertET);
         breedinsertET = (EditText) findViewById(R.id.BreedInsertET);
         companyinsertET = (EditText) findViewById(R.id.CompanyInsertET);
         colorinsertET = (EditText) findViewById(R.id.ColorInsertET);
@@ -125,6 +126,7 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
 
             dog_name = nameinsertET.getText().toString();
             dog_age = ageinsertET.getText().toString();
+            dog_sex = sexinsertET.getText().toString();
             dog_breed = breedinsertET.getText().toString();
             dog_company = companyinsertET.getText().toString();
             dog_color = colorinsertET.getText().toString();
@@ -147,6 +149,7 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
             dogs = dddogs.getSelectedItem().toString();
             emotion = ddemotion.getSelectedItem().toString();
             sociability = ddsociability.getSelectedItem().toString();
+
 
             addDog();
 
@@ -243,7 +246,7 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
                 Toast.makeText(AddDogActivity.this, error.getMessage().toString(), Toast.LENGTH_LONG).show();
             }
         }) {
-            
+
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
 
@@ -293,6 +296,7 @@ public class AddDogActivity extends AppCompatActivity implements View.OnClickLis
                 params.put("adddog", "adddog");
                 params.put("dog_name", dog_name);
                 params.put("dog_age", dog_age);
+                params.put("dog_sex", dog_sex);
                 params.put("dog_breed", dog_breed);
                 params.put("dog_company", dog_company);
                 params.put("dog_color", dog_color);
