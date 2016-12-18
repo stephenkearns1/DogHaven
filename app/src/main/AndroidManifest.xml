@@ -131,14 +131,14 @@
             android:name=".Activities.StudPreferences"
             android:theme="@style/AppTheme.NoActionBar"/>
         <service
-            android:name="com.haven.dog.doghaven.MyFirebaseMessagingService">
+            android:name="com.haven.dog.doghaven.Activities.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
 
         <service
-            android:name="com.haven.dog.doghaven.MyFirebaseInstanceIDService">
+            android:name="com.haven.dog.doghaven.Activities.MyFirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>
