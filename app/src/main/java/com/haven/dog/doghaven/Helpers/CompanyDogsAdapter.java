@@ -120,7 +120,7 @@ public class CompanyDogsAdapter extends RecyclerView.Adapter<CompanyDogsAdapter.
 
                 builder.show();
 
-                
+
             }
         });
 
