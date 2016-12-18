@@ -130,6 +130,10 @@
         <activity
             android:name=".Activities.StudPreferences"
             android:theme="@style/AppTheme.NoActionBar"/>
+
+
+        //tags need to be here to access firebase notification service
+
         <service
             android:name="com.haven.dog.doghaven.Activities.MyFirebaseMessagingService">
             <intent-filter>

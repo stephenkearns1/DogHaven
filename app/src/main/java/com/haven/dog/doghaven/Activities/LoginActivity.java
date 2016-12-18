@@ -101,7 +101,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
                 break;
             case R.id.link_signup:
-                Log.i("onClickReg", "onclick working register");
+
                 Intent intent = new Intent(this,UserRegisterActivity.class);
                 startActivity(intent);
                 break;
@@ -133,8 +133,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void onResponse(String response) {
 
-                        Log.i("Response1", response);
-                        Log.i("Response length", "" + response.length());
+
                         if (!(response.equals("failed"))){
 
 
@@ -155,13 +154,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                                 //Log the user in
                                 LogUserIn(mUser);
-                                Log.i("Returned data json:L01", response);
+
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
 
 
-                            Log.i("Returned data:L01", response);
+
                         }else{
                             //error message saying incorrect details
                             progressDialog.hide();
@@ -208,19 +207,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             //check user type and display screen for user
             userSessionManag.SessionUserMangement(user);
             User user2 = userSessionManag.UserLoggedIn();
-            Log.i("user_id", " " + user2.getUserID());
+
             userSessionManag.setUserLoggedIn(true);
             Intent intent = new Intent(this,UserMainScreenActivity.class);
             startActivity(intent);
-            Log.i("user data Login", user.getfName() + user.getsName());
-              /*
-                  if(user.getType == "user")
-                        start usermainscreen
-                  else
-                        start breederscreen
-               */
+
+
         }else{
-            //display error message saying invaild cred
+
         }
     }
 }
