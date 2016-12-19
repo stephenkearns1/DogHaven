@@ -126,7 +126,7 @@ public class Questions extends AppCompatActivity implements View.OnClickListener
 
 
     private boolean authenticate() {
-        Log.i("getLoggedIn value", "" + userSessionManag.getLoggedIn());
+
         return userSessionManag.getLoggedIn();
     }
 
@@ -160,7 +160,7 @@ public class Questions extends AppCompatActivity implements View.OnClickListener
 
 
 
-        Log.i("user Loggedin", user.getUsername() + user.getEmail());
+
 
 
     }

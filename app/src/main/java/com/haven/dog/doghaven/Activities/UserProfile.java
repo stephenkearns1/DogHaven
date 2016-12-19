@@ -127,8 +127,7 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
                     @Override
                     public void onResponse(String response) {
 
-                        Log.i("Response1", response);
-                        Log.i("Response length", "" + response.length());
+
                         if (!(response.equals("failed"))){
 
                                 progressDialog.hide();
@@ -136,11 +135,11 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
                                 //Log the user in
                                 //LogUserIn(mUser);
 
-                                Log.i("Returned data json:L01", response);
+
 
                                 userSessionManag.EditUserDetails(updatedUsername, confirmPassword);
 
-                            Log.i("Returned data:L01", response);
+
                         }else{
                             //error message saying incorrect details
                             progressDialog.hide();
@@ -194,12 +193,11 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
                     @Override
                     public void onResponse(String response) {
 
-                        Log.i("Response Checkusername", response);
-                        Log.i("Response length", "" + response.length());
+
 
                         if(response.equals("exists")){
                             //exists = true;
-                            Log.i("Made it to", "response user name exist");
+
                             profile_username_et.setError("Already exists");
                         }else{
                             UpdateUserDetails();
@@ -330,17 +328,13 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
         User user = userSessionManag.UserLoggedIn();
 
         //set text views
-        // View header = navigationView.
 
-        //displayUsernameTV.setText(user.getUserName());
-        //displayUseremailTV.setText(user.getEmail())
-        //;
         usernameTV.setText(user.getUsername());
         useremailTV.setText(user.getEmail());
 
 
 
-        Log.i("user Loggedin", user.getUsername() + user.getEmail());
+
 
 
     }
@@ -348,7 +342,7 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
 
 
     private boolean authenticate() {
-        Log.i("getLoggedIn value", "" + userSessionManag.getLoggedIn());
+
         return userSessionManag.getLoggedIn();
     }
 }
