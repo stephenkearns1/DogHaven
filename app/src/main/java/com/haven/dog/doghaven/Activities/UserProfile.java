@@ -329,8 +329,8 @@ public class UserProfile extends AppCompatActivity implements NavigationView.OnN
 
         //set text views
 
-        usernameTV.setText(user.getUsername());
-        useremailTV.setText(user.getEmail());
+       // usernameTV.setText(user.getUsername());
+        //useremailTV.setText(user.getEmail());
 
 
 

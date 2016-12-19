@@ -152,8 +152,8 @@ public class BreederSearch extends AppCompatActivity  implements NavigationView.
         User user = userSessionManag.UserLoggedIn();
 
 
-        usernameTV.setText(user.getUsername());
-        useremailTV.setText(user.getEmail());
+       //usernameTV.setText(user.getUsername());
+       // useremailTV.setText(user.getEmail());
 
 
 
