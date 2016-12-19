@@ -39,7 +39,9 @@ public class MatchingAlogrithm {
     }
 
 
-
+    /*
+            Adds scores to each dog based on how many attributes match based of perferances
+         */
     public void AddDogWeightings(){
 
        // for(int i = 0; i < dogList.size()-1; i++){
@@ -92,6 +94,9 @@ public class MatchingAlogrithm {
             dogScoreList.add(weightedDogScore);
         }
     }
+    /*
+        Adds scores to each dog based on how many attributes match based of perferances
+     */
 
     public void AddStudWeightings(){
 
@@ -132,17 +137,11 @@ public class MatchingAlogrithm {
 
     public ArrayList MostSuitedDogs(){
 
-        QuickSort(0, dogScoreList.size()-1);
         /*
-        int starting_point = (0 + dogScoreList.size()-1) / 2;
+           Quicksort the score list to descending order based on scores of each dog
+         */
+        QuickSort(0, dogScoreList.size()-1);
 
-        for(int i = dogScoreList.size()-1; i >=  starting_point; i--){
-
-            int index = dogScoreList.get(i).getIndexOfDogInList();
-            dogsToShow.add((Dog) dogList.get(index));
-        }
-
-        */
         //if the first score in the list is 0 then no matches have been found
         if(dogScoreList.size() == 0){
 
@@ -194,16 +193,8 @@ public class MatchingAlogrithm {
     public ArrayList MostSuitedStuds(){
 
         QuickSort(0, dogScoreList.size()-1);
-        /*
-        int starting_point = (0 + dogScoreList.size()-1) / 2;
 
-        for(int i = dogScoreList.size()-1; i >=  starting_point; i--){
 
-            int index = dogScoreList.get(i).getIndexOfDogInList();
-            dogsToShow.add((Dog) dogList.get(index));
-        }
-
-        */
         //if the first score in the list is 0 then no matches have been found
         if(dogScoreList.get(0).getScore() == 0){
             return dogsToShow;

@@ -44,6 +44,7 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
     private Validation validate;
     ProgressDialog progressDialog;
     boolean exists;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,13 +91,11 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
                 dob = dobET.getText().toString();
                 password = passwordET.getText().toString();
 
-                Log.i("username", username);
-
                 emailET.setError("Invaild email");
 
-                /*
-                   validates the users details, and tells the user which of the information does not pass validation.
-                 */
+
+                //   validates the users details, and tells the user which of the information does not pass validation.
+
 
                 if(fname.isEmpty() || sname.isEmpty() || username.isEmpty() || username.isEmpty() || email.isEmpty() || addr.isEmpty() || county.isEmpty() || dob.isEmpty() || password.isEmpty()){
 
@@ -106,18 +105,9 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
                     emailET.setError("Invaild email");
                     passwordET.setError("Invalid password");
                 }else if(validate.IsVaildEmail(email) == false){
-                    Log.i("email error function", "made it ");
-                   /* Drawable icon =
-                            getResources().getDrawable(R.drawable.ic_report_problem_black_24dp);
-                    if (icon != null) {
-                        icon.setBounds(0, 0,
-                                icon.getIntrinsicWidth(),
-                                icon.getIntrinsicHeight());
-                    } */
-                    //emailET.setFocusable(true);
+
                     emailET.setError("Invaild email");
-                   // emailET.requestFocus();
-                    //emailET.setError("Invaild email");
+
 
                 } else if(validate.IsVaildPassword(password) == false){
                     passwordET.setError("Invalid password");
@@ -126,23 +116,9 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
                     CheckIfUserExists();
                 }
 
-
-                //if(exists) {
-
-                //check if the username exists
-                  /*  usernameET.setError("User exists");
-                    Log.i("Username", "The username exists");
-
-                }else if(exists == false) {
-
-                    //register();
-                }
-
-                */
             break;
         }
     }
-
 
     public void register(){
         progressDialog = new ProgressDialog(UserRegisterActivity.this);
@@ -159,7 +135,7 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
                     public void onResponse(String response) {
 
                         progressDialog.hide();
-                        Log.i("Returned data:R01", response);
+
                         if(response.equalsIgnoreCase("success")){
                             //display message account has been created
 
@@ -208,12 +184,9 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
                     @Override
                     public void onResponse(String response) {
 
-                        Log.i("Response Checkusername", response);
-                        Log.i("Response length", "" + response.length());
-
                         if(response.equals("exists")){
                             //exists = true;
-                            Log.i("Made it to", "response user name exist");
+
                             usernameET.setError("Already exists");
                         }else{
                             register();
@@ -244,40 +217,4 @@ public class UserRegisterActivity extends AppCompatActivity implements View.OnCl
         return exists;
     }
 
-
-    /*
-
-    public boolean IsVaildEmail(String email){
-
-        String emailFormat = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]$";
-        Pattern pattern = Pattern.compile(emailFormat, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(email);
-        boolean matches = matcher.matches();
-        Log.i("email matching", ":" + matches);
-        Pattern pattern2 = Patterns.EMAIL_ADDRESS;
-        return pattern2.matcher(email).matches();
-
-        //return !TextUtils.isEmpty(password) && android.util.Patterns.EMAIL_ADDRESS.matcher(password).matches();
-        /* OR
-
-
-               return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
-}
-
-
-
-
-       // return matcher.matches();
-    }
-
-    public boolean IsVaildPassword (String password){
-
-        String passwordFormat = "((?=.*\\d)(?=.*[a-z]).{6,30})";
-        Pattern pattern = Pattern.compile(passwordFormat);
-        Matcher matcher = pattern.matcher(password);
-        boolean matches = matcher.matches();
-        Log.i("Password matching", ":" + matches);
-        return matcher.matches();
-    }
-*/
 }

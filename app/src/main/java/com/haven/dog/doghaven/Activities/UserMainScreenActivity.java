@@ -190,25 +190,18 @@ public class UserMainScreenActivity extends AppCompatActivity
         User user = userSessionManag.UserLoggedIn();
 
         //set text views
-        // View header = navigationView.
 
-        //displayUsernameTV.setText(user.getUserName());
-        //displayUseremailTV.setText(user.getEmail())
-        //;
+
+
+
         usernameTV.setText(user.getUsername());
         useremailTV.setText(user.getEmail());
-
-
-
-        Log.i("user Loggedin", user.getUsername() + user.getEmail());
-
-
     }
 
 
 
     private boolean authenticate() {
-        Log.i("getLoggedIn value", "" + userSessionManag.getLoggedIn());
+
         return userSessionManag.getLoggedIn();
     }
 }

@@ -143,7 +143,7 @@ public class StudMatchActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
-        // body , energy , intelligence ,playful , instinct,people
+
 
         //retrive data from stud match activity
 
@@ -164,7 +164,7 @@ public class StudMatchActivity extends AppCompatActivity {
                     public void onResponse(String response) {
 
                         //check the response from the server
-                        Log.i("New Response", response.toString());
+
                         if(!response.equalsIgnoreCase("false")) {
                             if (!(dogsList == null)) {
                                 dogsList.clear();
@@ -211,24 +211,7 @@ public class StudMatchActivity extends AppCompatActivity {
                                     );
 
                                     dogsList.add(dog);
-                                /*
-                                int id = Integer.parseInt(shopObj.getString(tagId));
 
-                                String eventCat = shopObj.getString(tagCatagory);
-                                String eventTitle = shopObj.getString(tagtitle);
-                                String eventLocation = shopObj.getString(tagLocation);
-                                String eventTime =shopObj.getString(tagpTime);
-                                String eventDate  = shopObj.getString(tagDate);
-                                Double eventLat = Double.parseDouble(shopObj.getString(tagLat));
-                                Double eventLong = Double.parseDouble(shopObj.getString(tagLong));
-
-
-
-
-
-                                EventsModel event = new EventsModel(id, eventCat, eventTitle, eventLocation,eventTime,eventDate,eventLat,eventLong);
-                                listOfEvents.add(event);
-                               */
 
                                     //when user prefs have been received, find the dog matches for the user
 
@@ -305,17 +288,7 @@ public class StudMatchActivity extends AppCompatActivity {
         Breeder breeder = userSessionManag.BreederLoggedIn();
 
         //set text views
-        // View header = navigationView.
 
-        //displayUsernameTV.setText(user.getUserName());
-        //displayUseremailTV.setText(user.getEmail())
-        //;
-        //usernameTV.setText(user.getUsername());
-        //useremailTV.setText(user.getEmail());
-
-
-
-        //Log.i("user Loggedin", user.getUsername() + user.getEmail());
 
 
     }
@@ -323,7 +296,7 @@ public class StudMatchActivity extends AppCompatActivity {
 
 
     private boolean authenticate() {
-        Log.i("getLoggedIn value", "" + userSessionManag.getBreederLoggedIn());
+
         return userSessionManag.getBreederLoggedIn();
     }
 

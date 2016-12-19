@@ -37,7 +37,7 @@ public class BreederMainScreen extends AppCompatActivity implements View.OnClick
 
 
         //Inflates the nav_header layout as the header and then access the elements in the nav_header to populate with user details in the drawer
-      /*  View navHeader = navigationView.getHeaderView(0);
+      /* View navHeader = navigationView.getHeaderView(0);
         usernameTV = (TextView) navHeader.findViewById(R.id.usernameHeader_TV);
         useremailTV = (TextView) navHeader.findViewById(R.id.useremailHeader_TV);
        */

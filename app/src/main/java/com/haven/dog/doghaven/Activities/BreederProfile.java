@@ -21,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -49,6 +50,7 @@ public class BreederProfile extends AppCompatActivity
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private TextView usernameTV, useremailTV;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +77,10 @@ public class BreederProfile extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-
+        //Inflates the nav_header layout as the header and then access the elements in the nav_header to populate with user details in the drawer
+        View navHeader = navigationView.getHeaderView(0);
+        usernameTV = (TextView) navHeader.findViewById(R.id.usernameHeader_TV);
+        useremailTV = (TextView) navHeader.findViewById(R.id.useremailHeader_TV);
 
         companynameET = (EditText) findViewById(R.id.profile_breeder_companynameET);
         companyEmailET = (EditText) findViewById(R.id.breeder_profile_email_ET);
@@ -335,18 +340,11 @@ public class BreederProfile extends AppCompatActivity
     private void displayUserDetails() {
         Breeder breeder = userSessionManag.BreederLoggedIn();
 
-        //set text views
-        // View header = navigationView.
 
-        //displayUsernameTV.setText(user.getUserName());
-        //displayUseremailTV.setText(user.getEmail())
-        //;
-        //usernameTV.setText(user.getUsername());
-        //useremailTV.setText(user.getEmail());
+        usernameTV.setText(breeder.getCompanyname());
+        useremailTV.setText(breeder.getEmail());
 
 
-
-        //Log.i("user Loggedin", user.getUsername() + user.getEmail());
 
 
     }

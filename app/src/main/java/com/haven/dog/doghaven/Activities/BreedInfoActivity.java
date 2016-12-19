@@ -121,7 +121,7 @@ public class BreedInfoActivity extends AppCompatActivity implements NavigationVi
 
 
     private boolean authenticate() {
-        Log.i("getLoggedIn value", "" + userSessionManag.getLoggedIn());
+
         return userSessionManag.getLoggedIn();
     }
 

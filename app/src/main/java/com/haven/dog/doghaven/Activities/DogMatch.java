@@ -170,12 +170,6 @@ public class DogMatch extends AppCompatActivity implements NavigationView.OnNavi
     private void displayUserDetails() {
         User user = userSessionManag.UserLoggedIn();
 
-        //set text views
-        // View header = navigationView.
-
-        //displayUsernameTV.setText(user.getUserName());
-        //displayUseremailTV.setText(user.getEmail())
-        //;
 
         //set drawer with user name and email
         usernameTV.setText(user.getUsername());
@@ -191,7 +185,6 @@ public class DogMatch extends AppCompatActivity implements NavigationView.OnNavi
 
 
     private boolean authenticate() {
-        Log.i("getLoggedIn value", "" + userSessionManag.getLoggedIn());
         return userSessionManag.getLoggedIn();
     }
 
@@ -261,7 +254,9 @@ public class DogMatch extends AppCompatActivity implements NavigationView.OnNavi
     }
 
 
-
+    /*
+        Retrieves all the dogs currently on the system and when they have been relieved send them to the dog match algorithm for matching
+     */
     private void RetriveDogList() {
         JsonArrayRequest companyDogListRequest = new JsonArrayRequest(doghavenAPI_GetDogs_URL,
                 new Response.Listener<JSONArray>() {
@@ -317,26 +312,7 @@ public class DogMatch extends AppCompatActivity implements NavigationView.OnNavi
 
 
                                 dogsList.add(dog);
-                                /*
-                                int id = Integer.parseInt(shopObj.getString(tagId));
 
-                                String eventCat = shopObj.getString(tagCatagory);
-                                String eventTitle = shopObj.getString(tagtitle);
-                                String eventLocation = shopObj.getString(tagLocation);
-                                String eventTime =shopObj.getString(tagpTime);
-                                String eventDate  = shopObj.getString(tagDate);
-                                Double eventLat = Double.parseDouble(shopObj.getString(tagLat));
-                                Double eventLong = Double.parseDouble(shopObj.getString(tagLong));
-
-
-
-
-
-                                EventsModel event = new EventsModel(id, eventCat, eventTitle, eventLocation,eventTime,eventDate,eventLat,eventLong);
-                                listOfEvents.add(event);
-                               */
-
-                                //when user prefs have been received, find the dog matches for the user
 
                             }
 
@@ -393,15 +369,7 @@ public class DogMatch extends AppCompatActivity implements NavigationView.OnNavi
                                 //JSONArray jsArray = new JSONArray(response);
                                 JSONObject jsUserObj= new JSONObject(nResponse);
 
-                                //JSONObject jsUserObj = (JSONObject) jsArray.get(0);
-                                //she have a unique id
 
-                                   /*
-                                         Attributes user search is based on and order
-                                         Marken  Teder: Physical - Size, Fur, Body, Tolerance, Neutered
-                                         Marken  Teder: Behaviour - Energy, Exercise, Intelligence, Playful, Instinct
-                                         Marken  Teder: Social - People, Family, Dogs, Emotion, Sociability
-                                     */
 
                                 UserPrefs userPrefs = new UserPrefs(
                                         jsUserObj.getString(TAG_size),jsUserObj.getString(TAG_fur),

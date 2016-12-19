@@ -100,6 +100,8 @@ public class CompanyDogActivity extends AppCompatActivity
 
         //get a reference to the reycler view
         mRecyclerView = (RecyclerView) findViewById(R.id.companyDogs_recyclerView);
+
+        //sets up custom flip left animation on removal from the adapter
         mRecyclerView.setItemAnimator(new FlipInLeftYAnimator());
 
         //sets the layout mangaer to use a linear layout for displaying views
@@ -142,8 +144,6 @@ public class CompanyDogActivity extends AppCompatActivity
         }
         Breeder breeder = userSessionManag.BreederLoggedIn();
         companyName = breeder.getCompanyname();
-        Log.i("companyname", companyName);
-        //CheckDogsBeenAdded();
         CheckDogsBeenAdded();
 
 
@@ -175,7 +175,9 @@ public class CompanyDogActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            userSessionManag.clearBreederData();
+            Intent intent = new Intent(this,StartActivtiy.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
@@ -216,8 +218,7 @@ public class CompanyDogActivity extends AppCompatActivity
 
                     @Override
                     public void onResponse(String response) {
-                        //check the response from the server
-                        Log.i("New Response", response.toString());
+
 
 
                         if(response.equals("true")){
@@ -276,122 +277,6 @@ public class CompanyDogActivity extends AppCompatActivity
 
 
     public void RetriveDogListForCompany(){
-      /*  JsonArrayRequest companyDogListRequest = new JsonArrayRequest(doghavenAPI_URL,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        //check the response from the server
-                        Log.i("New Response", response.toString());
-
-                        if (!(dogList == null)) {
-                            dogList.clear();
-
-                        }
-
-                        mAdapter.ClearAll();
-                        try {
-
-
-                            for (int i = 0; i < response.length()-1; i++) {
-                                JSONObject dogObj = (JSONObject) response.get(i);
-                                dogId= Integer.parseInt(dogObj.getString("dog_id"));
-                                name =  dogObj.getString(TAG_dogname);
-                                age = dogObj.getString(TAG_age);
-                                breed = dogObj.getString(TAG_breed);
-                                companyName = dogObj.getString(TAG_company);
-                                color = dogObj.getString(TAG_color);
-                                size = dogObj.getString(TAG_size);
-                                fur = dogObj.getString(TAG_fur);
-                                body = dogObj.getString(TAG_body);
-                                tolerance = dogObj.getString(TAG_tolerance);
-                                neutered = dogObj.getString(TAG_neutered);
-                                energy = dogObj.getString(TAG_energy);
-                                exercise = dogObj.getString(TAG_exercise);
-                                intelligence = dogObj.getString(TAG_intelligence);
-                                playful = dogObj.getString(TAG_playful);
-                                instinct = dogObj.getString(TAG_instinct);
-                                people = dogObj.getString(TAG_people);
-                                family = dogObj.getString(TAG_family);
-                                dogs = dogObj.getString(TAG_dogs);
-                                emotion = dogObj.getString(TAG_emotion);
-                                sociability = dogObj.getString(TAG_sociality);
-                                dillcur = dogObj.getString(TAG_dillcur);
-                                dillpast = dogObj.getString(TAG_dillpast);
-                                dvac = dogObj.getString(TAG_dvac);
-                                dvacmiss = dogObj.getString(TAG_dvacmiss);
-
-                                Dog dog = new Dog(dogId, name, age, breed, companyName, color, size, fur, body
-                                        ,tolerance, neutered, energy,exercise, intelligence, playful, instinct, people
-                                        ,family,dogs,emotion, sociability, dillcur, dillpast, dvac, dvacmiss
-                                );
-
-                                dogList.add(dog);
-                                /*
-                                int id = Integer.parseInt(shopObj.getString(tagId));
-
-                                String eventCat = shopObj.getString(tagCatagory);
-                                String eventTitle = shopObj.getString(tagtitle);
-                                String eventLocation = shopObj.getString(tagLocation);
-                                String eventTime =shopObj.getString(tagpTime);
-                                String eventDate  = shopObj.getString(tagDate);
-                                Double eventLat = Double.parseDouble(shopObj.getString(tagLat));
-                                Double eventLong = Double.parseDouble(shopObj.getString(tagLong));
-
-
-
-
-
-                                EventsModel event = new EventsModel(id, eventCat, eventTitle, eventLocation,eventTime,eventDate,eventLat,eventLong);
-                                listOfEvents.add(event);
-
-
-                                //when user prefs have been received, find the dog matches for the user
-
-                            }
-
-
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Log.i("JSONError", e.toString());
-                        }
-                        }
-
-                }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            final AlertDialog.Builder builder = new AlertDialog.Builder(CompanyDogActivity.this);
-                            builder.setMessage("Error: " + error.toString())
-                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-
-
-                                        }
-                                    });
-
-                            builder.show();
-
-                            error.printStackTrace();
-                        }
-                    })
-
-                    {
-                        @Override
-                        protected Map<String, String> getParams ()throws AuthFailureError {
-                        Map<String, String> params = new HashMap<>();
-                        //sending login signals to server that it is a login request and should handle accordingly
-                        params.put("GetCompanyDogs", "");
-                        params.put("companyname", companyName);
-                        return params;
-                    }
-                    };
-
-                    */
-
-                    // Adding the request to the queue
-                   // MyNetworkingSingletonVolley.getInstance(this).addReuestToQueue(companyDogListRequest);
 
         StringRequest companyDogListRequest = new StringRequest(Request.Method.POST,doghavenAPI_URL,
                 new Response.Listener<String>() {
@@ -400,10 +285,7 @@ public class CompanyDogActivity extends AppCompatActivity
 
                     @Override
                     public void onResponse(String response) {
-                        //check the response from the server
-                        Log.i("New Response", response.toString());
-                        Log.i("Response lenght", "" + response.length());
-
+                        //stop refreshing when a response has been received
                         mSwipeRefreshLayout.setRefreshing(false);
 
                         if (!(dogList == null)) {
@@ -451,27 +333,7 @@ public class CompanyDogActivity extends AppCompatActivity
                                 );
 
                                 dogList.add(dog);
-                                /*
-                                int id = Integer.parseInt(shopObj.getString(tagId));
 
-                                String eventCat = shopObj.getString(tagCatagory);
-                                String eventTitle = shopObj.getString(tagtitle);
-                                String eventLocation = shopObj.getString(tagLocation);
-                                String eventTime =shopObj.getString(tagpTime);
-                                String eventDate  = shopObj.getString(tagDate);
-                                Double eventLat = Double.parseDouble(shopObj.getString(tagLat));
-                                Double eventLong = Double.parseDouble(shopObj.getString(tagLong));
-
-
-
-
-
-                                EventsModel event = new EventsModel(id, eventCat, eventTitle, eventLocation,eventTime,eventDate,eventLat,eventLong);
-                                listOfEvents.add(event);
-
-                                 */
-
-                                //when user prefs have been received, find the dog matches for the user
 
                             }
 
@@ -518,18 +380,13 @@ public class CompanyDogActivity extends AppCompatActivity
     private void displayUserDetails() {
         Breeder breeder = userSessionManag.BreederLoggedIn();
 
-        //set text views
-        // View header = navigationView.
 
-        //displayUsernameTV.setText(user.getUserName());
-        //displayUseremailTV.setText(user.getEmail())
-        //;
         //usernameTV.setText(user.getUsername());
         //useremailTV.setText(user.getEmail());
 
 
 
-        //Log.i("user Loggedin", user.getUsername() + user.getEmail());
+
 
 
     }
@@ -537,7 +394,7 @@ public class CompanyDogActivity extends AppCompatActivity
 
 
     private boolean authenticate() {
-        Log.i("getLoggedIn value", "" + userSessionManag.getBreederLoggedIn());
+        //check if the user is logged in
         return userSessionManag.getBreederLoggedIn();
     }
 }

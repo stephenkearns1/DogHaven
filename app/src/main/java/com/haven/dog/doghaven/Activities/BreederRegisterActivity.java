@@ -34,9 +34,12 @@ public class BreederRegisterActivity extends AppCompatActivity implements View.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_breeder_register);
+         /*
+            init and getting reference to views and adapters
+         */
+
 
         validation = new Validation();
-        //This is where the merge issue will happen
         companyNameET = (EditText) findViewById(R.id.breederCompanyNameET);
         companyVatET = (EditText) findViewById(R.id.breederCompanyVatET);
         emailET = (EditText) findViewById(R.id.breederemailET);
@@ -61,7 +64,9 @@ public class BreederRegisterActivity extends AppCompatActivity implements View.O
             addr = addressET.getText().toString();
             county = countyET.getText().toString();
 
-
+            /*
+                Validates the user details to match
+             */
             if(companyname.isEmpty() || companyvatnum.isEmpty() || email.isEmpty() || password.isEmpty() || email.isEmpty() || addr.isEmpty() || county.isEmpty()){
 
                 Toast.makeText(getApplicationContext(),"Please Fill in missing information", Toast.LENGTH_SHORT);
@@ -70,7 +75,7 @@ public class BreederRegisterActivity extends AppCompatActivity implements View.O
                 emailET.setError("Invaild email");
                 passwordET.setError("Invalid password");
             }else if(validation.IsVaildPassword(password) == false) {
-                Log.i("email error function", "made it ");
+
             }else {
                 //make call to register methods
                 CheckIfCompanyExists();
@@ -94,7 +99,6 @@ public class BreederRegisterActivity extends AppCompatActivity implements View.O
                     public void onResponse(String response) {
 
                         progressDialog.hide();
-                        Log.i("Returned data:R01", response);
                         if(response.equalsIgnoreCase("success")){
                             //display message account has been created
 
@@ -142,13 +146,8 @@ public class BreederRegisterActivity extends AppCompatActivity implements View.O
 
                     @Override
                     public void onResponse(String response) {
-
-                        Log.i("Response Checkusername", response);
-                        Log.i("Response length", "" + response.length());
-
+                        //if a company with this name already exists do not allow for the company to be created
                         if(response.equals("exists")){
-                            //exists = true;
-                            Log.i("Made it to", "response user name exist");
                             companyNameET.setError("Already exists");
                         }else{
                             Register();
