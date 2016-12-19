@@ -60,11 +60,12 @@
 
 
         <Button
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="70dp"
             android:id="@+id/profile_update"
             android:layout_gravity="center"
-            android:text=""/>
+            android:background="@color/colorAccent"
+            android:text="Update Profile"/>
 
     </LinearLayout>
 
